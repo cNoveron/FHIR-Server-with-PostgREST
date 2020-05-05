@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "95a5cf8e-2b6d-49d3-bc61-33f733cc7b72",
+		"name": "Teeb Clinical Profile",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "insert into Patient_Bio",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"patient_blood_type\": \"O+\",\n\t\"patient_height\": 186,\n\t\"patient_weight\": 60,\n\t\"patient_birth_date\": \"1992-06-10\",\n\t\"patient_id\": \"a1c1a540-8e28-11ea-b474-99a09f8bb491\"\n}"
+				},
+				"url": {
+					"raw": "http://119.8.2.222:3000/Patient_Bio",
+					"protocol": "http",
+					"host": [
+						"119",
+						"8",
+						"2",
+						"222"
+					],
+					"port": "3000",
+					"path": [
+						"Patient_Bio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "insert into Patient_Bio bulk",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"patient_blood_type\": \"O+\",\n\t\t\"patient_height\": 186,\n\t\t\"patient_weight\": 60,\n\t\t\"patient_birth_date\": \"1992-06-10\",\n\t\t\"patient_id\": \"a1c1a540-8e28-11ea-b474-99a09f8bb491\"\n\t},{\n\t\t\"patient_blood_type\": \"A+\",\n\t\t\"patient_height\": 176,\n\t\t\"patient_weight\": 73,\n\t\t\"patient_birth_date\": \"1992-06-10\",\n\t\t\"patient_id\": \"581a2280-899d-11ea-8721-635ef2c56ff4\"\n\t}\n]"
+				},
+				"url": {
+					"raw": "http://119.8.2.222:3000/Patient_Bio",
+					"protocol": "http",
+					"host": [
+						"119",
+						"8",
+						"2",
+						"222"
+					],
+					"port": "3000",
+					"path": [
+						"Patient_Bio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "select * from Patient_Bio",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://119.8.2.222:3000/Patient_Bio",
+					"protocol": "http",
+					"host": [
+						"119",
+						"8",
+						"2",
+						"222"
+					],
+					"port": "3000",
+					"path": [
+						"Patient_Bio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "select from Patient_Bio where patient_height=gt.150",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://119.8.2.222:3000/Patient_Bio?patient_height=gt.150",
+					"protocol": "http",
+					"host": [
+						"119",
+						"8",
+						"2",
+						"222"
+					],
+					"port": "3000",
+					"path": [
+						"Patient_Bio"
+					],
+					"query": [
+						{
+							"key": "patient_height",
+							"value": "gt.150"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
