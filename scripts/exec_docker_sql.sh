@@ -1,6 +1,6 @@
-docker exec -i tutorial \
+docker exec -i teeb \
     psql -h localhost \
         -U postgres \
         -p 5432 \
         -a \
-< ../sql/Patient_Bio.sql
+< ../sql/create_tables.sql
