@@ -1,3 +1,4 @@
+#!/bin/sh
 docker exec -i teeb \
     psql -h localhost \
         -U postgres \
