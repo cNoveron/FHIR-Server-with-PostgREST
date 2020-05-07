@@ -3,4 +3,4 @@ docker exec -i teeb \
         -U postgres \
         -p 5432 \
         -a \
-< ../sql/create_tables.sql
+< ./sql/create_tables.sql
