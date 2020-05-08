@@ -1,18 +1,18 @@
-INSERT INTO "Patient" (
+insert into "patient" (
         patient_id, patient_email, patient_name, patient_surname, patient_password, patient_phone, patient_sex)
-    SELECT 
+    select 
         patient_id, patient_email, patient_name, patient_surname, patient_password, patient_phone, patient_sex
-    FROM "Patient"
-    UNION
-    VALUES (
+    from "patient"
+    union
+    values (
         'aa206120-8ef2-11ea-bc34-47c1fcb24dc4',
         'john@hotmail.com',
-        'John',
-        'Doe',
-        '$2a$12$h4qrybNUu6H3xsON6.e53u5H8MueE/1O67U0DqcBRvSLDb53l3Y6S',
+        'john',
+        'doe',
+        '$2a$12$h4qrybnuu6h3xson6.e53u5h8muee/1o67u0dqcbrvsldb53l3y6s',
         '+525511002200',
         'male'
     )
-    EXCEPT
-    SELECT patient_id, patient_email, patient_name, patient_surname, patient_password, patient_phone, patient_sex 
-    FROM "Patient";
+    except
+    select patient_id, patient_email, patient_name, patient_surname, patient_password, patient_phone, patient_sex 
+    from "patient";
