@@ -1,5 +1,6 @@
 #!/bin/sh
+docker rm /teeb
 sudo docker run --name teeb \
-    -p 5432:5432 \
+    -p 4321:4321 \
     -e POSTGRES_PASSWORD=1234 \
     -d postgres
