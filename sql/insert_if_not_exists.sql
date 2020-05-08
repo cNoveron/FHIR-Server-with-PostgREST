@@ -6,11 +6,11 @@ INSERT INTO "Patient" (
     UNION
     VALUES (
         'aa206120-8ef2-11ea-bc34-47c1fcb24dc4',
-        'desh365@hotmail.com',
+        'john@hotmail.com',
         'John',
         'Doe',
         '$2a$12$h4qrybNUu6H3xsON6.e53u5H8MueE/1O67U0DqcBRvSLDb53l3Y6S',
-        '+525530406700',
+        '+525511002200',
         'male'
     )
     EXCEPT
