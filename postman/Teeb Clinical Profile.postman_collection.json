@@ -156,6 +156,96 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "select from Patient_Bio where patient_email=foalster@gmail.com",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://119.8.2.222:3000/Patient?patient_email=eq.foalster@gmail.com",
+					"protocol": "http",
+					"host": [
+						"119",
+						"8",
+						"2",
+						"222"
+					],
+					"port": "3000",
+					"path": [
+						"Patient"
+					],
+					"query": [
+						{
+							"key": "patient_email",
+							"value": "eq.foalster@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update Patient_Bio where patient_id",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Prefer",
+						"value": "resolution=merge-duplicates",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"patient_blood_type\": \"ORH+\"\n    }\n]"
+				},
+				"url": {
+					"raw": "http://119.8.2.222:3000/Patient_Bio?patient_id=eq.aa206120-8ef2-11ea-bc34-47c1fcb24dc4",
+					"protocol": "http",
+					"host": [
+						"119",
+						"8",
+						"2",
+						"222"
+					],
+					"port": "3000",
+					"path": [
+						"Patient_Bio"
+					],
+					"query": [
+						{
+							"key": "patient_id",
+							"value": "eq.aa206120-8ef2-11ea-bc34-47c1fcb24dc4"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
