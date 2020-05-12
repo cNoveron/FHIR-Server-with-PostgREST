@@ -1,8 +1,8 @@
-insert into "patient" (
+insert into "Patient" (
         patient_id, patient_email, patient_name, patient_surname, patient_password, patient_phone, patient_sex)
     select 
         patient_id, patient_email, patient_name, patient_surname, patient_password, patient_phone, patient_sex
-    from "patient"
+    from "Patient"
     union
     values (
         'aa206120-8ef2-11ea-bc34-47c1fcb24dc4',
@@ -15,4 +15,4 @@ insert into "patient" (
     )
     except
     select patient_id, patient_email, patient_name, patient_surname, patient_password, patient_phone, patient_sex 
-    from "patient";
+    from "Patient";
