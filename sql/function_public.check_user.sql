@@ -1,8 +1,8 @@
-CREATE OR REPLACE FUNCTION public.check_user() RETURNS void AS $$
-BEGIN
-  IF current_user = 'anonuser' THEN
-    RAISE EXCEPTION 'Sin permisos'
-      USING HINT = 'No puedes acceder con el usuario anónimo.';
-  END IF;
-END
-$$ LANGUAGE plpgsql;
+create or replace function public.check_user() returns void as $$
+begin
+  if current_user = 'anonuser' then
+    raise exception 'sin permisos'
+      using hint = 'no puedes acceder con el usuario anónimo.';
+  end if;
+end
+$$ language plpgsql;
