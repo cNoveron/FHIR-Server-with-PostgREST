@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "9acd9544-815b-4a78-86a9-fe8daee11fd3",
+		"name": "FhirbasePostgrest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Diagnostic Report",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/diagnosticreport?select=resource::json\"",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"diagnosticreport"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "resource::json\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_id_from_diagnosticreport",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "a",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "b",
+						"value": "2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"code\": \"34117-2\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/rpc/get_id_from_diagnosticreport",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"rpc",
+						"get_id_from_diagnosticreport"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
