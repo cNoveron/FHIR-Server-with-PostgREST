@@ -18,4 +18,4 @@ docker exec -i teeb \
         -U postgres \
         -p 5432 \
         -a \
-< ./sql/function_public.check_user.sql
+< ./sql/function_public.check_user.sql  
