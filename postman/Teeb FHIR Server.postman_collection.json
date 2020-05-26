@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "59457edb-0e61-4cd2-b87a-180a779503b5",
+		"name": "Teeb FHIR Server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://119.8.2.222:3000/diagnosticreport?resource->code->coding->0->>code=eq.58410-2&resource->subject->>id=eq.51f25282-57bd-42ab-aec7-716a63d2a8a8&select=resource->>issued,resource->>subject::json,resource->>performer::json",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://119.8.2.222:3000/diagnosticreport?resource->code->coding->0->>code=eq.58410-2&resource->subject->>id=eq.51f25282-57bd-42ab-aec7-716a63d2a8a8&select=resource->>issued,resource->>subject::json,resource->>performer::json",
+					"protocol": "http",
+					"host": [
+						"119",
+						"8",
+						"2",
+						"222"
+					],
+					"port": "3000",
+					"path": [
+						"diagnosticreport"
+					],
+					"query": [
+						{
+							"key": "resource->code->coding->0->>code",
+							"value": "eq.58410-2"
+						},
+						{
+							"key": "resource->subject->>id",
+							"value": "eq.51f25282-57bd-42ab-aec7-716a63d2a8a8"
+						},
+						{
+							"key": "select",
+							"value": "resource->>issued,resource->>subject::json,resource->>performer::json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://119.8.2.222:3000/diagnosticreport?resource->code->coding->0->>code=eq.58410-2&resource->subject->>id=eq.51f25282-57bd-42ab-aec7-716a63d2a8a8&select=resource->>issued,resource->>subject::json,resource->>performer::json Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://119.8.2.222:3000/diagnosticreport?resource->code->coding->0->>code=eq.24357-8&resource->subject->>id=eq.51f25282-57bd-42ab-aec7-716a63d2a8a8&select=resource->>issued,resource->>subject::json,resource->>performer::json,resource->presentedForm",
+					"protocol": "http",
+					"host": [
+						"119",
+						"8",
+						"2",
+						"222"
+					],
+					"port": "3000",
+					"path": [
+						"diagnosticreport"
+					],
+					"query": [
+						{
+							"key": "resource->code->coding->0->>code",
+							"value": "eq.24357-8"
+						},
+						{
+							"key": "resource->subject->>id",
+							"value": "eq.51f25282-57bd-42ab-aec7-716a63d2a8a8"
+						},
+						{
+							"key": "select",
+							"value": "resource->>issued,resource->>subject::json,resource->>performer::json,resource->presentedForm"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://119.8.2.222:3000/diagnosticreport?resource->code->coding->0->>code=eq.58410-2&resource->subject->>id=eq.51f25282-57bd-42ab-aec7-716a63d2a8a8&select=resource->>issued,resource->>subject::json,resource->>performer::json Copy Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://119.8.2.222:3000/diagnosticreport?resource->code->coding->0->>code=eq.72230-6&resource->subject->>id=eq.51f25282-57bd-42ab-aec7-716a63d2a8a8&select=resource->>issued,resource->>subject::json,resource->>performer::json,resource->presentedForm",
+					"protocol": "http",
+					"host": [
+						"119",
+						"8",
+						"2",
+						"222"
+					],
+					"port": "3000",
+					"path": [
+						"diagnosticreport"
+					],
+					"query": [
+						{
+							"key": "resource->code->coding->0->>code",
+							"value": "eq.72230-6"
+						},
+						{
+							"key": "resource->subject->>id",
+							"value": "eq.51f25282-57bd-42ab-aec7-716a63d2a8a8"
+						},
+						{
+							"key": "select",
+							"value": "resource->>issued,resource->>subject::json,resource->>performer::json,resource->presentedForm"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
