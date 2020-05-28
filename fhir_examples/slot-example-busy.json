@@ -1,0 +1,32 @@
+{
+    "resourceType": "Slot",
+    "id": "010639834",
+    "text": {
+        "status": "generated",
+        "div": "<divxmlns=\"http://www.w3.org/1999/xhtml\">25Dec20139:00am-9:15am:<b>Busy</b>Physiotherapy</div>"
+    },
+    "identifier": [
+        {
+            "system": "http://example.org/identifiers/slots",
+            "value": "123132"
+        }
+    ],
+    "serviceCategory": [
+        {
+            "coding": [
+                {
+                    "code": "17",
+                    "display": "General Practice"
+                }
+            ]
+        }
+    ],
+    "schedule": {
+        "reference": "Schedule/0963458971"
+    },
+    "status": "busy",
+    "start": "2020-05-27 12:00:00.000000+00",
+    "end": "2020-05-27 21:00:00.000000+00",
+    "overbooked": true,
+    "comment": "Assessments should be performed before requesting appointments in this slot."
+}
