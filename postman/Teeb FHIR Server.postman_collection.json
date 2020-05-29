@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "59457edb-0e61-4cd2-b87a-180a779503b5",
+		"_postman_id": "11837682-0c4c-4db5-9dc7-5caec274b238",
 		"name": "Teeb FHIR Server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -10,10 +10,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{host}}:{{port}}/diagnosticreport?resource->code->coding->0->>code=eq.58410-2&resource->subject->>id=eq.51f25282-57bd-42ab-aec7-716a63d2a8a8&select=resource->id,resource->issued",
 					"protocol": "http",
@@ -47,10 +43,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{host}}:{{port}}/diagnosticreport?resource->code->coding->0->>code=eq.24357-8&resource->subject->>id=eq.51f25282-57bd-42ab-aec7-716a63d2a8a8&select=resource->issued",
 					"protocol": "http",
@@ -84,10 +76,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://{{host}}:{{port}}/diagnosticreport?resource->code->coding->0->>code=eq.72230-6&resource->subject->>id=eq.9a77fd59-814e-437d-9609-f7784f9386dc&select=resource->id,resource->issued",
 					"protocol": "http",
@@ -119,6 +107,16 @@
 		{
 			"name": "C Tomografía",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -181,5 +179,6 @@
 			},
 			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
