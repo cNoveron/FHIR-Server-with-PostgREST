@@ -9,7 +9,7 @@ echo "#### Updating postgrest data... ####"
 docker exec -i fhirbase psql -d fhirbase_v4 < ./sql/03_create_postgrest_data.sql
 
 echo "#### Updating permissions... ####"
-docker exec -i fhirbase psql -d fhirbase_v4 < ./sql/03_update_permissionsto_web_anon.sql
+docker exec -i fhirbase psql -d fhirbase_v4 < ./sql/04_update_permissionsto_web_anon.sql
 
 echo "#### Initializing database with FHIR schema... ####"
 fhirbase -d fhirbase_v4 --fhir=4.0.0 init
