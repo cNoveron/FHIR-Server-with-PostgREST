@@ -7,5 +7,4 @@ as $$
 	where resource->'slot'->>'id'=_id;
 $$ language sql;
 
-
 -- select * from r_consultations('0963458975');
