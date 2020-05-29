@@ -106,7 +106,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"planning_horizon_start\": \"2013-12-25 09:30:01\",\n\t\"actor_id\": \"1\"\n}\n",
+							"raw": "{\n\t\"actor_id\": \"1\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
