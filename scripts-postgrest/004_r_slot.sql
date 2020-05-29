@@ -7,5 +7,4 @@ as $$
 	where resource->'schedule'->>'id'=_id;
 $$ language sql;
 
-
 -- select * from r_slot('0963458975');

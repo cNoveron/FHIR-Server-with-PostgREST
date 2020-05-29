@@ -6,6 +6,292 @@
 	},
 	"item": [
 		{
+			"name": "Functions",
+			"item": [
+				{
+					"name": "001_r_consultations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "a",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "b",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"0963458975\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/rpc/r_consultations",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rpc",
+								"r_consultations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "002_get_id_from_diagnostic_report",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "a",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "b",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"code\": \"34117-2\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/rpc/get_id_from_diagnosticreport",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rpc",
+								"get_id_from_diagnosticreport"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003_r_schedule",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "a",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "b",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"planning_horizon_start\": \"2013-12-25 09:30:01\",\n\t\"actor_id\": \"1\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/rpc/r_schedule",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rpc",
+								"r_schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004_r_slot",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "a",
+								"type": "text",
+								"value": "1"
+							},
+							{
+								"key": "b",
+								"type": "text",
+								"value": "2"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"0963458975\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/rpc/r_slot",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rpc",
+								"r_slot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "005_r_ece_lab_display_metadata_blood_count",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "a",
+								"type": "text",
+								"value": "1"
+							},
+							{
+								"key": "b",
+								"type": "text",
+								"value": "2"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"subject_id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/rpc/r_ece_lab_display_metadata_blood_count",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rpc",
+								"r_ece_lab_display_metadata_blood_count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006_r_ece_lab_display_metadata_urinalysis",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "a",
+								"type": "text",
+								"value": "1"
+							},
+							{
+								"key": "b",
+								"type": "text",
+								"value": "2"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"subject_id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/rpc/r_ece_lab_display_metadata_urinalysis",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rpc",
+								"r_ece_lab_display_metadata_urinalysis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "007_r_ece_lab_display_metadata_tomography",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "a",
+								"type": "text",
+								"value": "1"
+							},
+							{
+								"key": "b",
+								"type": "text",
+								"value": "2"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"subject_id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}:{{port}}/rpc/r_ece_lab_display_metadata_tomography",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"rpc",
+								"r_ece_lab_display_metadata_tomography"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Diagnostic Report",
 			"request": {
 				"method": "GET",
@@ -17,46 +303,6 @@
 					],
 					"path": [
 						"diagnosticreport"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get_id_from_diagnosticreport",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "a",
-						"value": "1",
-						"type": "text"
-					},
-					{
-						"key": "b",
-						"value": "2",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"code\": \"34117-2\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://{{host}}:{{port}}/rpc/get_id_from_diagnosticreport",
-					"protocol": "http",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"rpc",
-						"get_id_from_diagnosticreport"
 					]
 				}
 			},
@@ -114,23 +360,6 @@
 			"response": []
 		},
 		{
-			"name": "Slot",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{host}}/slot",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"slot"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Appointment",
 			"request": {
 				"method": "GET",
@@ -150,160 +379,17 @@
 			"response": []
 		},
 		{
-			"name": "r_consult_fees",
+			"name": "Slot",
 			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "a",
-						"value": "1",
-						"type": "text"
-					},
-					{
-						"key": "b",
-						"value": "2",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"planning_horizon_start\": \"2013-12-25 09:30:01\",\n\t\"actor_id\": \"1\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
+				"method": "GET",
+				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/rpc/r_schedule",
-					"protocol": "http",
+					"raw": "{{host}}/slot",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
-						"rpc",
-						"r_schedule"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "r_slot",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "a",
-						"value": "1",
-						"type": "text"
-					},
-					{
-						"key": "b",
-						"value": "2",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"planning_horizon_start\": \"2013-12-25 09:30:01\",\n\t\"actor_id\": \"1\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://{{host}}:{{port}}/rpc/r_schedule",
-					"protocol": "http",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"rpc",
-						"r_schedule"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "r_consultations",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "a",
-						"value": "1",
-						"type": "text"
-					},
-					{
-						"key": "b",
-						"value": "2",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"_id\": \"0963458975\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://{{host}}:{{port}}/rpc/r_consultations",
-					"protocol": "http",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"rpc",
-						"r_consultations"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "r_ece_lab_display_metadata",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "a",
-						"value": "1",
-						"type": "text"
-					},
-					{
-						"key": "b",
-						"value": "2",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"code\": \"57698-3\",\n\t\"subject_id\": \"d3af67c9-0c02-45f2-bc91-fea45af3ee83\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://{{host}}:{{port}}/rpc/r_ece_lab_display_metadata",
-					"protocol": "http",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"rpc",
-						"r_ece_lab_display_metadata"
+						"slot"
 					]
 				}
 			},
