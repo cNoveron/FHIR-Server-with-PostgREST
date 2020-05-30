@@ -1,22 +1,27 @@
 FROM fhirbase/fhirbase:v0.1.1
 
+ENV POSTGRES_USER='teeb' \
+    POSTGRES_PASSWORD='d3s4rr0ll0'
+
 WORKDIR /app
 
 # Copy the scripts
 COPY ./sql ./sql
 COPY ./scripts ./scripts
 
-# Build synthea and generate data
-RUN ./synthea/run_synthea -p 5
+COPY ./synthea/output/fhir/ ./synthea/output/fhir/
+COPY ./data/ ./data
 
 # Initialize database
 RUN ./scripts/dev/01_initialize_database.sh
 
 # Inits the fhirbase data
-RUN fhirbase -d fhirbase_v4 --fhir=4.0.0 init
+RUN -n localhost fhirbase -d fhirbase_v4 --fhir=4.0.0 init
 
 # Loads FHIR Data
-RUN fhirbase -d fhirbase_v4 --fhir=4.0.0 load /bundle.ndjson.gzip
+
+RUN fhirbase -n localhsot -d fhirbase_v4 -U $POSTGRES_USER -W $POSTGRES_PASSWORD load ./synthea/output/fhir/*
+RUN fhirbase -n localhost -d fhirbase_v4 -U $POSTGRES_USER -W $POSTGRES_PASSWORD load ./data/*
 
 # Load Functions 
 RUN ./scripts/dev/02_load_functions.sh

@@ -14,9 +14,6 @@ psql -d fhirbase_v4 < ./sql/04_update_permissions_to_web_anon.sql
 echo "#### Updating authenticator permissions... ####"
 psql -d fhirbase_v4 < ./sql/05_update_permissions_to_authenticator.sql
 
-echo "#### Initializing database with FHIR schema... ####"
-fhirbase -d fhirbase_v4 --fhir=4.0.0 init
-
 echo "#### Loading postgrest functions... ####"
 psql -d fhirbase_v4 < ./scripts-postgrest/001_r_consultations.sql
 psql -d fhirbase_v4 < ./scripts-postgrest/002_get_id_from_diagnostic_report.sql

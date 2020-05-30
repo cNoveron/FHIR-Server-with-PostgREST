@@ -15,10 +15,10 @@
     exporter.fhir.bulk_data = true
     ```
 
-3. Buildear el proyecto de synthea
+3. Buildear el proyecto de synthea y generar información inicial
 
     ```bash
-    cd synthea && ./gradlew build -x test && cd ..
+    ./scripts/dev/00_generate_synthea_data.sh
     ```
     Nota: Si deseas ejecutar los tests de synthea, ejecuta `gradlew build check test`
 
@@ -31,7 +31,7 @@
 5. Ejecutar el contenedor
 
     ```bash
-    docker run -d -p 5435:5432 -p 3005:3000 --name teeb_fhir_server teeb_fhir_server
+    docker run -d -p 5435:5432 -p 3005:3000 --name teeb_fhir_server teeb_fhir_server --env-file=.env
     ```
 
 6. Verificar funcionamiento
