@@ -1,4 +1,4 @@
-drop function if exists r_agenda;
+drop function if exists r_slots;
 
 create or replace function r_slots(actor_id varchar)
 	returns table(
