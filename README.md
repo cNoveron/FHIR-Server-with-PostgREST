@@ -18,8 +18,9 @@
 3. Buildear el proyecto de synthea
 
     ```bash
-    cd synthea && ./gradlew build && cd ..
+    cd synthea && ./gradlew build -x test && cd ..
     ```
+    Nota: Si deseas ejecutar los tests de synthea, ejecuta `gradlew build check test`
 
 4. Crear la imagen de docker
 
