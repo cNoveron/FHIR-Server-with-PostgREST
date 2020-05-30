@@ -18,27 +18,23 @@
 3. Buildear el proyecto de synthea
 
     ```bash
-    cd synthea && ./gradlew build check test && cd ..
+    cd synthea && ./gradlew build && cd ..
     ```
 
 4. Crear la imagen de docker
 
-```bash
- docker build -t teeb_fhir_server ./
-```
+    ```bash
+    docker build -t teeb_fhir_server ./
+    ```
 
-2. Ejecutar el contenedor
+5. Ejecutar el contenedor
 
-```bash
- docker run -d -p 5435:5432 -p 3005:3000 --name teeb_fhir_server teeb_fhir_server
-```
+    ```bash
+    docker run -d -p 5435:5432 -p 3005:3000 --name teeb_fhir_server teeb_fhir_server
+    ```
 
-3. Verificar funcionamiento
+6. Verificar funcionamiento
 
-```
-curl localhost:3005
-```
-
-```shell
-psql -d postgres -U postgres -h localhost -p 5435
-```
+    ```
+    curl localhost:3005
+    ```
