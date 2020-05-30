@@ -3,9 +3,17 @@ FROM fhirbase/fhirbase:v0.1.1
 ENV POSTGRES_USER='teeb' \
     POSTGRES_PASSWORD='d3s4rr0ll0'
 
+USER root
+
 WORKDIR /app
 
 # Copy the scripts
+RUN mkdir ./sql
+RUN mkdir ./scripts
+RUN mkdir -p ./synthea/output/fhir/
+RUN mkdir ./data
+
+
 COPY ./sql ./sql
 COPY ./scripts ./scripts
 

@@ -1,3 +1,4 @@
+#!/bin/sh
 
 psql -h "$1" -U teeb -d fhirbase_v4 < ./sql/pacientes/r_patients.sql
 psql -h "$1" -U teeb -d fhirbase_v4 < ./sql/médicos/r_practitioners.sql

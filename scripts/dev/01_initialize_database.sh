@@ -1,4 +1,5 @@
 #!/bin/sh
+
 echo "#### Creating Fhirbase_v4.0.0 database in Postgres instance... ####"
 psql -d fhirbase_v4 < ./sql/01_create_database.sql
 
