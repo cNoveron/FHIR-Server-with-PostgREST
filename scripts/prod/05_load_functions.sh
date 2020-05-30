@@ -5,7 +5,7 @@ psql -h "$1" -U teeb -d fhirbase_v4 \
 < ./sql/médicos/r_practitioners.sql
 
 psql -h "$1" -U teeb -d fhirbase_v4 \
-< ./sql/agenda/r_appointments.sql
+< ./sql/agenda/r_slots.sql
 psql -h "$1" -U teeb -d fhirbase_v4 \
 < ./sql/consultas/r_appointments.sql
 
