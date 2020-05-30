@@ -27,13 +27,13 @@ Verás el archivo binario `postgrest` en el directorio activo.
 1. Crear la imagen de docker
 
 ```bash
- docker build -t fhirbase_teeb ./
+ docker build -t teeb_fhir_server ./
 ```
 
 2. Ejecutar el contenedor
 
 ```bash
- docker run -d -p 5435:5432 -p 3005:3000 --name fhirbase_teeb fhirbase_teeb
+ docker run -d -p 5435:5432 -p 3005:3000 --name teeb_fhir_server teeb_fhir_server
 ```
 
 3. Verificar funcionamiento
