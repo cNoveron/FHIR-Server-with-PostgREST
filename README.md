@@ -1,30 +1,27 @@
 # Perfil Clínico
 
-## Instalación
+## Instalación 
 
-1. Corre el siguiente script para ejecutar PostgreSQL en un contenedor de Docker.
+1. Inicializar submodulo synthea
 
-```bash
-bash scripts/01_run_docker_PostgreSQL.sh
-```
+    ```bash
+    git submodule update
+    ```
 
-2. Corre el siguiente script para ejecutar los scripts SQL que poblarán la base de datos.
+2. Configurar el archivo **./src/main/resources/synthea.properties** de synthea con los siguientes datos:
 
-```
-bash scripts/02_exec_docker_sql.sh
-```
+    ```bash
+    exporter.fhir.use_us_core_ig = true 
+    exporter.fhir.bulk_data = true
+    ```
 
-3. Corre el siguiente script para descargar y extraer PostgREST:
+3. Buildear el proyecto de synthea
 
-```bash
-bash scripts/03_download_PostgREST.sh
-```
+    ```bash
+    cd synthea && ./gradlew build check test && cd ..
+    ```
 
-Verás el archivo binario `postgrest` en el directorio activo.
-
-## Instalación (Refactor)
-
-1. Crear la imagen de docker
+4. Crear la imagen de docker
 
 ```bash
  docker build -t teeb_fhir_server ./

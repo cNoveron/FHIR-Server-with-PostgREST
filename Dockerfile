@@ -7,7 +7,8 @@ WORKDIR /app
 COPY ./sql ./sql
 COPY ./scripts ./scripts
 
-# Build synthea
+# Build synthea and generate data
+./synthea/run_synthea -p 5
 
 RUN ./scripts/dev/02_initialize_database.sh
 
