@@ -5,6 +5,8 @@ psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 < ./sql/médicos/r_practitioners.sql
 
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
+< ./sql/horarios/r_schedules.sql
+psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 < ./sql/agenda/r_slots.sql
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 < ./sql/consultas/r_appointments.sql
