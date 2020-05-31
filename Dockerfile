@@ -1,11 +1,14 @@
-FROM fhirbase/fhirbase:v0.1.1
+FROM postgres:12.3
 
-ENV POSTGRES_USER='teeb' \
-    POSTGRES_PASSWORD='d3s4rr0ll0'
+WORKDIR /fhirbase
 
-USER root
+COPY /bin/fhirbase /usr/bin/fhirbase
 
-WORKDIR /app
+RUN chmod +x /usr/bin/fhirbase
+
+RUN mkdir /pgdata && chown postgres:postgres /pgdata
+
+USER postgres
 
 # Copy the scripts
 RUN mkdir ./sql
@@ -13,27 +16,25 @@ RUN mkdir ./scripts
 RUN mkdir -p ./synthea/output/fhir/
 RUN mkdir ./data
 
+COPY sql/ ./sql
+COPY scripts/ ./scripts
+COPY scripts-postgrest/ ./scripts-postgrest
+COPY synthea/output/fhir/ ./synthea/output/fhir/
+COPY data/ ./data
 
-COPY ./sql ./sql
-COPY ./scripts ./scripts
-
-COPY ./synthea/output/fhir/ ./synthea/output/fhir/
-COPY ./data/ ./data
-
-# Initialize database
-RUN ./scripts/dev/01_initialize_database.sh
-
-# Inits the fhirbase data
-RUN -n localhost fhirbase -d fhirbase_v4 --fhir=4.0.0 init
-
-# Loads FHIR Data
-
-RUN fhirbase -n localhsot -d fhirbase_v4 -U $POSTGRES_USER -W $POSTGRES_PASSWORD load ./synthea/output/fhir/*
-RUN fhirbase -n localhost -d fhirbase_v4 -U $POSTGRES_USER -W $POSTGRES_PASSWORD load ./data/*
-
-# Load Functions 
-RUN ./scripts/dev/02_load_functions.sh
-
-# curl 'http://localhost:3001/appointment?resource->participant->0->actor->>id=eq.example&select=resource->start'
+RUN PGDATA=/pgdata /docker-entrypoint.sh postgres  & \
+    until psql -U postgres -c '\q'; do \
+        >&2 echo "Postgres is starting up..."; \
+        sleep 5; \
+    done && \
+    psql -U postgres -c 'create database fhirbase_v4;' && \
+    /fhirbase/00_init.sh \
+    pg_ctl -D /pgdata stop
 
 EXPOSE 3000 5432
+
+CMD pg_ctl -D /pgdata start && until psql -U postgres -c '\q'; do \
+        >&2 echo "Postgres is starting up..."; \
+        sleep 5; \
+    done && \
+    exec fhirbase -d fhirbase web

@@ -31,7 +31,7 @@
 5. Ejecutar el contenedor
 
     ```bash
-    docker run -d -p 5435:5432 -p 3005:3000 --name teeb_fhir_server teeb_fhir_server --env-file=.env
+    docker run --rm -p 5435:5432 -p 3005:3000 -d --name teeb_fhir_server teeb_fhir_server --env-file=.env
     ```
 
 6. Verificar funcionamiento
