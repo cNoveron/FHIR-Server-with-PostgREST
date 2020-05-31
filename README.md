@@ -21,20 +21,22 @@
     ./scripts/dev/01_generate_synthea_data.sh
     ```
 
-4. Crear la imagen de docker
+4. Configura el archivo postgrest.conf
+
+5. Crear la imagen de docker
 
     ```bash
     docker build -t teeb_fhir_server:1.0.0 ./
     ```
 
-5. Ejecutar el contenedor
+6. Ejecutar el contenedor
 
     ```bash
 
-    docker run --rm --env-file .env --name teeb_fhir_server -d -p 5435:5432 -p 3005:3000 teeb_fhir_server:1.0.0
+    docker run --rm --env-file .env --name teeb_fhir_server -d -p 5435:5432 -p 3005:3000  -p 4005:4000 teeb_fhir_server:1.0.0
     ```
 
-6. Verificar funcionamiento
+7. Verificar funcionamiento
     Después de unos segundos, se podría poder observar el servicio funcionando correctamente
 
     ```bash
