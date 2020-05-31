@@ -2,6 +2,3 @@
 	path = synthea
 	url = https://github.com/synthetichealth/synthea
 	ignore = dirty
-[submodule "fhirbase"]
-	path = fhirbase
-	url = git@github.com:fhirbase/fhirbase.git
