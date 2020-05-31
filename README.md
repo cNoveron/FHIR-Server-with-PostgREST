@@ -4,9 +4,8 @@
 
 1. Inicializar submodulos
 
-
     ```bash
-    git submodule update
+    git submodule init && git submodule update
     ```
 
 2. Configurar el archivo **./src/main/resources/synthea.properties** de synthea con los siguientes datos:
@@ -21,6 +20,7 @@
     ```bash
     ./scripts/dev/01_generate_synthea_data.sh
     ```
+
     Nota: Si deseas ejecutar los tests de synthea, ejecuta `gradlew build check test`
 
 4. Crear la imagen de docker
@@ -38,6 +38,7 @@
 
 6. Verificar funcionamiento
     Después de unos segundos, se podría poder observar el servicio funcionando correctamente
-    ```
+
+    ```bash
     curl localhost:3005
     ```
