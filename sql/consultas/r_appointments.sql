@@ -5,14 +5,16 @@ create or replace function r_appointments(actor_id varchar)
 		appointment_id text,
 		appointment_start text,
 		appointment_end text,
-		appointment_specialty text
+		appointment_specialty text,
+		appointment_participant text
 	)
 as $$
 	select
 		resource ->> 'id',
 		resource -> 'requestedPeriod' -> 0 ->> 'start',
 		resource -> 'requestedPeriod' -> 0 ->> 'end',
-		resource -> 'specialty' -> 0 -> 'coding' -> 0 ->> 'display'
+		resource -> 'specialty' -> 0 -> 'coding' -> 0 ->> 'display',
+		jsonb_array_elements(resource -> 'participant')
 	from appointment,
 		jsonb_array_elements(resource -> 'slot') slot
 	where(
