@@ -26,14 +26,14 @@
 4. Crear la imagen de docker
 
     ```bash
-    docker build -t teeb_fhir_server ./
+    docker build -t teeb_fhir_server:1.0.0 ./
     ```
 
 5. Ejecutar el contenedor
 
     ```bash
 
-    docker run --rm --env-file .env -p 5435:5432 -p 3005:3000 teeb_fhir_server:1.0
+    docker run --rm --env-file .env --name teeb_fhir_server -d -p 5435:5432 -p 3005:3000 teeb_fhir_server:1.0.0
     ```
 
 6. Verificar funcionamiento

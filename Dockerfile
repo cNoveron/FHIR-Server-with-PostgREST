@@ -1,12 +1,8 @@
-FROM postgres:10.5
+FROM fhirbase/fhirbase:v0.1.1
+
+USER root
 
 WORKDIR /fhirbase
-
-COPY bin/fhirbase /usr/bin/fhirbase
-
-RUN chmod +x /usr/bin/fhirbase
-
-RUN mkdir /pgdata && chown postgres:postgres /pgdata
 
 # Copy the scripts
 RUN mkdir ./sql
@@ -35,7 +31,7 @@ RUN PGDATA=/pgdata /docker-entrypoint.sh postgres  & \
         sleep 5; \
     done && \
     psql -U postgres -c 'create database fhirbase_v4;' && \
-    /fhirbase/scripts/dev/00_init.sh \
+    sh /fhirbase/scripts/dev/00_init.sh \
     pg_ctl -D /pgdata stop
 
 EXPOSE 3000 5432
@@ -44,4 +40,4 @@ CMD pg_ctl -D /pgdata start && until psql -U postgres -c '\q'; do \
         >&2 echo "Postgres is starting up..."; \
         sleep 5; \
     done && \
-    exec fhirbase -d fhirbase web
+    exec fhirbase -d fhirbase_v4 -U postgres -d postgres web
