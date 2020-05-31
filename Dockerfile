@@ -21,11 +21,11 @@ COPY synthea/output/fhir/ ./synthea/output/fhir/
 COPY data/ ./data
 
 # Set the permissions
-RUN -R chown postgres:postgres  ./sql/*
-RUN -R chown postgres:postgres  ./scripts/*
-RUN -R chown postgres:postgres  ./scripts-postgrest/*
-RUN -R chown postgres:postgres  ./synthea/output/fhir/*
-RUN -R chown postgres:postgres  ./data/*
+RUN chown -R postgres:postgres  ./sql/*
+RUN chown -R postgres:postgres  ./scripts/*
+RUN chown -R postgres:postgres  ./scripts-postgrest/*
+RUN chown -R postgres:postgres  ./synthea/output/fhir/*
+RUN chown -R postgres:postgres  ./data/*
 
 USER postgres
 
