@@ -4,12 +4,6 @@ USER root
 
 WORKDIR /fhirbase
 
-# Copy the scripts
-RUN mkdir ./sql
-RUN mkdir ./scripts
-RUN mkdir -p ./synthea/output/fhir/
-RUN mkdir ./data
-
 COPY sql/ ./sql
 COPY scripts/ ./scripts
 COPY scripts-postgrest/ ./scripts-postgrest
@@ -17,11 +11,11 @@ COPY synthea/output/fhir/ ./synthea/output/fhir/
 COPY data/ ./data
 
 # Set the permissions
-RUN chown -R postgres:postgres  ./sql/*
-RUN chown -R postgres:postgres  ./scripts/*
-RUN chown -R postgres:postgres  ./scripts-postgrest/*
-RUN chown -R postgres:postgres  ./synthea/output/fhir/*
-RUN chown -R postgres:postgres  ./data/*
+RUN chown -R postgres:postgres  ./sql/* && \
+    chown -R postgres:postgres  ./scripts/* && \
+    chown -R postgres:postgres  ./scripts-postgrest/* && \
+    chown -R postgres:postgres  ./synthea/output/fhir/* && \
+    chown -R postgres:postgres  ./data/*
 
 USER postgres
 
@@ -40,4 +34,4 @@ CMD pg_ctl -D /pgdata start && until psql -U postgres -c '\q'; do \
         >&2 echo "Postgres is starting up..."; \
         sleep 5; \
     done && \
-    exec fhirbase -d fhirbase_v4 -U postgres -d postgres web
+    exec fhirbase -d fhirbase_v4 -n localhost -U postgres web

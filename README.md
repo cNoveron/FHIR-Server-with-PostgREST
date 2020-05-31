@@ -19,7 +19,7 @@
 3. Buildear el proyecto de synthea y generar información inicial
 
     ```bash
-    ./scripts/dev/00_generate_synthea_data.sh
+    ./scripts/dev/01_generate_synthea_data.sh
     ```
     Nota: Si deseas ejecutar los tests de synthea, ejecuta `gradlew build check test`
 
@@ -37,7 +37,7 @@
     ```
 
 6. Verificar funcionamiento
-
+    Después de unos segundos, se podría poder observar el servicio funcionando correctamente
     ```
     curl localhost:3005
     ```

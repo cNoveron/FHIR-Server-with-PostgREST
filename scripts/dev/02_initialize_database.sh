@@ -6,6 +6,9 @@ set -e
 echo "#### Creating Fhirbase_v4.0.0 database in Postgres instance... ####"
 
 psql -d fhirbase_v4 -U postgres -p 5432 < /fhirbase/sql/01_create_database.sql
+
+echo "#### Fhirbase init... ####"
+
 fhirbase -d fhirbase_v4 --fhir=4.0.0 init
 
 echo "#### Updating tables... ####"
