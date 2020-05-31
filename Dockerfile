@@ -20,6 +20,13 @@ COPY scripts-postgrest/ ./scripts-postgrest
 COPY synthea/output/fhir/ ./synthea/output/fhir/
 COPY data/ ./data
 
+# Set the permissions
+RUN -R chown postgres:postgres  ./sql/*
+RUN -R chown postgres:postgres  ./scripts/*
+RUN -R chown postgres:postgres  ./scripts-postgrest/*
+RUN -R chown postgres:postgres  ./synthea/output/fhir/*
+RUN -R chown postgres:postgres  ./data/*
+
 USER postgres
 
 RUN PGDATA=/pgdata /docker-entrypoint.sh postgres  & \
@@ -28,7 +35,7 @@ RUN PGDATA=/pgdata /docker-entrypoint.sh postgres  & \
         sleep 5; \
     done && \
     psql -U postgres -c 'create database fhirbase_v4;' && \
-    /fhirbase/00_init.sh \
+    /fhirbase/scripts/dev/00_init.sh \
     pg_ctl -D /pgdata stop
 
 EXPOSE 3000 5432
