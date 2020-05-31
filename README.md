@@ -2,7 +2,8 @@
 
 ## Instalación 
 
-1. Inicializar submodulo synthea
+1. Inicializar submodulos
+
 
     ```bash
     git submodule update
@@ -18,24 +19,25 @@
 3. Buildear el proyecto de synthea y generar información inicial
 
     ```bash
-    ./scripts/dev/00_generate_synthea_data.sh
+    ./scripts/dev/01_generate_synthea_data.sh
     ```
     Nota: Si deseas ejecutar los tests de synthea, ejecuta `gradlew build check test`
 
 4. Crear la imagen de docker
 
     ```bash
-    docker build -t teeb_fhir_server ./
+    docker build -t teeb_fhir_server:1.0.0 ./
     ```
 
 5. Ejecutar el contenedor
 
     ```bash
-    docker run --rm -p 5435:5432 -p 3005:3000 -d --name teeb_fhir_server teeb_fhir_server --env-file=.env
+
+    docker run --rm --env-file .env --name teeb_fhir_server -d -p 5435:5432 -p 3005:3000 teeb_fhir_server:1.0.0
     ```
 
 6. Verificar funcionamiento
-
+    Después de unos segundos, se podría poder observar el servicio funcionando correctamente
     ```
     curl localhost:3005
     ```
