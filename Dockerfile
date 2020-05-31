@@ -1,6 +1,7 @@
 FROM fhirbase/fhirbase:v0.1.1
 
-USER root
+# Change postgres user from fhirbase/fhirbase image
+USER root  
 
 WORKDIR /fhirbase
 
@@ -11,18 +12,18 @@ COPY synthea/output/fhir/ ./synthea/output/fhir/
 COPY data/ ./data
 COPY libraries/postgrest /usr/local/bin
 
-RUN mkdir /etc/postgrest && \ 
+# Set the permissions
+RUN apt update && apt -y install systemd && \
+    chown -R postgres:postgres ./sql/* && \
+    chown -R postgres:postgres ./scripts/* && \
+    chown -R postgres:postgres ./scripts-postgrest/* && \
+    chown -R postgres:postgres ./synthea/output/fhir/* && \
+    chown -R postgres:postgres /usr/local/bin/postgrest && \
+    chown -R postgres:postgres ./data/* && \
+    mkdir /etc/postgrest && \ 
     cp ./scripts-postgrest/scripts/postgrest.config /etc/postgrest/config && \
     cp ./scripts-postgrest/scripts/postgrest.service /etc/systemd/system/postgrest.service && \
-    systemctl enable postgrest && systemctl start postgrest
-
-# Set the permissions
-RUN chown -R postgres:postgres  ./sql/* && \
-    chown -R postgres:postgres  ./scripts/* && \
-    chown -R postgres:postgres  ./scripts-postgrest/* && \
-    chown -R postgres:postgres  ./synthea/output/fhir/* && \
-    chown -R postgres:postgres  /usr/local/bin/postgrest && \
-    chown -R postgres:postgres  ./data/*
+    chmod 644 /etc/systemd/system/postgrest.service
 
 USER postgres
 
@@ -32,6 +33,8 @@ RUN PGDATA=/pgdata /docker-entrypoint.sh postgres  & \
         sleep 5; \
     done && \
     psql -U postgres -c 'create database fhirbase_v4;' && \
+    systemctl enable postgrest && \
+    systemctl start postgrest && \
     sh /fhirbase/scripts/dev/00_init.sh \
     pg_ctl -D /pgdata stop
 
