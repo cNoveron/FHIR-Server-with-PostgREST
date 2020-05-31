@@ -1,14 +1,30 @@
+FROM golang:1.13.11-stretch AS fhirbase-builder
+
+WORKDIR /fhirbase
+
+COPY fhirbase/ ./fhirbase
+
+# Generates Fhirbase binary
+
+WORKDIR /fhirbase/fhirbase
+
+RUN go build 
+
 FROM postgres:10.5
 
 WORKDIR /fhirbase
 
-COPY bin/fhirbase /usr/bin/fhirbase
+COPY --from=fhirbase-builder /fhirbase/fhirbase /fhirbase/fhirbase/
+
+RUN mv /fhirbase/fhirbase/fhirbase /usr/bin
 
 RUN chmod +x /usr/bin/fhirbase
 
+RUN fhirbase version
+
 RUN mkdir /pgdata && chown postgres:postgres /pgdata
 
-# Copy the scripts
+# Copy the files
 RUN mkdir ./sql
 RUN mkdir ./scripts
 RUN mkdir -p ./synthea/output/fhir/

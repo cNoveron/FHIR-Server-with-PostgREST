@@ -2,7 +2,7 @@
 
 ## Instalación 
 
-1. Inicializar submodulo synthea
+1. Inicializar submodulos
 
     ```bash
     git submodule update
