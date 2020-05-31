@@ -19,7 +19,7 @@ as $$
 			select
 				resource ->> 'id'
 			from schedule,
-				text_array_elements(resource -> 'actor') actor
+				jsonb_array_elements(resource -> 'actor') actor
 			where(
 				actor ->> 'id' = actor_id
 			)
