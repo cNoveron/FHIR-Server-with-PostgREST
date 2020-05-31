@@ -1,8 +1,14 @@
-FROM fhirbase:v0.1.1
+FROM postgres:10.5
 
 WORKDIR /fhirbase
 
-# Copy the files
+COPY bin/fhirbase /usr/bin/fhirbase
+
+RUN chmod +x /usr/bin/fhirbase
+
+RUN mkdir /pgdata && chown postgres:postgres /pgdata
+
+# Copy the scripts
 RUN mkdir ./sql
 RUN mkdir ./scripts
 RUN mkdir -p ./synthea/output/fhir/
@@ -15,11 +21,11 @@ COPY synthea/output/fhir/ ./synthea/output/fhir/
 COPY data/ ./data
 
 # Set the permissions
-RUN ["chmod", "-R", "+x", "./sql"]
-RUN ["chmod", "-R", "+x", "./scripts"]
-RUN ["chmod", "-R", "+x", "./scripts-postgrest"]
-RUN ["chmod", "-R", "+x", "./synthea/output/fhir"]
-RUN ["chmod", "-R", "+x", "./data"]
+RUN chown -R postgres:postgres  ./sql/*
+RUN chown -R postgres:postgres  ./scripts/*
+RUN chown -R postgres:postgres  ./scripts-postgrest/*
+RUN chown -R postgres:postgres  ./synthea/output/fhir/*
+RUN chown -R postgres:postgres  ./data/*
 
 USER postgres
 
@@ -29,7 +35,7 @@ RUN PGDATA=/pgdata /docker-entrypoint.sh postgres  & \
         sleep 5; \
     done && \
     psql -U postgres -c 'create database fhirbase_v4;' && \
-    /fhirbase/scripts/dev/00_init.sh; \
+    /fhirbase/scripts/dev/00_init.sh \
     pg_ctl -D /pgdata stop
 
 EXPOSE 3000 5432
@@ -37,6 +43,5 @@ EXPOSE 3000 5432
 CMD pg_ctl -D /pgdata start && until psql -U postgres -c '\q'; do \
         >&2 echo "Postgres is starting up..."; \
         sleep 5; \
-    done && \ 
-    which fhirbase && \
-    exec fhirbase -d fhirbase_v4 web
+    done && \
+    exec fhirbase -d fhirbase web

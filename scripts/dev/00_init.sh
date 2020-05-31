@@ -1,5 +1,6 @@
 #!/bin/sh
 set -e
+
 echo "#### Running /fhirbase/scripts/dev/02_initialize_database.sh... ####"
 /fhirbase/scripts/dev/02_initialize_database.sh
 

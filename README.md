@@ -4,6 +4,7 @@
 
 1. Inicializar submodulos
 
+
     ```bash
     git submodule update
     ```
@@ -25,12 +26,13 @@
 4. Crear la imagen de docker
 
     ```bash
-    docker build -t teeb_fhir_server:1.0 . --build-arg POSTGRES_USER=teeb --build-arg POSTGRES_PASSWORD=d3s4rr0ll0
+    docker build -t teeb_fhir_server ./
     ```
 
 5. Ejecutar el contenedor
 
     ```bash
+
     docker run --rm --env-file .env -p 5435:5432 -p 3005:3000 teeb_fhir_server:1.0
     ```
 
