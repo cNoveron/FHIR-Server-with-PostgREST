@@ -11,7 +11,7 @@
 2. Configurar el archivo **./src/main/resources/synthea.properties** de synthea con los siguientes datos:
 
     ```bash
-    exporter.fhir.use_us_core_ig = true 
+    exporter.fhir.use_us_core_ig = true
     exporter.fhir.bulk_data = true
     ```
 
@@ -20,8 +20,6 @@
     ```bash
     ./scripts/dev/01_generate_synthea_data.sh
     ```
-
-    Nota: Si deseas ejecutar los tests de synthea, ejecuta `gradlew build check test`
 
 4. Crear la imagen de docker
 
