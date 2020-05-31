@@ -1,14 +1,12 @@
-FROM postgres:12.3
+FROM postgres:10.5
 
 WORKDIR /fhirbase
 
-COPY /bin/fhirbase /usr/bin/fhirbase
+COPY bin/fhirbase /usr/bin/fhirbase
 
 RUN chmod +x /usr/bin/fhirbase
 
 RUN mkdir /pgdata && chown postgres:postgres /pgdata
-
-USER postgres
 
 # Copy the scripts
 RUN mkdir ./sql
@@ -21,6 +19,8 @@ COPY scripts/ ./scripts
 COPY scripts-postgrest/ ./scripts-postgrest
 COPY synthea/output/fhir/ ./synthea/output/fhir/
 COPY data/ ./data
+
+USER postgres
 
 RUN PGDATA=/pgdata /docker-entrypoint.sh postgres  & \
     until psql -U postgres -c '\q'; do \
