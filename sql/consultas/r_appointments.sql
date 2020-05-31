@@ -1,13 +1,15 @@
 drop function if exists r_appointments;
 
-create or replace function r_appointments(actor_id varchar)
-	returns table(
-		appointment_id text,
-		appointment_start text,
-		appointment_end text,
-		appointment_specialty text,
-		appointment_participant text
-	)
+create or replace function r_appointments(
+	schedule_actor_id varchar
+)
+returns table(
+	appointment_id text,
+	appointment_start text,
+	appointment_end text,
+	appointment_specialty text,
+	appointment_participant jsonb
+)
 as $$
 	select
 		resource ->> 'id',
@@ -29,7 +31,7 @@ as $$
 					from schedule,
 						jsonb_array_elements(resource -> 'actor') actor
 					where(
-						actor ->> 'id' = actor_id
+						actor ->> 'id' = schedule_actor_id
 					)
 				)
 			)
