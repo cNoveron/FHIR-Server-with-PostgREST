@@ -1,14 +1,16 @@
 drop function if exists r_schedule;
 
-create or replace function r_schedule(actor_id varchar)
-	returns table(
-		id text,
-		planning_horizon text
-	)
+create or replace function r_schedule(
+	actor_id varchar
+)
+returns table(
+	id text,
+	planning_horizon text
+)
 as $$
 	select
-		resource -> 'id',
-		resource->'planningHorizon'
+		resource ->> 'id',
+		resource ->> 'planningHorizon'
 	from schedule
 	where(
 		to_timestamp(
