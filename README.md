@@ -1,23 +1,43 @@
 # Perfil Clínico
 
-## Instalación
+## Instalación 
 
-1. Corre el siguiente script para ejecutar PostgreSQL en un contenedor de Docker.
+1. Inicializar submodulos
 
-```bash
-bash scripts/01_run_docker_PostgreSQL.sh
-```
 
-2. Corre el siguiente script para ejecutar los scripts SQL que poblarán la base de datos.
+    ```bash
+    git submodule update
+    ```
 
-```
-bash scripts/02_exec_docker_sql.sh
-```
+2. Configurar el archivo **./src/main/resources/synthea.properties** de synthea con los siguientes datos:
 
-3. Corre el siguiente script para descargar y extraer PostgREST:
- 
-```bash
-bash scripts/03_download_PostgREST.sh
-```
+    ```bash
+    exporter.fhir.use_us_core_ig = true 
+    exporter.fhir.bulk_data = true
+    ```
 
-Verás el archivo binario `postgrest` en el directorio activo.
+3. Buildear el proyecto de synthea y generar información inicial
+
+    ```bash
+    ./scripts/dev/01_generate_synthea_data.sh
+    ```
+    Nota: Si deseas ejecutar los tests de synthea, ejecuta `gradlew build check test`
+
+4. Crear la imagen de docker
+
+    ```bash
+    docker build -t teeb_fhir_server:1.0.0 ./
+    ```
+
+5. Ejecutar el contenedor
+
+    ```bash
+
+    docker run --rm --env-file .env --name teeb_fhir_server -d -p 5435:5432 -p 3005:3000 teeb_fhir_server:1.0.0
+    ```
+
+6. Verificar funcionamiento
+    Después de unos segundos, se podría poder observar el servicio funcionando correctamente
+    ```
+    curl localhost:3005
+    ```
