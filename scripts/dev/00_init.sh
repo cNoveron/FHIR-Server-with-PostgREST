@@ -1,5 +1,10 @@
 #!/bin/sh
 set -e
-/fhirbase/02_initialize_database.sh
-/fhirbase/03_load_data.sh
-/fhirbase/04_load_functions.sh
+echo "#### Running /fhirbase/scripts/dev/02_initialize_database.sh... ####"
+/fhirbase/scripts/dev/02_initialize_database.sh
+
+echo "#### Running /fhirbase/scripts/dev/03_load_data.sh... ####"
+/fhirbase/scripts/dev/03_load_data.sh
+
+echo "#### Running /fhirbase/scripts/dev/04_load_functions.sh... ####"
+/fhirbase/scripts/dev/04_load_functions.sh
