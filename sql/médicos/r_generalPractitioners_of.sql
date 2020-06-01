@@ -1,6 +1,6 @@
-drop function if exists r_practitioners;
+drop function if exists r_generalPractitioners_of;
 
-create or replace function r_practitioners(patient_id varchar)
+create or replace function r_generalPractitioners_of(patient_id varchar)
 	returns table(
 		practitioner_id jsonb,
 		practitioner_name jsonb,
