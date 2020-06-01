@@ -17,6 +17,6 @@ as $$
 		resource #>> '{telecom,0,value}'
 	from patient
 	where(
-		resource ->> 'generalPractitioner' = practitioner_id
+		resource #>> '{generalPractitioner,0,id}' = practitioner_id
 	);
 $$ language sql;
