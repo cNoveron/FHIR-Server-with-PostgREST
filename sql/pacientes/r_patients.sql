@@ -1,12 +1,12 @@
 drop function if exists r_patients;
 
 create or replace function r_patients()
-	returns table(
-		patient_id text,
-		patient_name text,
-		patient_surname text,
-		patient_phone text
-	)
+returns table(
+	patient_id text,
+	patient_name text,
+	patient_surname text,
+	patient_phone text
+)
 as $$
 	select
 		resource ->> 'id',
