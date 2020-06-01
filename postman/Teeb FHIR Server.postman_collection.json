@@ -1,135 +1,474 @@
 {
 	"info": {
-		"_postman_id": "11837682-0c4c-4db5-9dc7-5caec274b238",
+		"_postman_id": "3db9e4b8-ae23-4ffc-ba21-939a46703353",
 		"name": "Teeb FHIR Server",
+		"description": "Los endpoints documentados en esta colección funcionan independientemente de la vista desde la cual se esté accesando a los datos. La información de -por ejemplo- pacientes vendrá de la misma tabla desde la web o la app del médico o la app del paciente. Lo mismo sucederá para los médicos, las consultas, los diversos estúdios de laboratorio, las recetas, etc.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Functions",
+			"name": "Expediente Clínico",
 			"item": [
 				{
-					"name": "001_r_consultations",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "a",
-								"value": "1",
-								"type": "text"
-							},
-							{
-								"key": "b",
-								"value": "2",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"_id\": \"0963458975\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "Estudios de Laboratorio",
+					"item": [
+						{
+							"name": "Hemograma",
+							"item": [
+								{
+									"name": "C Hemograma",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwicm9sZSI6ImF1dGhlbnRpY2F0b3IiLCJuYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9.bbMha3qB2MBeeNbSaq092Lhf4FUnK1EUC3LKbe0Hb2c",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"resource\": {\n        \"resourceType\": \"DiagnosticReport\",\n        \"id\": \"f201\",\n        \"text\": {\n            \"status\": \"generated\",\n            \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p>Blood count (comlpete) panel</p></div>\"\n        },\n        \"status\": \"final\",\n        \"category\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0074\",\n                        \"code\": \"LAB\"\n                    }\n                ]\n            }\n        ],\n        \"code\": {\n            \"coding\": [\n                {\n                    \"code\": \"72230-6\",\n                    \"system\": \"http://loinc.org\",\n                    \"display\": \"Diagnostic imaging report - recommended C-CDA R1.1 sections\"\n                }\n            ],\n            \"text\": \"CT of head-neck\"\n        },\n        \"subject\": {\n        \t\"id\": \"9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"reference\": \"Patient/9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"display\": \"Roel\"\n        },\n        \"effectiveDateTime\": \"2012-12-01T12:00:00+01:00\",\n        \"issued\": \"2012-12-01T12:00:00+01:00\",\n        \"performer\": [\n            {\n                \"reference\": \"Organization/f203\",\n                \"display\": \"Blijdorp MC\"\n            }\n        ],\n        \"conclusion\": \"Altos niveles de bilirrubina\",\n        \"conclusionCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"display\": \"Altos niveles de bilirrubina\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
+										},
+										"url": {
+											"raw": "http://{{host}}:{{port}}/diagnosticreport",
+											"protocol": "http",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"diagnosticreport"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "R Hemograma (flexible)",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://{{host}}:{{port}}/diagnosticreport?resource->code->coding->0->>code=eq.58410-2&resource->subject->>id=eq.51f25282-57bd-42ab-aec7-716a63d2a8a8&select=resource->id,resource->issued",
+											"protocol": "http",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"diagnosticreport"
+											],
+											"query": [
+												{
+													"key": "resource->code->coding->0->>code",
+													"value": "eq.58410-2"
+												},
+												{
+													"key": "resource->subject->>id",
+													"value": "eq.51f25282-57bd-42ab-aec7-716a63d2a8a8"
+												},
+												{
+													"key": "select",
+													"value": "resource->id,resource->issued"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "R Hemograma",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "a",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "b",
+												"type": "text",
+												"value": "2"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"subject_id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\"\n}\n"
+										},
+										"url": {
+											"raw": "http://{{host}}:{{port}}/rpc/r_ece_lab_display_metadata_blood_count",
+											"protocol": "http",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"rpc",
+												"r_ece_lab_display_metadata_blood_count"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "U Hemograma",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwicm9sZSI6ImF1dGhlbnRpY2F0b3IiLCJuYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9.bbMha3qB2MBeeNbSaq092Lhf4FUnK1EUC3LKbe0Hb2c",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"resource\": {\n        \"resourceType\": \"DiagnosticReport\",\n        \"id\": \"f201\",\n        \"text\": {\n            \"status\": \"generated\",\n            \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p>Blood count (comlpete) panel</p></div>\"\n        },\n        \"status\": \"final\",\n        \"category\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0074\",\n                        \"code\": \"LAB\"\n                    }\n                ]\n            }\n        ],\n        \"code\": {\n            \"coding\": [\n                {\n                    \"code\": \"72230-6\",\n                    \"system\": \"http://loinc.org\",\n                    \"display\": \"Diagnostic imaging report - recommended C-CDA R1.1 sections\"\n                }\n            ],\n            \"text\": \"CT of head-neck\"\n        },\n        \"subject\": {\n        \t\"id\": \"9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"reference\": \"Patient/9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"display\": \"Roel\"\n        },\n        \"effectiveDateTime\": \"2012-12-01T12:00:00+01:00\",\n        \"issued\": \"2012-12-01T12:00:00+01:00\",\n        \"performer\": [\n            {\n                \"reference\": \"Organization/f203\",\n                \"display\": \"Blijdorp MC\"\n            }\n        ],\n        \"conclusion\": \"Altos niveles de bilirrubina\",\n        \"conclusionCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"display\": \"Altos niveles de bilirrubina\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
+										},
+										"url": {
+											"raw": "http://{{host}}:{{port}}/diagnosticreport",
+											"protocol": "http",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"diagnosticreport"
+											]
+										}
+									},
+									"response": []
 								}
-							}
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/rpc/r_consultations",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
 							],
-							"port": "{{port}}",
-							"path": [
-								"rpc",
-								"r_consultations"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "002_get_id_from_diagnostic_report",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "a",
-								"value": "1",
-								"type": "text"
-							},
-							{
-								"key": "b",
-								"value": "2",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"code\": \"34117-2\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Urinálisis",
+							"item": [
+								{
+									"name": "C Urinálisis",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwicm9sZSI6ImF1dGhlbnRpY2F0b3IiLCJuYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9.bbMha3qB2MBeeNbSaq092Lhf4FUnK1EUC3LKbe0Hb2c",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"resource\": {\n        \"resourceType\": \"DiagnosticReport\",\n        \"id\": \"cv988n9s06091\",\n        \"text\": {\n            \"status\": \"generated\",\n            \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p>Urinalysis</p></div>\"\n        },\n        \"status\": \"final\",\n        \"category\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0074\",\n                        \"code\": \"URN\"\n                    }\n                ]\n            }\n        ],\n        \"code\": {\n            \"coding\": [\n                {\n                    \"code\": \"24357-6\",\n                    \"system\": \"http://loinc.org\",\n                    \"display\": \"Urinalysis macro (dipstick) panel - Urine\"\n                }\n            ],\n            \"text\": \"CT of head-neck\"\n        },\n        \"subject\": {\n        \t\"id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\",\n            \"reference\": \"Patient/29981aba-7c8a-4ad2-b3d3-483f9ad45533\",\n            \"display\": \"Roel\"\n        },\n        \"effectiveDateTime\": \"2012-12-01T12:00:00+01:00\",\n        \"issued\": \"2012-12-01T12:00:00+01:00\",\n        \"performer\": [\n            {\n                \"reference\": \"Organization/56341233\",\n                \"display\": \"Blijdorp MC\"\n            }\n        ],\n        \"conclusion\": \"Infección del tracto urinario\",\n        \"conclusionCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"display\": \"Infección del tracto urinario\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
+										},
+										"url": {
+											"raw": "http://{{host}}:{{port}}/diagnosticreport",
+											"protocol": "http",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"diagnosticreport"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "R Urinálisis (flexible)",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://{{host}}:{{port}}/diagnosticreport?resource->code->coding->0->>code=eq.24357-8&resource->subject->>id=eq.51f25282-57bd-42ab-aec7-716a63d2a8a8&select=resource->issued",
+											"protocol": "http",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"diagnosticreport"
+											],
+											"query": [
+												{
+													"key": "resource->code->coding->0->>code",
+													"value": "eq.24357-8"
+												},
+												{
+													"key": "resource->subject->>id",
+													"value": "eq.51f25282-57bd-42ab-aec7-716a63d2a8a8"
+												},
+												{
+													"key": "select",
+													"value": "resource->issued"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "R Urinálisis",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "a",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "b",
+												"type": "text",
+												"value": "2"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"subject_id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\"\n}\n"
+										},
+										"url": {
+											"raw": "http://{{host}}:{{port}}/rpc/r_ece_lab_display_metadata_urinalysis",
+											"protocol": "http",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"rpc",
+												"r_ece_lab_display_metadata_urinalysis"
+											]
+										}
+									},
+									"response": []
 								}
-							}
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/rpc/get_id_from_diagnosticreport",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
 							],
-							"port": "{{port}}",
-							"path": [
-								"rpc",
-								"get_id_from_diagnosticreport"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "003_r_schedule",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "a",
-								"value": "1",
-								"type": "text"
-							},
-							{
-								"key": "b",
-								"value": "2",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"actor_id\": \"1\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Tomografía",
+							"item": [
+								{
+									"name": "C Tomografía",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwicm9sZSI6ImF1dGhlbnRpY2F0b3IiLCJuYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9.bbMha3qB2MBeeNbSaq092Lhf4FUnK1EUC3LKbe0Hb2c",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"resource\": {\n        \"resourceType\": \"DiagnosticReport\",\n        \"id\": \"f201\",\n        \"text\": {\n            \"status\": \"generated\",\n            \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: f201</p><p><b>status</b>: final</p><p><b>category</b>: Radiology <span>(Details : {SNOMED CT code '394914008' = 'Radiology - speciality', given as 'Radiology'}; {http://terminology.hl7.org/CodeSystem/v2-0074 code 'RAD' = 'Radiology)</span></p><p><b>code</b>: CT of head-neck <span>(Details : {SNOMED CT code '429858000' = 'Computed tomography (CT) of head and neck', given as 'Computed tomography (CT) of head and neck'})</span></p><p><b>subject</b>: <a>Roel</a></p><p><b>effective</b>: 01/12/2012 12:00:00 PM</p><p><b>issued</b>: 01/12/2012 12:00:00 PM</p><p><b>performer</b>: <a>Blijdorp MC</a></p><p><b>imagingStudy</b>: HEAD and NECK CT DICOM imaging study</p><p><b>conclusion</b>: CT brains: large tumor sphenoid/clivus.</p><p><b>conclusionCode</b>: Malignant tumor of craniopharyngeal duct <span>(Details : {SNOMED CT code '188340000' = 'Malignant tumor of craniopharyngeal duct', given as 'Malignant tumor of craniopharyngeal duct'})</span></p></div>\"\n        },\n        \"status\": \"final\",\n        \"category\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"394914008\",\n                        \"display\": \"Radiology\"\n                    },\n                    {\n                        \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0074\",\n                        \"code\": \"RAD\"\n                    }\n                ]\n            }\n        ],\n        \"code\": {\n            \"coding\": [\n                {\n                    \"code\": \"72230-6\",\n                    \"system\": \"http://loinc.org\",\n                    \"display\": \"Diagnostic imaging report - recommended C-CDA R1.1 sections\"\n                },\n                {\n                    \"system\": \"http://snomed.info/sct\",\n                    \"code\": \"429858000\",\n                    \"display\": \"Computed tomography (CT) of head and neck\"\n                }\n            ],\n            \"text\": \"CT of head-neck\"\n        },\n        \"subject\": {\n        \t\"id\": \"9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"reference\": \"Patient/9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"display\": \"Roel\"\n        },\n        \"effectiveDateTime\": \"2012-12-01T12:00:00+01:00\",\n        \"issued\": \"2012-12-01T12:00:00+01:00\",\n        \"performer\": [\n            {\n                \"reference\": \"Organization/f203\",\n                \"display\": \"Blijdorp MC\"\n            }\n        ],\n        \"imagingStudy\": [\n            {\n                \"display\": \"HEAD and NECK CT DICOM imaging study\"\n            }\n        ],\n        \"conclusion\": \"CT brains: large tumor sphenoid/clivus.\",\n        \"conclusionCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"188340000\",\n                        \"display\": \"Malignant tumor of craniopharyngeal duct\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
+										},
+										"url": {
+											"raw": "http://{{host}}:{{port}}/diagnosticreport",
+											"protocol": "http",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"diagnosticreport"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "R Tomografía (flexible)",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://{{host}}:{{port}}/diagnosticreport?resource->code->coding->0->>code=eq.72230-6&resource->subject->>id=eq.9a77fd59-814e-437d-9609-f7784f9386dc&select=resource->id,resource->issued",
+											"protocol": "http",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"diagnosticreport"
+											],
+											"query": [
+												{
+													"key": "resource->code->coding->0->>code",
+													"value": "eq.72230-6"
+												},
+												{
+													"key": "resource->subject->>id",
+													"value": "eq.9a77fd59-814e-437d-9609-f7784f9386dc"
+												},
+												{
+													"key": "select",
+													"value": "resource->id,resource->issued"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "R Tomografía",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "a",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "b",
+												"type": "text",
+												"value": "2"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"subject_id\": \"9a77fd59-814e-437d-9609-f7784f9386dc\"\n}"
+										},
+										"url": {
+											"raw": "http://{{host}}:{{port}}/rpc/r_diagnosticreport_imaging",
+											"protocol": "http",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"rpc",
+												"r_diagnosticreport_imaging"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "U Tomografía",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Prefer",
+												"type": "text",
+												"value": "resolution=merge-duplicates"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"7ce4156d-b96d-46b2-83bb-7b8e32e2d1ca\",\n    \"resource\": {\n        \"resourceType\": \"DiagnosticReport\",\n        \"id\": \"f201\",\n        \"text\": {\n            \"status\": \"generated\",\n            \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: f201</p><p><b>status</b>: final</p><p><b>category</b>: Radiology <span>(Details : {SNOMED CT code '394914008' = 'Radiology - speciality', given as 'Radiology'}; {http://terminology.hl7.org/CodeSystem/v2-0074 code 'RAD' = 'Radiology)</span></p><p><b>code</b>: CT of head-neck <span>(Details : {SNOMED CT code '429858000' = 'Computed tomography (CT) of head and neck', given as 'Computed tomography (CT) of head and neck'})</span></p><p><b>subject</b>: <a>Roel</a></p><p><b>effective</b>: 01/12/2012 12:00:00 PM</p><p><b>issued</b>: 01/12/2012 12:00:00 PM</p><p><b>performer</b>: <a>Blijdorp MC</a></p><p><b>imagingStudy</b>: HEAD and NECK CT DICOM imaging study</p><p><b>conclusion</b>: CT brains: large tumor sphenoid/clivus.</p><p><b>conclusionCode</b>: Malignant tumor of craniopharyngeal duct <span>(Details : {SNOMED CT code '188340000' = 'Malignant tumor of craniopharyngeal duct', given as 'Malignant tumor of craniopharyngeal duct'})</span></p></div>\"\n        },\n        \"status\": \"final\",\n        \"category\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"394914008\",\n                        \"display\": \"Radiology\"\n                    },\n                    {\n                        \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0074\",\n                        \"code\": \"RAD\"\n                    }\n                ]\n            }\n        ],\n        \"code\": {\n            \"coding\": [\n                {\n                    \"code\": \"72230-6\",\n                    \"system\": \"http://loinc.org\",\n                    \"display\": \"Diagnostic imaging report - recommended C-CDA R1.1 sections\"\n                },\n                {\n                    \"system\": \"http://snomed.info/sct\",\n                    \"code\": \"429858000\",\n                    \"display\": \"Computed tomography (CT) of head and neck\"\n                }\n            ],\n            \"text\": \"CT of head-neck\"\n        },\n        \"subject\": {\n        \t\"id\": \"9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"reference\": \"Patient/9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"display\": \"Roel\"\n        },\n        \"effectiveDateTime\": \"2012-12-01T12:00:00+01:00\",\n        \"issued\": \"2012-12-01T12:00:00+01:00\",\n        \"performer\": [\n            {\n                \"reference\": \"Organization/f203\",\n                \"display\": \"Blijdorp MC\"\n            }\n        ],\n        \"imagingStudy\": [\n            {\n                \"display\": \"HEAD and NECK CT DICOM imaging study\"\n            }\n        ],\n        \"media\": {\n        \t\"link\": \"http://blablablabla.com\"\n        },\n        \"conclusion\": \"CT brains: large tumor sphenoid/clivus.\",\n        \"conclusionCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"188340000\",\n                        \"display\": \"Malignant tumor of craniopharyngeal duct\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
+										},
+										"url": {
+											"raw": "http://{{host}}:{{port}}/diagnosticreport",
+											"protocol": "http",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"diagnosticreport"
+											]
+										}
+									},
+									"response": []
 								}
-							}
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/rpc/r_schedule",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
 							],
-							"port": "{{port}}",
-							"path": [
-								"rpc",
-								"r_schedule"
-							]
+							"_postman_isSubFolder": true
 						}
-					},
-					"response": []
-				},
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Médicos",
+			"item": [
 				{
-					"name": "004_r_slot",
+					"name": "R Médicos | paciente",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -142,19 +481,20 @@
 								"key": "b",
 								"type": "text",
 								"value": "2"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"_id\": \"0963458975\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n\t\"patient_id\": \"61c1126b-b63d-440b-996f-21464a53be3e\"\n}"
 						},
 						"url": {
-							"raw": "http://{{host}}:{{port}}/rpc/r_slot",
+							"raw": "http://{{host}}:{{port}}/rpc/r_generalPractitioners_of",
 							"protocol": "http",
 							"host": [
 								"{{host}}"
@@ -162,14 +502,236 @@
 							"port": "{{port}}",
 							"path": [
 								"rpc",
-								"r_slot"
+								"r_generalPractitioners_of"
 							]
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "Agenda",
+			"item": [
+				{
+					"name": "Consultorios",
+					"item": [
+						{
+							"name": "R Consultorios",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "a",
+										"type": "text",
+										"value": "1"
+									},
+									{
+										"key": "b",
+										"type": "text",
+										"value": "2"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_locations",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_locations"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
 				},
 				{
-					"name": "005_r_ece_lab_display_metadata_blood_count",
+					"name": "Consultas",
+					"item": [
+						{
+							"name": "R Consultas | médico o consultorio",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "a",
+										"type": "text",
+										"value": "1"
+									},
+									{
+										"key": "b",
+										"type": "text",
+										"value": "2"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"schedule_actor_id\": \"5977f2c0-d77c-40e2-900f-b5a4ee484218\"\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_appointments_in_schedules_of_actor",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_appointments_in_schedules_of_actor"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Consultas | tipo de servicio",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "a",
+										"type": "text",
+										"value": "1"
+									},
+									{
+										"key": "b",
+										"type": "text",
+										"value": "2"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"schedule_service_type_code\": \"57\"\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_appointments_in_schedules_of_service_type",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_appointments_in_schedules_of_service_type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Consultas | categoría de servicio",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "a",
+										"type": "text",
+										"value": "1"
+									},
+									{
+										"key": "b",
+										"type": "text",
+										"value": "2"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"schedule_service_type_code\": \"57\"\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_appointments_in_schedules_of_service_category",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_appointments_in_schedules_of_service_category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Consultas | especialidad",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "a",
+										"type": "text",
+										"value": "1"
+									},
+									{
+										"key": "b",
+										"type": "text",
+										"value": "2"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"schedule_specialty_code\": \"408480009\"\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_appointments_in_schedules_of_specialty",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_appointments_in_schedules_of_specialty"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "R Espacios en Agenda | médico o consultorio",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -182,59 +744,20 @@
 								"key": "b",
 								"type": "text",
 								"value": "2"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"subject_id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/rpc/r_ece_lab_display_metadata_blood_count",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"rpc",
-								"r_ece_lab_display_metadata_blood_count"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "006_r_ece_lab_display_metadata_urinalysis",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "a",
-								"type": "text",
-								"value": "1"
 							},
 							{
-								"key": "b",
+								"key": "Content-Type",
+								"name": "Content-Type",
 								"type": "text",
-								"value": "2"
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"subject_id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n\t\"actor_id\": \"61c1126b-b63d-440b-996f-21464a53be3e\"\n}\n"
 						},
 						"url": {
-							"raw": "http://{{host}}:{{port}}/rpc/r_ece_lab_display_metadata_urinalysis",
+							"raw": "http://{{host}}:{{port}}/rpc/r_slots",
 							"protocol": "http",
 							"host": [
 								"{{host}}"
@@ -242,339 +765,548 @@
 							"port": "{{port}}",
 							"path": [
 								"rpc",
-								"r_ece_lab_display_metadata_urinalysis"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "007_r_ece_lab_display_metadata_tomography",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "a",
-								"type": "text",
-								"value": "1"
-							},
-							{
-								"key": "b",
-								"type": "text",
-								"value": "2"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"subject_id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/rpc/r_ece_lab_display_metadata_tomography",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"rpc",
-								"r_ece_lab_display_metadata_tomography"
+								"r_slots"
 							]
 						}
 					},
 					"response": []
 				}
 			],
-			"protocolProfileBehavior": {}
+			"description": "Para obtener todas las consultas en el futuro sólo es necesario llamar al endpoint \"/rpc/r_appointments_in_schedules_of_actor\". Aquí es donde pueden surgir dudas: \"actor\" puede ser alguno de los siguientes: \n- Un médico\n- Un puesto de médico en un hospital\n- Un área de especialidad en un hospital\n- Un consultorio\n- Una clínica\n- Un hospital\n- Un corporativo médico\n\nSe sabe que en el mundo real cada uno de éstos puede tener su propio horario. Es por eso que en la especificaión FHIR cada horario hace referencia a uno de estos \"actores\", sin embargo los actores por si mismos no hacen referencia a su horario.\n\nSucede lo mismo con los espacios en los horarios. Las instancias de cada médico en la base de datos no hacen referencia a los espacios que pueden tener en sus agendas sino que más bien sucede de esta manera:\n\nConsulta -> Espacio en horario -> Horario -> \"Actor\"\n\nEs por eso que debemos usar el identificador de un \"actor\" para obtener las consultas que están asociadas a éste.\n\nEn el caso de que el actor sea un médico, en la aplicación de usuario ya debe estar presente el id del médico. Con el id del médico se pueden obtener todas las consultas que le hayan agendado. Ésto se hace a través de  \"/rpc/r_appointments_in_schedules_of_actor\" incluyendo su id en el payload de la siguiente manera:\n{\n\t\"schedule_actor_id\":\"8e57eca4-281e-37d8-bd51-cbe4ee8f2a14\"\n}",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e673faef-eca7-4d4f-b2b7-cdd56ff4434d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d94d5491-6032-4a60-ab8b-8683e4ba2618",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		},
 		{
-			"name": "Postgrest Base",
+			"name": "Pacientes",
 			"item": [
 				{
-					"name": "Diagnostic Report",
+					"name": "R Pacientes",
 					"request": {
-						"method": "GET",
-						"header": [],
+						"method": "POST",
+						"header": [
+							{
+								"key": "a",
+								"type": "text",
+								"value": "1"
+							},
+							{
+								"key": "b",
+								"type": "text",
+								"value": "2"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{host}}/diagnosticreport",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"diagnosticreport"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Account",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/account",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"account"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Practtioner",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/practitioner",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"practitioner"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Appointment",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{host}}:{{port}}/appointment",
+							"raw": "http://{{host}}:{{port}}/rpc/r_patients",
 							"protocol": "http",
 							"host": [
 								"{{host}}"
 							],
 							"port": "{{port}}",
 							"path": [
-								"appointment"
+								"rpc",
+								"r_patients"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Slot",
+					"name": "R Pacientes | médico",
 					"request": {
-						"method": "GET",
-						"header": [],
+						"method": "POST",
+						"header": [
+							{
+								"key": "a",
+								"type": "text",
+								"value": "1"
+							},
+							{
+								"key": "b",
+								"type": "text",
+								"value": "2"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"practitioner_id\": \"8e57eca4-281e-37d8-bd51-cbe4ee8f2a14\"\n}"
+						},
 						"url": {
-							"raw": "{{host}}/slot",
+							"raw": "http://{{host}}:{{port}}/rpc/r_patients_of_practitioner",
+							"protocol": "http",
 							"host": [
 								"{{host}}"
 							],
+							"port": "{{port}}",
 							"path": [
-								"slot"
+								"rpc",
+								"r_patients_of_practitioner"
 							]
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "Desarrollo",
+			"item": [
+				{
+					"name": "Functions",
+					"item": [
+						{
+							"name": "001_r_consultations",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "a",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "b",
+										"value": "2",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_id\": \"0963458975\"\n}\n"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_consultations",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_consultations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "002_get_id_from_diagnostic_report",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "a",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "b",
+										"value": "2",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"code\": \"34117-2\"\n}\n"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/get_id_from_diagnosticreport",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"get_id_from_diagnosticreport"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "003_r_schedule",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "a",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "b",
+										"value": "2",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"actor_id\": \"1\"\n}\n"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_schedule",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_schedule"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "004_r_slot",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "a",
+										"type": "text",
+										"value": "1"
+									},
+									{
+										"key": "b",
+										"type": "text",
+										"value": "2"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"_id\": \"0963458975\"\n}\n"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_slot",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_slot"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "005_r_ece_lab_display_metadata_blood_count",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "a",
+										"type": "text",
+										"value": "1"
+									},
+									{
+										"key": "b",
+										"type": "text",
+										"value": "2"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"subject_id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\"\n}\n"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_ece_lab_display_metadata_blood_count",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_ece_lab_display_metadata_blood_count"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "006_r_ece_lab_display_metadata_urinalysis",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "a",
+										"type": "text",
+										"value": "1"
+									},
+									{
+										"key": "b",
+										"type": "text",
+										"value": "2"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"subject_id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\"\n}\n"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_ece_lab_display_metadata_urinalysis",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_ece_lab_display_metadata_urinalysis"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "007_r_ece_lab_display_metadata_tomography",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "a",
+										"type": "text",
+										"value": "1"
+									},
+									{
+										"key": "b",
+										"type": "text",
+										"value": "2"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"subject_id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\"\n}\n"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_ece_lab_display_metadata_tomography",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_ece_lab_display_metadata_tomography"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Schedule",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/schedule",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"schedule"
-							]
+					"name": "Postgrest Base",
+					"item": [
+						{
+							"name": "Diagnostic Report",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/diagnosticreport",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"diagnosticreport"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Account",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/account",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"account"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Practioner",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}:{{port}}/practitioner?select=resource",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"practitioner"
+									],
+									"query": [
+										{
+											"key": "select",
+											"value": "resource"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Appointment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/appointment",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"appointment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Slot",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/slot",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"slot"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Schedule",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/schedule",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"schedule"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"_postman_isSubFolder": true
 				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "R Hemograma",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://{{host}}:{{port}}/diagnosticreport?resource->code->coding->0->>code=eq.58410-2&resource->subject->>id=eq.51f25282-57bd-42ab-aec7-716a63d2a8a8&select=resource->id,resource->issued",
-					"protocol": "http",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"diagnosticreport"
-					],
-					"query": [
-						{
-							"key": "resource->code->coding->0->>code",
-							"value": "eq.58410-2"
-						},
-						{
-							"key": "resource->subject->>id",
-							"value": "eq.51f25282-57bd-42ab-aec7-716a63d2a8a8"
-						},
-						{
-							"key": "select",
-							"value": "resource->id,resource->issued"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "R Urinálisis",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://{{host}}:{{port}}/diagnosticreport?resource->code->coding->0->>code=eq.24357-8&resource->subject->>id=eq.51f25282-57bd-42ab-aec7-716a63d2a8a8&select=resource->issued",
-					"protocol": "http",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"diagnosticreport"
-					],
-					"query": [
-						{
-							"key": "resource->code->coding->0->>code",
-							"value": "eq.24357-8"
-						},
-						{
-							"key": "resource->subject->>id",
-							"value": "eq.51f25282-57bd-42ab-aec7-716a63d2a8a8"
-						},
-						{
-							"key": "select",
-							"value": "resource->issued"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "R Tomografía",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://{{host}}:{{port}}/diagnosticreport?resource->code->coding->0->>code=eq.72230-6&resource->subject->>id=eq.9a77fd59-814e-437d-9609-f7784f9386dc&select=resource->id,resource->issued",
-					"protocol": "http",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"diagnosticreport"
-					],
-					"query": [
-						{
-							"key": "resource->code->coding->0->>code",
-							"value": "eq.72230-6"
-						},
-						{
-							"key": "resource->subject->>id",
-							"value": "eq.9a77fd59-814e-437d-9609-f7784f9386dc"
-						},
-						{
-							"key": "select",
-							"value": "resource->id,resource->issued"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "C Tomografía",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwicm9sZSI6ImF1dGhlbnRpY2F0b3IiLCJuYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9.bbMha3qB2MBeeNbSaq092Lhf4FUnK1EUC3LKbe0Hb2c",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"resource\": {\n        \"resourceType\": \"DiagnosticReport\",\n        \"id\": \"f201\",\n        \"text\": {\n            \"status\": \"generated\",\n            \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: f201</p><p><b>status</b>: final</p><p><b>category</b>: Radiology <span>(Details : {SNOMED CT code '394914008' = 'Radiology - speciality', given as 'Radiology'}; {http://terminology.hl7.org/CodeSystem/v2-0074 code 'RAD' = 'Radiology)</span></p><p><b>code</b>: CT of head-neck <span>(Details : {SNOMED CT code '429858000' = 'Computed tomography (CT) of head and neck', given as 'Computed tomography (CT) of head and neck'})</span></p><p><b>subject</b>: <a>Roel</a></p><p><b>effective</b>: 01/12/2012 12:00:00 PM</p><p><b>issued</b>: 01/12/2012 12:00:00 PM</p><p><b>performer</b>: <a>Blijdorp MC</a></p><p><b>imagingStudy</b>: HEAD and NECK CT DICOM imaging study</p><p><b>conclusion</b>: CT brains: large tumor sphenoid/clivus.</p><p><b>conclusionCode</b>: Malignant tumor of craniopharyngeal duct <span>(Details : {SNOMED CT code '188340000' = 'Malignant tumor of craniopharyngeal duct', given as 'Malignant tumor of craniopharyngeal duct'})</span></p></div>\"\n        },\n        \"status\": \"final\",\n        \"category\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"394914008\",\n                        \"display\": \"Radiology\"\n                    },\n                    {\n                        \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0074\",\n                        \"code\": \"RAD\"\n                    }\n                ]\n            }\n        ],\n        \"code\": {\n            \"coding\": [\n                {\n                    \"code\": \"72230-6\",\n                    \"system\": \"http://loinc.org\",\n                    \"display\": \"Diagnostic imaging report - recommended C-CDA R1.1 sections\"\n                },\n                {\n                    \"system\": \"http://snomed.info/sct\",\n                    \"code\": \"429858000\",\n                    \"display\": \"Computed tomography (CT) of head and neck\"\n                }\n            ],\n            \"text\": \"CT of head-neck\"\n        },\n        \"subject\": {\n        \t\"id\": \"9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"reference\": \"Patient/9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"display\": \"Roel\"\n        },\n        \"effectiveDateTime\": \"2012-12-01T12:00:00+01:00\",\n        \"issued\": \"2012-12-01T12:00:00+01:00\",\n        \"performer\": [\n            {\n                \"reference\": \"Organization/f203\",\n                \"display\": \"Blijdorp MC\"\n            }\n        ],\n        \"imagingStudy\": [\n            {\n                \"display\": \"HEAD and NECK CT DICOM imaging study\"\n            }\n        ],\n        \"conclusion\": \"CT brains: large tumor sphenoid/clivus.\",\n        \"conclusionCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"188340000\",\n                        \"display\": \"Malignant tumor of craniopharyngeal duct\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
-				},
-				"url": {
-					"raw": "http://{{host}}:{{port}}/diagnosticreport",
-					"protocol": "http",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"diagnosticreport"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "U Tomografía",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "Prefer",
-						"type": "text",
-						"value": "resolution=merge-duplicates"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\": \"7ce4156d-b96d-46b2-83bb-7b8e32e2d1ca\",\n    \"resource\": {\n        \"resourceType\": \"DiagnosticReport\",\n        \"id\": \"f201\",\n        \"text\": {\n            \"status\": \"generated\",\n            \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: f201</p><p><b>status</b>: final</p><p><b>category</b>: Radiology <span>(Details : {SNOMED CT code '394914008' = 'Radiology - speciality', given as 'Radiology'}; {http://terminology.hl7.org/CodeSystem/v2-0074 code 'RAD' = 'Radiology)</span></p><p><b>code</b>: CT of head-neck <span>(Details : {SNOMED CT code '429858000' = 'Computed tomography (CT) of head and neck', given as 'Computed tomography (CT) of head and neck'})</span></p><p><b>subject</b>: <a>Roel</a></p><p><b>effective</b>: 01/12/2012 12:00:00 PM</p><p><b>issued</b>: 01/12/2012 12:00:00 PM</p><p><b>performer</b>: <a>Blijdorp MC</a></p><p><b>imagingStudy</b>: HEAD and NECK CT DICOM imaging study</p><p><b>conclusion</b>: CT brains: large tumor sphenoid/clivus.</p><p><b>conclusionCode</b>: Malignant tumor of craniopharyngeal duct <span>(Details : {SNOMED CT code '188340000' = 'Malignant tumor of craniopharyngeal duct', given as 'Malignant tumor of craniopharyngeal duct'})</span></p></div>\"\n        },\n        \"status\": \"final\",\n        \"category\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"394914008\",\n                        \"display\": \"Radiology\"\n                    },\n                    {\n                        \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0074\",\n                        \"code\": \"RAD\"\n                    }\n                ]\n            }\n        ],\n        \"code\": {\n            \"coding\": [\n                {\n                    \"code\": \"72230-6\",\n                    \"system\": \"http://loinc.org\",\n                    \"display\": \"Diagnostic imaging report - recommended C-CDA R1.1 sections\"\n                },\n                {\n                    \"system\": \"http://snomed.info/sct\",\n                    \"code\": \"429858000\",\n                    \"display\": \"Computed tomography (CT) of head and neck\"\n                }\n            ],\n            \"text\": \"CT of head-neck\"\n        },\n        \"subject\": {\n        \t\"id\": \"9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"reference\": \"Patient/9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"display\": \"Roel\"\n        },\n        \"effectiveDateTime\": \"2012-12-01T12:00:00+01:00\",\n        \"issued\": \"2012-12-01T12:00:00+01:00\",\n        \"performer\": [\n            {\n                \"reference\": \"Organization/f203\",\n                \"display\": \"Blijdorp MC\"\n            }\n        ],\n        \"imagingStudy\": [\n            {\n                \"display\": \"HEAD and NECK CT DICOM imaging study\"\n            }\n        ],\n        \"media\": {\n        \t\"link\": \"http://blablablabla.com\"\n        },\n        \"conclusion\": \"CT brains: large tumor sphenoid/clivus.\",\n        \"conclusionCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"188340000\",\n                        \"display\": \"Malignant tumor of craniopharyngeal duct\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
-				},
-				"url": {
-					"raw": "http://{{host}}:{{port}}/diagnosticreport",
-					"protocol": "http",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"diagnosticreport"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	],
-	"protocolProfileBehavior": {}
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8e6cb895-2f7b-406e-8eff-ff193b62503a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "263d9438-3ccb-4ec8-b5dc-b8b839bf4190",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
 }

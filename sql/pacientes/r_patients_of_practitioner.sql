@@ -1,6 +1,8 @@
-drop function if exists r_patients;
+drop function if exists r_patients_of_practitioner;
 
-create or replace function r_patients()
+create or replace function r_patients_of_practitioner(
+	practitioner_id text
+)
 returns table(
 	patient_id text,
 	patient_name text,
@@ -13,5 +15,8 @@ as $$
 		resource -> 'name' -> 0 #> '{given}' ->> 0,
 		resource -> 'name' -> 0 #>> '{family}',
 		resource #>> '{telecom,0,value}'
-	from patient;
+	from patient
+	where(
+		resource #>> '{generalPractitioner,0,id}' = practitioner_id
+	);
 $$ language sql;

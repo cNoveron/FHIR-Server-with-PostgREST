@@ -7,7 +7,7 @@ as $$
 		resource->>'issued'
 	from diagnosticreport
 	where (
-		resource->'code'->'coding'->0->>'code' = '24357-6'
+		resource->'code'->'coding'->0->>'code' = '72230-6'
 		and
 		resource->'subject'->>'id' = subject_id
 	);
