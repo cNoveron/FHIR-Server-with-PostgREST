@@ -1,6 +1,6 @@
-drop function if exists r_appointments;
+drop function if exists r_appointments_of_schedule_actor;
 
-create or replace function r_appointments(
+create or replace function r_appointments_of_schedule_actor(
 	schedule_actor_id varchar
 )
 returns table(
