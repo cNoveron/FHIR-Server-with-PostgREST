@@ -1,5 +1,7 @@
 FROM fhirbase/fhirbase:v0.1.1
 
+RUN apt update && apt -y install systemd curl
+
 # Change postgres user from fhirbase/fhirbase image
 USER root  
 
@@ -13,8 +15,7 @@ COPY data/ ./data
 COPY libraries/postgrest /usr/local/bin
 
 # Set the permissions
-RUN apt update && apt -y install systemd curl && \
-    chown -R postgres:postgres ./sql/* && \
+RUN chown -R postgres:postgres ./sql/* && \
     chown -R postgres:postgres ./scripts/* && \
     chown -R postgres:postgres ./scripts-postgrest/* && \
     chown -R postgres:postgres ./synthea/output/fhir/* && \
