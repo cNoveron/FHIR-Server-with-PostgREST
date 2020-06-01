@@ -13,17 +13,13 @@ COPY data/ ./data
 COPY libraries/postgrest /usr/local/bin
 
 # Set the permissions
-RUN apt update && apt -y install systemd && \
+RUN apt update && apt -y install systemd curl && \
     chown -R postgres:postgres ./sql/* && \
     chown -R postgres:postgres ./scripts/* && \
     chown -R postgres:postgres ./scripts-postgrest/* && \
     chown -R postgres:postgres ./synthea/output/fhir/* && \
     chown -R postgres:postgres /usr/local/bin/postgrest && \
-    chown -R postgres:postgres ./data/* && \
-    mkdir /etc/postgrest && \ 
-    cp ./scripts-postgrest/scripts/postgrest.config /etc/postgrest/config && \
-    cp ./scripts-postgrest/scripts/postgrest.service /etc/systemd/system/postgrest.service && \
-    chmod 644 /etc/systemd/system/postgrest.service
+    chown -R postgres:postgres ./data/*
 
 USER postgres
 
@@ -33,15 +29,13 @@ RUN PGDATA=/pgdata /docker-entrypoint.sh postgres  & \
         sleep 5; \
     done && \
     psql -U postgres -c 'create database fhirbase_v4;' && \
-    systemctl enable postgrest && \
-    systemctl start postgrest && \
-    sh /fhirbase/scripts/dev/00_init.sh \
+    sh /fhirbase/scripts/dev/00_init.sh && \
     pg_ctl -D /pgdata stop
 
-EXPOSE 3000 5432 4000
+EXPOSE 5432 4000
 
 CMD pg_ctl -D /pgdata start && until psql -U postgres -c '\q'; do \
         >&2 echo "Postgres is starting up..."; \
         sleep 5; \
-    done && \
-    exec fhirbase -d fhirbase_v4 -n localhost -U postgres web
+    done && echo "Postgres Ready..." && \
+    exec postgrest ./scripts-postgrest/scripts/postgrest.config
