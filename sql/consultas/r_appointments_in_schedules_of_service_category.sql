@@ -1,6 +1,6 @@
-drop function if exists r_appointments_of_service_category;
+drop function if exists r_appointments_in_schedules_of_service_category;
 
-create or replace function r_appointments_of_schedules_of_service_category(
+create or replace function r_appointments_in_schedules_of_service_category(
 	schedule_service_category_code text
 )
 returns table(
