@@ -20,5 +20,3 @@ as $$
 		resource #>> '{subject,id}' = subject_id
 	);
 $$ language sql;
-
---select * from r_diagnosticreport_blood_count('29981aba-7c8a-4ad2-b3d3-483f9ad45533');

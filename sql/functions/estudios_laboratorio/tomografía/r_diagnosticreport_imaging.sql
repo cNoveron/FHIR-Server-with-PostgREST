@@ -1,16 +1,22 @@
 drop function if exists r_diagnosticreport_imaging;
 
-create or replace function r_diagnosticreport_imaging(subject_id varchar)
-	returns table(issued text)
+create or replace function r_diagnosticreport_imaging(
+	subject_id text
+)
+returns table(
+	issued_date text,
+	category_name text,
+	diagnosticreport_name text
+)
 as $$
 	select
-		resource->>'issued'
+		resource ->> 'issued',
+		resource #>> '{category,0,coding,0,display}',
+		resource #>> '{code,coding,0,display}'
 	from diagnosticreport
 	where (
-		resource->'code'->'coding'->0->>'code' = '24357-6'
+		resource #>> '{category,0,coding,0,code}' = '24726-2'
 		and
-		resource->'subject'->>'id' = subject_id
+		resource #>> '{subject,id}' = subject_id
 	);
 $$ language sql;
-
---select * from r_diagnosticreport_imaging('29981aba-7c8a-4ad2-b3d3-483f9ad45533');
