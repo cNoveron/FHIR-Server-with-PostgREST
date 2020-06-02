@@ -1,7 +1,7 @@
 drop function if exists r_appointments_in_schedules_of_actor;
 
 create or replace function r_appointments_in_schedules_of_actor(
-	schedule_actor_id varchar
+	schedule_actor_id text
 )
 returns table(
 	appointment_id text,
