@@ -1,4 +1,4 @@
-
+#!/bin/sh
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 < ./sql/functions/agenda/r_slots.sql
 
