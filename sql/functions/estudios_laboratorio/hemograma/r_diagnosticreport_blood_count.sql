@@ -10,14 +10,14 @@ returns table(
 )
 as $$
 	select
-		resource->>'issued',
-		resource#>>'{category,0,coding,0,display}',
-		resource#>>'{category,0,coding,1,display}'
+		resource ->> 'issued',
+		resource #>> '{category,0,coding,0,display}',
+		resource #>> '{category,0,coding,1,display}'
 	from diagnosticreport
 	where (
-		resource->'{code,coding,0,code}' = '58410-2'
+		resource #>> '{code,coding,0,code}' = '58410-2'
 		and
-		resource->'subject'->>'id' = subject_id
+		resource #>> '{subject,id}' = subject_id
 	);
 $$ language sql;
 
