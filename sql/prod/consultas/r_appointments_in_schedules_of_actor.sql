@@ -13,25 +13,23 @@ returns table(
 as $$
 	select
 		resource ->> 'id',
-		resource -> 'requestedPeriod' -> 0 ->> 'start',
-		resource -> 'requestedPeriod' -> 0 ->> 'end',
-		resource -> 'specialty' -> 0 -> 'coding' -> 0 ->> 'display',
-		jsonb_array_elements(resource -> 'participant')
-	from appointment,
-		jsonb_array_elements(resource -> 'slot') slot
+		resource #>> '{requestedPeriod,0,start}',
+		resource #>> '{requestedPeriod,0,end}',
+		resource #>> '{specialty,0,coding,0,display}',
+		resource -> 'participant'
+	from appointment
 	where(
-		slot ->> 'id' in(
+		appointment.resource #>> '{slot,0,id}' in(
 			select
 				resource ->> 'id'
 			from slot
 			where(
-				resource -> 'schedule' ->> 'id' in(
+				slot.resource #>> '{schedule,id}' in(
 					select
 						resource ->> 'id'
-					from schedule,
-						jsonb_array_elements(resource -> 'actor') actor
+					from schedule
 					where(
-						actor ->> 'id' = schedule_actor_id
+						schedule.resource #>> '{actor,id}' = schedule_actor_id
 					)
 				)
 			)
