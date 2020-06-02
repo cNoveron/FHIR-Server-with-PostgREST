@@ -1,6 +1,6 @@
-drop function if exists r_generalPractitioners_of;
+drop function if exists r_generalPractitioners_of_patient;
 
-create or replace function r_generalPractitioners_of(
+create or replace function r_generalPractitioners_of_patient(
     patient_id text
 )
 returns table(
