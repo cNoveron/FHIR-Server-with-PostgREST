@@ -5,23 +5,20 @@ create or replace function r_generalPractitioners_of(
 )
 returns table(
     practitioner_id text,
-    practitioner_name text,
+    practitioner_name jsonb,
     practitioner_specialty text
 )
 as $$
 	select
-		resource -> 'id',
-		resource -> 'name',
-		resource -> 'specialty' -> 0 -> 'coding' -> 0 -> 'display'
+		resource ->> 'id',
+		resource #> '{name,0}',
+		resource -> 'specialty' -> 0 -> 'coding' -> 0 ->> 'display'
 	from practitioner
     where (
-        resource ->> 'id' in (
+        practitioner.resource->>'id' in(
             select
-                resource ->> 'generalPractitioner'
+                resource #>> '{generalPractitioner,0,id}'
             from patient
-            where(
-                resource ->> 'id' = patient_id
-            )
         )
     );
 $$ language sql;
