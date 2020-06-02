@@ -5,14 +5,14 @@ create or replace function r_diagnosticreport_blood_count(
 )
 returns table(
 	issued_date text,
-	category_name_1 text,
-	category_name_2 text
+	category_code text,
+	diagnosticreport_code text
 )
 as $$
 	select
 		resource ->> 'issued',
 		resource #>> '{category,0,coding,0,display}',
-		resource #>> '{category,0,coding,1,display}'
+		resource #>> '{code,coding,0,display}'
 	from diagnosticreport
 	where (
 		resource #>> '{code,coding,0,code}' = '58410-2'
