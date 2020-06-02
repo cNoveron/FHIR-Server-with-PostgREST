@@ -1,9 +1,9 @@
 {
   "resourceType": "Schedule",
-  "id": "0963458971",
+  "id": "0963458979",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Hospital Ángeles Pedregal, Medicina General, 4o. piso</div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">MASSACHUSETTS EYE AND EAR INFIRMARY</div>"
   },
   "identifier": [
     {
@@ -17,8 +17,8 @@
     {
       "coding": [
         {
-          "code": "17",
-          "display": "General Practice"
+          "code": "11",
+          "display": "Disability support"
         }
       ]
     }
@@ -27,8 +27,9 @@
     {
       "coding": [
         {
-          "code": "57",
-          "display": "Immunization"
+          "system": "http://hl7.org/fhir/codesystem-service-type.html",
+          "code": "104",
+          "display": "Hearing aid & equipment"
         }
       ]
     }
@@ -37,21 +38,21 @@
     {
       "coding": [
         {
-          "code": "408480009",
-          "display": "Clinical immunology"
+          "code": "394578005",
+          "display": "Audiological medicine"
         }
       ]
     }
   ],
   "actor": [
     {
-      "reference": "Location/1",
-      "display": "Hospital Ángeles Pedregal, Medicina General, 4o. piso"
+      "reference": "Practitioner/ebd3e48b-2c5f-4698-94b2-025cdbb1ae19",
+      "display": "MASSACHUSETTS EYE AND EAR INFIRMARY"
     }
   ],
   "planningHorizon": {
-    "start": "2020-05-27 12:00:00.000000+00",
-    "end": "2020-05-27 21:00:00.000000+00"
+    "start": "2020-06-20 12:00:00.000000+00",
+    "end": "2020-06-20 21:00:00.000000+00"
   },
   "comment": "The slots attached to this schedule should be specialized to cover immunizations within the clinic"
 }
