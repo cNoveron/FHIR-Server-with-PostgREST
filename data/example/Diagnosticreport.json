@@ -1,6 +1,6 @@
 {
     "resourceType": "DiagnosticReport",
-    "id": "c1ca4cb5-5972-47c0-bd53-868aff601da6",
+    "id": "472a4cb5-498c-07c0-bccf-b0eaff602a51",
     "meta": {
         "profile": [
             "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note"
@@ -12,13 +12,8 @@
             "coding": [
                 {
                     "system": "http://loinc.org",
-                    "code": "34117-2",
-                    "display": "History and physical note"
-                },
-                {
-                    "system": "http://loinc.org",
-                    "code": "51847-2",
-                    "display": "Evaluation+Plan note"
+                    "code": "24726-2",
+                    "display": "CT Head WO and W contrast IV"
                 }
             ]
         }
@@ -27,18 +22,18 @@
         "coding": [
             {
                 "system": "http://loinc.org",
-                "code": "34117-2",
-                "display": "History and physical note"
+                "code": "18834-2",
+                "display": "Radiology Comparison study - observation"
             },
             {
                 "system": "http://loinc.org",
-                "code": "51847-2",
-                "display": "Evaluation+Plan note"
+                "code": "19005-8",
+                "display": "Radiology - Impression"
             }
         ]
     },
     "subject": {
-        "reference": "Patient/be8f3045-06c0-46a8-8676-46189f831bce"
+        "reference": "Patient/29981aba-7c8a-4ad2-b3d3-483f9ad45533"
     },
     "encounter": {
         "reference": "Encounter/539ef2e8-9288-467e-9905-3a9e47bfe730"
