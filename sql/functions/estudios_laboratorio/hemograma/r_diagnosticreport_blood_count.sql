@@ -5,8 +5,8 @@ create or replace function r_diagnosticreport_blood_count(
 )
 returns table(
 	issued_date text,
-	category_code text,
-	diagnosticreport_code text
+	category_name text,
+	diagnosticreport_name text
 )
 as $$
 	select
