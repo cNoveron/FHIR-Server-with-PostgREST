@@ -24,7 +24,7 @@ RUN PGDATA=/pgdata /docker-entrypoint.sh postgres  & \
         >&2 echo "Postgres is starting up..."; \
         sleep 5; \
     done && \
-    psql -U postgres -c 'create database fhirbase_v4;' && \
+    psql -U postgres -c 'create database fhir_db;' && \
     sh /fhirbase/scripts/dev/00_init.sh \
     pg_ctl -D /pgdata stop
 
@@ -34,4 +34,4 @@ CMD pg_ctl -D /pgdata start && until psql -U postgres -c '\q'; do \
         >&2 echo "Postgres is starting up..."; \
         sleep 5; \
     done && \
-    exec fhirbase -d fhirbase_v4 -n localhost -U postgres web
+    exec fhirbase -d fhir_db -n localhost -U postgres web
