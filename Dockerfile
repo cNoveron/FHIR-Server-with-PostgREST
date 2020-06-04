@@ -26,17 +26,16 @@ USER postgres
 
 RUN PGDATA=/pgdata /docker-entrypoint.sh postgres  & \
     until psql -U postgres -c '\q'; do \
-        >&2 echo "Postgres is starting up..."; \
-        sleep 5; \
-    done && \
-    psql -U postgres -c 'create database fhirbase_v4;' && \
-    sh /fhirbase/scripts/dev/00_init.sh && \
+    >&2 echo "Postgres is starting up..."; \
+    sleep 5; done && \
+    psql -U postgres -c 'create database fhir_db;' && \
+    sh /fhirbase/scripts/dev/00_init.sh \
     pg_ctl -D /pgdata stop
 
 EXPOSE 5432 4000
 
 CMD pg_ctl -D /pgdata start && until psql -U postgres -c '\q'; do \
-        >&2 echo "Postgres is starting up..."; \
-        sleep 5; \
+    >&2 echo "Postgres is starting up..."; \
+    sleep 5; \
     done && echo "Postgres Ready..." && \
     exec postgrest ./scripts-postgrest/scripts/postgrest.config

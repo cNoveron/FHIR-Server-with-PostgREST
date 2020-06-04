@@ -1,0 +1,55 @@
+{
+    "resourceType": "DiagnosticReport",
+    "id": "472a4cb5-498c-07c0-bccf-b0eaff602a51",
+    "meta": {
+        "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note"
+        ]
+    },
+    "status": "final",
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "http://loinc.org",
+                    "code": "24726-2",
+                    "display": "CT Head WO and W contrast IV"
+                }
+            ]
+        }
+    ],
+    "code": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "18834-2",
+                "display": "Radiology Comparison study - observation"
+            },
+            {
+                "system": "http://loinc.org",
+                "code": "19005-8",
+                "display": "Radiology - Impression"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/29981aba-7c8a-4ad2-b3d3-483f9ad45533"
+    },
+    "encounter": {
+        "reference": "Encounter/539ef2e8-9288-467e-9905-3a9e47bfe730"
+    },
+    "effectiveDateTime": "2020-05-21T14:29:48-05:00",
+    "issued": "2020-05-21T14:29:48.227-05:00",
+    "performer": [
+        {
+            "reference": "Practitioner/2f1563b5-4cc3-30f6-8810-97634a2dfd8c",
+            "display": "Dr. Valentin929 Kshlerin58"
+        }
+    ],
+    "presentedForm": [
+        {
+            "contentType": "text/plain",
+            "data": "CjIwMjAtMDUtMjEKCiMgQ2hpZWYgQ29tcGxhaW50Ci0gU25lZXppbmcgRml0cwoKCiMgSGlzdG9yeSBvZiBQcmVzZW50IElsbG5lc3MKS2F0ZWxpbjQ2NiBpcyBhIDE1IHllYXItb2xkIG5vbi1oaXNwYW5pYyB3aGl0ZSBmZW1hbGUuIFBhdGllbnQgaGFzIGEgaGlzdG9yeSBvZiBzdHJlcHRvY29jY2FsIHNvcmUgdGhyb2F0IChkaXNvcmRlciksIGFjdXRlIGJyb25jaGl0aXMgKGRpc29yZGVyKSwgbGFjZXJhdGlvbiBvZiB0aGlnaCwgYWN1dGUgdmlyYWwgcGhhcnluZ2l0aXMgKGRpc29yZGVyKSwgZnJhY3R1cmUgb2YgZm9yZWFybSwgdmlyYWwgc2ludXNpdGlzIChkaXNvcmRlcikuCgojIFNvY2lhbCBIaXN0b3J5CiBQYXRpZW50IGhhcyBuZXZlciBzbW9rZWQuCgpQYXRpZW50IGNvbWVzIGZyb20gYSBoaWdoIHNvY2lvZWNvbm9taWMgYmFja2dyb3VuZC4gUGF0aWVudCBjdXJyZW50bHkgaGFzIEh1bWFuYS4KCiMgQWxsZXJnaWVzCk5vIEtub3duIEFsbGVyZ2llcy4KCiMgTWVkaWNhdGlvbnMKcGVuaWNpbGxpbiB2IHBvdGFzc2l1bSAyNTAgbWcgb3JhbCB0YWJsZXQ7IGFjZXRhbWlub3BoZW4gMzI1IG1nIG9yYWwgdGFibGV0OyBpYnVwcm9mZW4gMTAwIG1nIG9yYWwgdGFibGV0OyBhY2V0YW1pbm9waGVuIDE2MCBtZyBjaGV3YWJsZSB0YWJsZXQKCiMgQXNzZXNzbWVudCBhbmQgUGxhbgoKCiMjIFBsYW4KClRoZSBmb2xsb3dpbmcgcHJvY2VkdXJlcyB3ZXJlIGNvbmR1Y3RlZDoKLSBzdWJjdXRhbmVvdXMgaW1tdW5vdGhlcmFweQo="
+        }
+    ]
+}

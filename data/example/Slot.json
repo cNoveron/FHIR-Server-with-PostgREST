@@ -1,10 +1,6 @@
 {
     "resourceType": "Slot",
     "id": "010639834",
-    "text": {
-        "status": "generated",
-        "div": "<divxmlns=\"http://www.w3.org/1999/xhtml\">25Dec20139:00am-9:15am:<b>Busy</b>Physiotherapy</div>"
-    },
     "identifier": [
         {
             "system": "http://example.org/identifiers/slots",
