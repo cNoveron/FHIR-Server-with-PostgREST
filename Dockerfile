@@ -7,7 +7,6 @@ WORKDIR /fhirbase
 
 COPY sql/ ./sql
 COPY scripts/ ./scripts
-COPY scripts-postgrest/ ./scripts-postgrest
 COPY synthea/output/fhir/ ./synthea/output/fhir/
 COPY data/ ./data
 COPY libraries/postgrest /usr/local/bin
@@ -15,7 +14,6 @@ COPY libraries/postgrest /usr/local/bin
 # Set the permissions
 RUN chown -R postgres:postgres ./sql/* && \
     chown -R postgres:postgres ./scripts/* && \
-    chown -R postgres:postgres ./scripts-postgrest/* && \
     chown -R postgres:postgres ./synthea/output/fhir/* && \
     chown -R postgres:postgres /usr/local/bin/postgrest && \
     chown -R postgres:postgres ./data/*
