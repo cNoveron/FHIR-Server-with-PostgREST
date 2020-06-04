@@ -1,7 +1,5 @@
 FROM fhirbase/fhirbase:v0.1.1
 
-RUN apt update && apt -y install systemd curl
-
 # Change postgres user from fhirbase/fhirbase image
 USER root  
 
