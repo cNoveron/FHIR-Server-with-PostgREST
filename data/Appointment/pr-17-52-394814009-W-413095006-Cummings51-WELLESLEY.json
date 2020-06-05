@@ -1,0 +1,97 @@
+{
+  "resourceType": "Appointment",
+  "id": "Appointment_pr-17-52-394814009-W-413095006-Cummings51-WELLESLEY",
+  "identifier": [
+    {
+      "system": "teeb_internal",
+      "value": "appointment(stts=pr,sC=17,sT=52,sp=394814009,aT=W,rC=413095006,ppnt=['Cummings51','WELLESLEY'])->slot->schedule->location(id='5977f2c0',n='WELLESLEY')"
+    }
+  ],
+  "status": "proposed",
+  "serviceCategory": [
+    {
+      "coding": [
+        {
+          "code": "17",
+          "display": "General Practice"
+        }
+      ]
+    }
+  ],
+  "serviceType": [
+    {
+      "coding": [
+        {
+          "code": "52",
+          "display": "General Discussion"
+        }
+      ]
+    }
+  ],
+  "specialty": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "394814009",
+          "display": "General practice"
+        }
+      ]
+    }
+  ],
+  "appointmentType": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/v2-0276",
+        "code": "WALKIN",
+        "display": "A previously unscheduled walk-in visit"
+      }
+    ]
+  },
+  "reasonCode": [
+    {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "413095006",
+          "display": "Clinical management plan review (procedure)"
+        }
+      ],
+      "text": "Clinical Review"
+    }
+  ],
+  "priority": 5,
+  "description": "Discussion on the results of your recent MRI",
+  "minutesDuration": 15,
+  "slot": [
+    {
+      "reference": "Slot/Slot_WELLESLEY_2020-06-11-12:00-21:00"
+    }
+  ],
+  "created": "2020-05-27 14:35:27.407850+00",
+  "comment": "Further expand on the results of the MRI and determine the next actions that may be appropriate.",
+  "participant": [
+    {
+      "actor": {
+        "reference": "Patient/9a77fd59-814e-437d-9609-f7784f9386dc",
+        "display": "Mrs. Olga567 Cummings51"
+      },
+      "required": "required",
+      "status": "needs-action"
+    },
+    {
+      "actor": {
+        "reference": "Location/5977f2c0-d77c-40e2-900f-b5a4ee484218",
+        "display": "WELLESLEY HILLS HOSPITAL"
+      },
+      "required": "required",
+      "status": "accepted"
+    }
+  ],
+  "requestedPeriod": [
+    {
+      "start": "2020-06-11 13:00:00.000000+00",
+      "end": "2020-06-11 14:14:59.999999+00"
+    }
+  ]
+}
