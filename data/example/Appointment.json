@@ -1,14 +1,10 @@
 {
   "resourceType": "Appointment",
-  "id": "24977610490",
-  "text": {
-    "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Inmunización</div>"
-  },
+  "id": "Appointment_03",
   "identifier": [
     {
-      "system": "http://example.org/sampleappointment-identifier",
-      "value": "09862397013"
+      "system": "teeb_internal",
+      "value": "appointment(stts=prpsd,sC=17,sT=52,sp=394814009,ppnt=['Olga567 Cummings51','WELLESLEY HILLS HOSPITAL'])->slot->schedule->location(id='5977f2c0-d77c-40e2-900f-b5a4ee484218',n='WELLESLEY HILLS HOSPITAL')"
     }
   ],
   "status": "proposed",
@@ -16,9 +12,18 @@
     {
       "coding": [
         {
-          "system": "http://example.org/service-category",
-          "code": "gp",
+          "code": "17",
           "display": "General Practice"
+        }
+      ]
+    }
+  ],
+  "serviceType": [
+    {
+      "coding": [
+        {
+          "code": "52",
+          "display": "General Discussion"
         }
       ]
     }
@@ -48,7 +53,8 @@
       "coding": [
         {
           "system": "http://snomed.info/sct",
-          "code": "413095006"
+          "code": "413095006",
+          "display": "Clinical management plan review (procedure)"
         }
       ],
       "text": "Clinical Review"
@@ -59,7 +65,7 @@
   "minutesDuration": 15,
   "slot": [
     {
-      "reference": "Slot/010639847"
+      "reference": "Slot/Slot_WELLESLEY_2020-06-11_12:00-13:00"
     }
   ],
   "created": "2020-05-27 14:35:27.407850+00",
@@ -74,23 +80,9 @@
       "status": "needs-action"
     },
     {
-      "type": [
-        {
-          "coding": [
-            {
-              "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
-              "code": "ATND"
-            }
-          ]
-        }
-      ],
-      "required": "required",
-      "status": "needs-action"
-    },
-    {
       "actor": {
-        "reference": "Location/1",
-        "display": "Hospital Ángeles Pedregal, Medicina General, 4o. piso"
+        "reference": "Location/5977f2c0-d77c-40e2-900f-b5a4ee484218",
+        "display": "WELLESLEY HILLS HOSPITAL"
       },
       "required": "required",
       "status": "accepted"
@@ -98,8 +90,8 @@
   ],
   "requestedPeriod": [
     {
-      "start": "2020-06-02 16:00:00.000000+00",
-      "end": "2020-06-02 16:19:59.000000+00"
+      "start": "2020-06-11 11:00:00.000000+00",
+      "end": "2020-06-11 11:14:59.999999+00"
     }
   ]
 }
