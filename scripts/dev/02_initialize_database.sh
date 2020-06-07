@@ -3,12 +3,10 @@ set -e
 
 # Inits the fhirbase data
 
-echo "#### Creating fhir_db.0.0 database in Postgres instance... ####"
-
+echo "#### Creating fhir 4.0.0 database in Postgres instance... ####"
 psql -d fhir_db -U postgres -p 5432 < /fhirbase/sql/01_create_database.sql
 
 echo "#### Fhirbase init... ####"
-
 fhirbase -d fhir_db --fhir=4.0.0 init
 
 echo "#### Updating tables... ####"
