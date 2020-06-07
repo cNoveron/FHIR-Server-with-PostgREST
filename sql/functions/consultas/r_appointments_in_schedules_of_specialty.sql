@@ -16,7 +16,7 @@ as $$
 		resource #>> '{requestedPeriod,0,start}',
 		resource #>> '{requestedPeriod,0,end}',
 		resource #>> '{specialty,0,coding,0,display}',
-		resource #> '{participant}'
+		resource -> 'participant'
 	from appointment
 	where(
 		appointment.resource #>> '{slot,0,id}' in(
