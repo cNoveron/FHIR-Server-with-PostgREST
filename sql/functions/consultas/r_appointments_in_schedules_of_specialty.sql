@@ -13,9 +13,9 @@ returns table(
 as $$
 	select
 		resource ->> 'id',
-		resource #>> '{requestedPeriod,0,start'},
-		resource #>> '{requestedPeriod,0,end'},
-		resource #>> '{specialty,0,coding,0,display'},
+		resource #>> '{requestedPeriod,0,start}',
+		resource #>> '{requestedPeriod,0,end}',
+		resource #>> '{specialty,0,coding,0,display}',
 		resource #>> 'participant'
 	from appointment
 	where(
