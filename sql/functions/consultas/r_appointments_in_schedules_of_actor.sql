@@ -8,6 +8,8 @@ returns table(
 	appointment_start text,
 	appointment_end text,
 	appointment_specialty text,
+	appointment_appointmentType text,
+	appointment_reasonCode text,
 	appointment_participant jsonb
 )
 as $$
