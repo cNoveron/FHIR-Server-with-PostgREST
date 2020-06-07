@@ -24,12 +24,13 @@ as $$
 				resource ->> 'id'
 			from slot
 			where(
-				slot.resource -> 'schedule' ->> 'id' in(
+				slot.resource #>> '{schedule,id}' in(
 					select
 						resource ->> 'id'
 					from schedule
 					where(
-						schedule.resource #>> '{serviceType,0,coding,0,code}' = schedule_service_type_code
+						schedule.resource #> '{serviceType}' @>
+						('[{"coding":[{"code":'||schedule_service_type_code||'}]}]')::jsonb
 					)
 				)
 			)
