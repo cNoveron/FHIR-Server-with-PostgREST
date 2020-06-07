@@ -29,8 +29,8 @@ as $$
 						resource ->> 'id'
 					from schedule
 					where(
-						schedule.resource #> '{serviceType}' @>
-						('[{"coding":[{"code":'||schedule_service_type_code||'}]}]')::jsonb
+						schedule.resource @>
+						('{"serviceType":[{"coding":[{"code":"'||schedule_service_type_code||'"}]}]}')::jsonb
 					)
 				)
 			)
