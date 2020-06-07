@@ -1,2 +1,2 @@
 #!/bin/sh
-exec fhirbase -d fhirbase_v4 -n localhost -U postgres web
+exec fhirbase -d fhir_db -n localhost -U postgres web
