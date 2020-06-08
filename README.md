@@ -39,5 +39,5 @@
     Después de unos segundos, se podría poder observar el servicio funcionando correctamente
 
     ```bash
-    curl localhost:3005
+    curl localhost:4000
     ```

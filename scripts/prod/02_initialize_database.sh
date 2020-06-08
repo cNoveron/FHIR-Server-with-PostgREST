@@ -14,11 +14,6 @@ echo "#### Updating postgrest data... ####"
 psql "postgres://teeb:$1@119.8.11.33:5432/fhir_db" \
 < ./sql/03_create_postgrest_data.sql
 
-echo "#### Updating anon_web permissions... ####"
-psql "postgres://teeb:$1@119.8.11.33:5432/fhir_db" \
-< ./sql/04_update_permissions_to_web_anon.sql
-
-echo "#### Updating authenticator permissions... ####"
-psql "postgres://teeb:$1@119.8.11.33:5432/fhir_db" \
-< ./sql/05_update_permissions_to_authenticator.sql
-
+echo "#### Updating permissions... ####"
+psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
+< ./sql/04_update_permissions.sql
