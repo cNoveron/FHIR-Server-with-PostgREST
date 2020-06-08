@@ -33,7 +33,8 @@ as $$
 						resource ->> 'id'
 					from schedule
 					where(
-						schedule.resource #>> '{specialty,0,coding,0,code}' = schedule_specialty_code
+						schedule.resource @>
+						('{"specialty":[{"coding":[{"code":"'||schedule_specialty_code||'"}]}]}')::jsonb
 					)
 				)
 			)
