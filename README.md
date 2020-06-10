@@ -1,6 +1,6 @@
-# Perfil Clínico
+# Teeb FHIR Server
 
-## Instalación 
+## Instalación
 
 1. Inicializar submodulos
 
@@ -41,3 +41,34 @@
     ```bash
     curl localhost:4000
     ```
+
+## :space_invader: Dev Log
+
+### Una Docker Image que se pueda quedar estática por meses
+
+**Ramsés:**
+El contenido de los scripts puede cambiar. Y si incluímos todos los scripts en el Dockerfile, cuando se hagan cambios importantes las imágenes de nuestro equipo quedarán obsoletas. Voy a modificar el Dockerfile de modo que no necesiten actualizar constantemente.
+
+**Carlos:**
+Nos pondremos como objetivo no sacar versiones mayores frecuentemente, de modo que el equipo dev actualice su imágen de Teeb FHIR Server más de 1 vez por trimestre.
+
+Para evitar que futuros cambios en los scripts provoque que los devs tengan diferentes builds necesitamos realizar los siguientes cambios:
+
+- Eliminar a línea que correo `scripts/dev/00_init.sh` en el Dockerfile.
+- Volcar el contenido de ese script en el Dockerfile.
+
+```dockerfile
+RUN ...
+    psql -U postgres -c 'create database fhir_db;' && \
+    sh /fhirbase/scripts/dev/00_init.sh \
+```
+
+```dockerfile
+RUN ...
+    psql -U postgres -c 'create database fhir_db;' && \
+    psql -U postgres -c 'create user teeb;' && \
+    ...
+```
+### Usar otro schema a parte de public para evitar posibles implicaciones de seguridad
+
+
