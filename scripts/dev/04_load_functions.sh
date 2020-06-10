@@ -5,13 +5,13 @@ psql -h localhost -p 5435 -U postgres -d fhir_db \
 < ./sql/functions/agenda/r_slots.sql
 
 psql -h localhost -p 5435 -U postgres -d fhir_db \
-< ./sql/functions/consultas/r_appointments_in_schedules_of_actor.sql
+< ./sql/functions/consultas/r_appointments_by_actor.sql
 psql -h localhost -p 5435 -U postgres -d fhir_db \
-< ./sql/functions/consultas/r_appointments_in_schedules_of_service_category.sql
+< ./sql/functions/consultas/r_appointments_by_serviceCategory.sql
 psql -h localhost -p 5435 -U postgres -d fhir_db \
-< ./sql/functions/consultas/r_appointments_in_schedules_of_service_type.sql
+< ./sql/functions/consultas/r_appointments_by_serviceType.sql
 psql -h localhost -p 5435 -U postgres -d fhir_db \
-< ./sql/functions/consultas/r_appointments_in_schedules_of_specialty.sql
+< ./sql/functions/consultas/r_appointments_by_specialty.sql
 
 psql -h localhost -p 5435 -U postgres -d fhir_db \
 < ./sql/functions/consultorios/r_locations.sql
