@@ -4,7 +4,6 @@ set -e
 # Inits the fhirbase data
 
 echo "#### Initialize fhir_db.0.0 database in Postgres instance -> Creating teeb user... ####"
-
 psql -d fhir_db -U postgres -p 5432 < /fhirbase/sql/01_create_database.sql
 
 echo "#### Fhirbase init... ####"
