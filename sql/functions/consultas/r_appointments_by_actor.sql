@@ -1,6 +1,6 @@
-drop function if exists r_appointments_in_schedules_of_actor;
+drop function if exists r_appointments_by_actor;
 
-create or replace function r_appointments_in_schedules_of_actor(
+create or replace function r_appointments_by_actor(
 	schedule_actor_id text
 )
 returns table(

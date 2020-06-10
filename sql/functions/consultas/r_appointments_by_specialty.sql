@@ -1,6 +1,6 @@
-drop function if exists r_appointments_in_schedules_of_specialty;
+drop function if exists r_appointments_by_specialty;
 
-create or replace function r_appointments_in_schedules_of_specialty(
+create or replace function r_appointments_by_specialty(
 	schedule_specialty_code text
 )
 returns table(

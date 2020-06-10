@@ -1,6 +1,6 @@
-drop function if exists r_appointments_in_schedules_of_service_type;
+drop function if exists r_appointments_by_serviceType;
 
-create or replace function r_appointments_in_schedules_of_service_type(
+create or replace function r_appointments_by_serviceType(
 	schedule_service_type_code text
 )
 returns table(
