@@ -4,16 +4,16 @@ set -e
 # Inits the fhirbase data
 
 echo "#### Initialize fhir_db.0.0 database in Postgres instance -> Creating teeb user... ####"
-psql -d fhir_db -U postgres -p 5432 < /fhirbase/sql/01_create_database.sql
+psql -h localhost -p 5435 -U postgres -d fhir_db  < /fhirbase/sql/01_create_database.sql
 
 echo "#### Fhirbase init... ####"
-fhirbase -d fhir_db --fhir=4.0.0 init
+fhirbase --fhir=4.0.0 init
 
 echo "#### Updating tables... ####"
-psql -d fhir_db -U postgres -p 5432 < /fhirbase/sql/02_alter_fhir_tables.sql
+psql -h localhost -p 5435 -U postgres -d fhir_db  < /fhirbase/sql/02_alter_fhir_tables.sql
 
 echo "#### Updating postgrest data... ####"
-psql -d fhir_db -U postgres -p 5432 < /fhirbase/sql/03_create_postgrest_data.sql
+psql -h localhost -p 5435 -U postgres -d fhir_db  < /fhirbase/sql/03_create_postgrest_data.sql
 
 echo "#### Updating permissions... ####"
-psql -d fhir_db -U postgres -p 5432 < /fhirbase/sql/04_update_permissions.sql
+psql -h localhost -p 5435 -U postgres -d fhir_db  < /fhirbase/sql/04_update_permissions.sql
