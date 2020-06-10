@@ -1,6 +1,6 @@
-drop function if exists r_locations;
+drop function if exists r_locations_by_practitioner;
 
-create or replace function r_locations(
+create or replace function r_locations_by_practitioner(
 	practitioner_id text
 )
 returns table(
