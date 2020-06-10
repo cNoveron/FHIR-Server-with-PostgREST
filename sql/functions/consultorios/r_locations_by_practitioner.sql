@@ -18,7 +18,7 @@ as $$
 		resource #>> '{address,line,0}',
 		resource #>> '{address,city}',
 		resource #>> '{address,state}',
-		resource #>> '{address,country}',
+		resource #>> '{address,country}'
 	from location
 	where(
 		location.resource ->> 'id' in(
