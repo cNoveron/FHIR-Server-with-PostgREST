@@ -15,6 +15,8 @@ psql -h localhost -p 5435 -U postgres -d fhir_db \
 
 psql -h localhost -p 5435 -U postgres -d fhir_db \
 < ./sql/functions/consultorios/r_locations.sql
+psql -h localhost -p 5435 -U postgres -d fhir_db \
+< ./sql/functions/consultorios/r_locations_by_practitioner.sql
 
 psql -h localhost -p 5435 -U postgres -d fhir_db \
 < ./sql/functions/estudios_laboratorio/hemograma/r_diagnosticreport_blood_count.sql
