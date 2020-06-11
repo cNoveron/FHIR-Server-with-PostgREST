@@ -3,16 +3,18 @@ psql "postgres://teeb:$1@119.8.11.33:5432/fhir_db" \
 < ./sql/functions/agenda/r_slots.sql
 
 psql "postgres://teeb:$1@119.8.11.33:5432/fhir_db" \
-< ./sql/functions/consultas/r_appointments_in_schedules_of_actor.sql
+< ./sql/functions/consultas/r_appointments_by_actor.sql
 psql "postgres://teeb:$1@119.8.11.33:5432/fhir_db" \
-< ./sql/functions/consultas/r_appointments_in_schedules_of_service_category.sql
+< ./sql/functions/consultas/r_appointments_by_serviceCategory.sql
 psql "postgres://teeb:$1@119.8.11.33:5432/fhir_db" \
-< ./sql/functions/consultas/r_appointments_in_schedules_of_service_type.sql
+< ./sql/functions/consultas/r_appointments_by_serviceType.sql
 psql "postgres://teeb:$1@119.8.11.33:5432/fhir_db" \
-< ./sql/functions/consultas/r_appointments_in_schedules_of_specialty.sql
+< ./sql/functions/consultas/r_appointments_by_specialty.sql
 
 psql "postgres://teeb:$1@119.8.11.33:5432/fhir_db" \
 < ./sql/functions/consultorios/r_locations.sql
+psql "postgres://teeb:$1@119.8.11.33:5432/fhir_db" \
+< ./sql/functions/consultorios/r_locations_by_practitioner.sql
 
 psql "postgres://teeb:$1@119.8.11.33:5432/fhir_db" \
 < ./sql/functions/estudios_laboratorio/hemograma/r_diagnosticreport_blood_count.sql
