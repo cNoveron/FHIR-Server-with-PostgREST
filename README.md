@@ -8,7 +8,7 @@
     git submodule init && git submodule update
     ```
 
-2. Configurar el archivo **./src/main/resources/synthea.properties** de synthea con los siguientes datos:
+2. Configurar el archivo `./synthea/src/main/resources/synthea.properties` de synthea con los siguientes datos:
 
     ```bash
     exporter.fhir.use_us_core_ig = true
@@ -22,20 +22,45 @@
     ```
 
 4. Configura el archivo postgrest.conf
+    
+    ```bash
+    cp ./sql/postgrest.sample.config ./sql/postgrest.config
+    ```
+    Una vez copiados, se deben setear los datos deseados para la conexión de `postgREST`
 
-5. Crear la imagen de docker
+5. Crear la imagen de docker y lanzarlas
 
     ```bash
-    docker build -t teeb_fhir_server:1.0.0 ./
+    docker-compose -f docker-compose.local.yml build
+    docker-compose -f docker-compose.local.yml up
     ```
 
-6. Ejecutar el contenedor
+6. Listar contenedores del proyecto
+    ```bash
+    docker-compose -f docker-compose.local.yml ps
+    ```
+
+7. Detener servicios
 
     ```bash
-    docker run --rm --env-file .env --name teeb_fhir_server -d -p 5435:5432 -p 4000:4000 teeb_fhir_server:1.0.0
+    docker-compose -f docker-compose.local.yml down
     ```
 
-7. Verificar funcionamiento
+8. **Pro Tip**
+    Setear una variable de entorno para evitar colocar `-f docker-compose.local.yml` en cada orden.
+
+    ```bash
+    export COMPOSE_FILE=docker-compose.local.yml
+    ```
+
+    ```bash
+    docker-compose build
+    docker-compose up
+    docker-compose ps
+    docker-compose down
+    ```
+
+8. Verificar funcionamiento
     Después de unos segundos, se podría poder observar el servicio funcionando correctamente
 
     ```bash
