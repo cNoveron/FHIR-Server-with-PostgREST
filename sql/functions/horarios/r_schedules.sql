@@ -1,7 +1,7 @@
-drop function if exists r_schedule;
+drop function if exists r_schedules_by_actor;
 
-create or replace function r_schedule(
-	actor_id varchar
+create or replace function r_schedules_by_actor(
+	actor_id text
 )
 returns table(
 	id text,
@@ -14,12 +14,10 @@ as $$
 	from schedule
 	where(
 		to_timestamp(
-			resource->'planningHorizon'->>'start',
+			resource #>> '{planningHorizon,start}',
 			'YYYY-MM-DD HH:MI:SS'
 		) > CURRENT_TIMESTAMP
 		and
-		resource -> 'actor'-> 0 ->> 'id' = actor_id
+		resource #>> '{actor,0,id}' = actor_id
 	);
 $$ language sql;
-
--- select * from r_schedule('1');
