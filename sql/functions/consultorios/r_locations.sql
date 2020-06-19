@@ -15,6 +15,7 @@ as $$
 		resource ->> 'name',
 		resource #>> '{address,line,0}',
 		resource #>> '{address,city}',
+		resource #>> '{address,postalCode}',
 		resource #>> '{address,state}',
 		resource #>> '{address,country}'
 	from location;
