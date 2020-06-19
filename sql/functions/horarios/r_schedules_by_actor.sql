@@ -5,12 +5,12 @@ create or replace function r_schedules_by_actor(
 )
 returns table(
 	id text,
-	planning_horizon text
+	planning_horizon jsonb
 )
 as $$
 	select
 		resource ->> 'id',
-		resource ->> 'planningHorizon'
+		resource -> 'planningHorizon'
 	from schedule
 	where(
 		to_timestamp(
