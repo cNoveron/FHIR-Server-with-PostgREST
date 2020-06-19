@@ -4,7 +4,8 @@ create or replace function r_practitioners()
 returns table(
     practitioner_id text,
     practitioner_name jsonb,
-    practitioner_specialty text
+    practitioner_specialty text,
+    practitioner_telecom jsonb
 )
 as $$
 	select
