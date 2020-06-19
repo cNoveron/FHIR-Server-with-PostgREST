@@ -6,6 +6,7 @@ returns table(
 	location_name text,
 	location_address text,
 	location_city text,
+	location_postalCode text,
 	location_state text,
 	location_country text
 )
