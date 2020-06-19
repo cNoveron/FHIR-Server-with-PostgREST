@@ -5,6 +5,8 @@ WORKDIR /fhirbase
 COPY fhirbase/fhirbase /usr/local/bin/fhirbase
 
 COPY ./compose/production/fhirbase/maintenance/fhirbase-entrypoint.sh /usr/local/bin/
+COPY ./synthea/output/fhir/ ./synthea/output/fhir/
+COPY data/ ./data
 
 RUN chmod +x /usr/local/bin/fhirbase && \
     chmod +x /usr/local/bin/fhirbase-entrypoint.sh && \

@@ -13,7 +13,7 @@ services:
       - ./.envs/.local/.postgres
       - ./.envs/.local/.postgrest
     depends_on:
-      - postgres
+      - fhirbase
     links:
       - postgres:postgres
 
@@ -22,6 +22,8 @@ services:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
     image: teeb_production_postgres
+    ports:
+      - "5435:5432"
     volumes:
       - local_postgres_data:/var/lib/postgresql/data
       - local_postgres_data_backups:/backups
@@ -50,3 +52,5 @@ services:
       - "8080"
     environment:
       API_URL: http://localhost:3000/
+    depends_on:
+      - postgres
