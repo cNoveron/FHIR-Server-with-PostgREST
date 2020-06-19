@@ -24,7 +24,7 @@ psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 < ./sql/functions/estudios_laboratorio/tomografía/r_diagnosticreport_imaging.sql
 
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
-< ./sql/functions/horarios/r_schedules.sql
+< ./sql/functions/horarios/r_schedules_by_actor.sql
 
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 < ./sql/functions/médicos/r_generalPractitioners_of_patient.sql
