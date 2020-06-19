@@ -17,7 +17,7 @@ as $$
 		resource ->> 'status'
 	from slot
 	where(
-		resource -> 'schedule' ->> 'id' in(
+		resource #>> '{schedule,id}' in(
 			select
 				resource ->> 'id'
 			from schedule,
@@ -28,5 +28,3 @@ as $$
 		)
 	);
 $$ language sql;
-
--- select * from r_slot('1');
