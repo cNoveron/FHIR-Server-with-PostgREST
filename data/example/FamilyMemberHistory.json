@@ -1,0 +1,201 @@
+{
+    "resourceType": "FamilyMemberHistory",
+    "id": "FamilyMemberHistory_aabdb5bb-125677006-2020-06-02-13:45:12",
+    "status": "completed",
+    "patient": {
+        "reference": "Patient/aabdb5bb-5832-4650-864f-e459f7e87065",
+        "display": "Jesusa437 O'Kon634"
+    },
+    "relationship": {
+        "coding": [
+            {
+                "system": "http://snomed.info/sct",
+                "code": "125677006",
+                "display": "Relative (person)"
+            }
+        ]
+    },
+    "date": "2020-06-02 13:45:12.341078+00",
+    "condition": [
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "73211009",
+                        "display": "Diabetes mellitus"
+                    }
+                ],
+                "text": "Diabetes mellitus"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "38341003",
+                        "display": "Hypertensive disorder, systemic arterial (disorder)"
+                    }
+                ],
+                "text": "Hipertension Arterial Sistémica"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "414916001",
+                        "display": "Obesity"
+                    }
+                ],
+                "text": "Obesidad"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "399981008",
+                        "display": "Neoplasm and/or hamartoma (disorder)"
+                    }
+                ],
+                "text": "Neoplasias, cáncer o leucemia"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "276654001",
+                        "display": "Congenital malformation (disease)"
+                    }
+                ],
+                "text": "Malformaciones hereditarias o congénitas"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "74732009",
+                        "display": "Mental disorder (disorder)"
+                    }
+                ],
+                "text": "Enfermedades psiquiátricas"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "84757009",
+                        "display": "Epilepsy (disorder)"
+                    }
+                ],
+                "text": "Epilepsia"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "49601007",
+                        "display": "Disorder of cardiovascular system (disorder)"
+                    }
+                ],
+                "text": "Enfermedades cardiovasculares"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "55822004",
+                        "display": "Hyperlipidemia (disorder)"
+                    }
+                ],
+                "text": "Elevación de colesterol o triglicéridos"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "50043002",
+                        "display": "Disorder of respiratory system"
+                    }
+                ],
+                "text": "Enfermedades broncopulmonares"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "14304000",
+                        "display": "Disorder of thyroid gland (disorder)"
+                    }
+                ],
+                "text": "Enfermedades tiroideas"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "443820000",
+                        "display": "Disorder of kidney and/or ureter (disorder) "
+                    }
+                ],
+                "text": "Enfermedades renales"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "928000",
+                        "display": "Disorder of musculoskeletal system (disorder)"
+                    }
+                ],
+                "text": "Enfermedades osteoarticulares o musculares"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "40733004",
+                        "display": "Infectious disease (disorder)"
+                    }
+                ],
+                "text": "Enfermedades infecciosas"
+            }
+        },
+        {
+            "code": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "414029004",
+                        "display": "Disorder of immune function"
+                    }
+                ],
+                "text": "Enfermedades inmunológicas"
+            }
+        }
+    ]
+}
