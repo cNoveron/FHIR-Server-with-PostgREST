@@ -16,9 +16,6 @@ _main() {
     export PGPASSWORD="${POSTGRES_PASSWORD}"
     export PGDATABASE="${POSTGRES_DB}"
 
-    echo $PGHOST
-    echo $PGPORT
-
     if ! psql -lqt | cut -d \| -f 1 | grep -qw $PGDATABASE; then
         until psql -U $PGUSER -c '\q'; do \
             >&2 echo "Postgres is starting up..."; \
