@@ -10,13 +10,7 @@ as $$
 	select
 		resource ->> 'id',
 		resource #> '{name,0}',
-		resource #>> '{specialty,0,coding,0,display}'
-	from practitioner
-    where (
-        practitioner.resource ->> 'id' in(
-            select
-                resource #>> '{generalPractitioner,0,id}'
-            from patient
-        )
-    );
+		resource #>> '{specialty,0,coding,0,display}',
+		resource #> '{telecom}'
+	from practitioner;
 $$ language sql;
