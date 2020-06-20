@@ -1,4 +1,4 @@
 [submodule "synthea"]
 	path = synthea
 	url = git@github.com:synthetichealth/synthea.git
-	ignore = dirty
+	ignore = all
