@@ -27,7 +27,7 @@
         "cp": "04710"
       },
       "insurance": ["AXA", "GNP", "Santander"], // teeb.practitioner.insurance PENDIENTE
-      "schedule": {
+      "schedule": { // fhir_server.r_appointments_in_schedules_of_actor
         "days": ["Lun", "Mie", "Vie"],
         "time": [
           { "from": "10:00am", "to": "4:00pm" },
