@@ -29,7 +29,7 @@ Hecho esto nos responderá una lista de datos de **Practicantes** que se verá d
 
 ```
 
-#### 2. Paciente: Elegió médico -> App: Consultorios: Desplegar Ubicaciones
+#### 2. Paciente: Elegió médico -> App/Consultorios: Desplegar Ubicaciones
 Cuando el paciente selecciona un médico, la app deberá de seleccionar el `practitioner_id` del médico en cuestión para incluirlo en el `payload` de nuestra segunda request, misma que se enviará a través de **R Consultorios | médico** para obtener todas las **Ubicaciones** (i.e. consultorios, clínicas u hospitales) donde el **Practicante** desea recibir consultas.
 
 El payload para encontrar todas las **Ubicaciones** incluye el `practitioner_id` del **Practicante** elegido
@@ -59,7 +59,7 @@ Por ahora tenemos sólo un consultorio por **Practicante**. Se irán mejorando l
 ```json
 {
   "resource": {
-    "name": "Clínica Gran Sur",           // <-- location_name
+    "name": "GOOD SAMARITAN MEDICAL CENTER",           // <-- location_name
     "address": {
       "street": "235 NORTH PEARL STREET", // <-- location_address
       // "suburb": "Olímpica",            // omitir
@@ -73,11 +73,37 @@ Por ahora tenemos sólo un consultorio por **Practicante**. Se irán mejorando l
     ],
 ```
 
-#### 3. Paciente: Agendar consulta -> App: Agendar: Razón de la consulta
+#### 3. Paciente: Introdujo razón de la consulta -> App/Agendar: Incluye la razón en el payload de C Consulta
+En cuanto el paciente llena el campo se entiende que en la app los datos se visualizan de esta manera:
+```json
+{
+  ....
+  "services": [
+    "Consulta general",
+    "Valoración preoperatoria"
+  ],
+  ...
+}
+```
+Una vez introducidos la app los incluirá en el payload de la request **C Consulta**
+```json
+{
+  "resource": {
+    "reasonCode": [
+      {
+        "text": "Consulta general"
+      },
+      {
+        "text": "Valoración preoperatoria"
+      }
+    ],
+  }
+}
+```
 
-#### 4. Paciente: Agendar consulta -> App: Agendar: Modalidad de la consulta
+#### 4. Paciente: Agendar consulta -> App/Agendar: Modalidad de la consulta
 
-#### 5. Paciente: Agendar consulta -> App: Agendar: Elige el consultorio
+#### 5. Paciente: Agendar consulta -> App/Agendar: Elige el consultorio
 
 #### 6. Paciente: Agendar consulta -> App: Agendar: Selecciona el día
 
@@ -104,10 +130,6 @@ En Teeb FHIR Server se designó que haya un **Horario** por día, por lo tanto:
       },
       { "type": "Live", "price": 2000, "prepayment": 600 },
       { "type": "Home", "price": 5000, "prepayment": 800 }
-    ],
-    "services": [
-      "Consulta general", // <Teeb_FHIR_Server_URLl>.appointment.serviceType
-      "Valoración preoperatoria"
     ],
     "colleagues": [
       {
