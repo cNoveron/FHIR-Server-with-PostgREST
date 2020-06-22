@@ -20,11 +20,11 @@
       "name": "Clínica Gran Sur", // <-- location_name
       "phoneNumber": [213123123, 328923829], // fhir_server.r_locations_by_practitioner.location_phone
       "address": {
-        "street": "Avery Brundage 6",
-        "suburb": "Olímpica",
-        "area": "Coyoacan",
-        "state": "Ciudad de México",
-        "cp": "04710"
+        "street": "Avery Brundage 6",// fhir_server.r_locations_by_practitioner.location_address
+        "suburb": "Olímpica",// omitir o usar como segunda línea (concatenar después de `street` en el front)
+        "area": "Coyoacan",// fhir_server.r_locations_by_practitioner.location_phone
+        "state": "Ciudad de México",// fhir_server.r_locations_by_practitioner.location_phone
+        "cp": "04710"// fhir_server.r_locations_by_practitioner.location_phone
       },
       "insurance": ["AXA", "GNP", "Santander"], // teeb.practitioner.insurance PENDIENTE
       "schedule": { // fhir_server.r_appointments_in_schedules_of_actor
