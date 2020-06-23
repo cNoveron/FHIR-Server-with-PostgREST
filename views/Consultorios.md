@@ -30,17 +30,15 @@ Hecho esto nos responderá una lista de datos de **Practicantes** que se verá d
 ```
 
 #### 2. Paciente: Elegió médico -> App/Consultorios: Desplegar Ubicaciones
-Cuando el paciente selecciona un médico, la app deberá de seleccionar el `practitioner_id` del médico en cuestión para incluirlo en el `payload` de nuestra segunda request, misma que se enviará a través de **R Consultorios | médico** para obtener todas las **Ubicaciones** (i.e. consultorios, clínicas u hospitales) donde el **Practicante** desea recibir consultas.
+Cuando el paciente selecciona un médico, la app deberá de seleccionar el `practitioner_id` del médico en cuestión para incluirlo en el `body` de nuestra segunda request: **R Consultorios | médico**, que se usará para obtener todas las **Ubicaciones** (i.e. consultorios, clínicas u hospitales) donde el **Practicante** desea recibir consultas.
 
-El payload para encontrar todas las **Ubicaciones** incluye el `practitioner_id` del **Practicante** elegido
-
+El body para encontrar todas las **Ubicaciones** incluye el `practitioner_id` del **Practicante** elegido:
 ```json
 {
   "practitioner_id": "fc535af9-9a79-31c8-8698-1aa7f0f52529"
 }
 
 A lo cual Teeb FHIR Server responderá con un arreglo con elementos de esta manera:
-
 ```json
 [
   {
@@ -53,13 +51,11 @@ A lo cual Teeb FHIR Server responderá con un arreglo con elementos de esta mane
   }
 ]
 ```
-
-Por ahora tenemos sólo un consultorio por **Practicante**. Se irán mejorando los datos de prueba en las iteraciones.
-
+En el front end se le conoce a estos datos por los siguientes nombres:
 ```json
 {
   "resource": {
-    "name": "GOOD SAMARITAN MEDICAL CENTER",           // <-- location_name
+    "name": "GOOD SAMARITAN MEDICAL CENTER",// <-- location_name
     "address": {
       "street": "235 NORTH PEARL STREET", // <-- location_address
       // "suburb": "Olímpica",            // omitir
@@ -72,8 +68,9 @@ Por ahora tenemos sólo un consultorio por **Practicante**. Se irán mejorando l
       328923829   // no deberían ser números enteros, deberían ser strings
     ],
 ```
+Por ahora tenemos sólo una **Ubicación** por **Practicante**. Se irán mejorando los datos de prueba en las iteraciones.
 
-#### 3. Paciente: Introdujo razón de la consulta -> App/Agendar: Incluye la razón en el payload de C Consulta
+#### 3. Paciente: Introdujo razón de la consulta -> App/Agendar: La incluye el body de C Consulta
 En cuanto el paciente llena el campo se entiende que en la app los datos se visualizan de esta manera:
 ```json
 {
@@ -85,7 +82,7 @@ En cuanto el paciente llena el campo se entiende que en la app los datos se visu
   ...
 }
 ```
-Una vez introducidos la app los incluirá en el payload de la request **C Consulta**
+Una vez introducidos la app los incluirá en el body de la request **C Consulta**
 ```json
 {
   "resource": {
@@ -101,9 +98,34 @@ Una vez introducidos la app los incluirá en el payload de la request **C Consul
 }
 ```
 
-#### 4. Paciente: Agendar consulta -> App/Agendar: Modalidad de la consulta
-
-#### 5. Paciente: Agendar consulta -> App/Agendar: Elige el consultorio
+#### 4. Paciente: Introdujo la modalidad de la consulta -> App/Agendar: La incluye el body de C Consulta
+En cuanto el paciente llena el campo se entiende que en la app los datos se visualizan de esta manera:
+```json
+{
+  "appTypes": [
+    {
+      "type": "Online", // fhir_db.appointment.appointmentType
+      "price": 1000,    // teeb.prices.Online.total
+      "prepayment": 500 // teeb.prices.Online.prepay
+    },
+    { "type": "Live", "price": 2000, "prepayment": 600 },
+    { "type": "Home", "price": 5000, "prepayment": 800 }
+  ],
+}
+```
+Una vez introducidos la app los incluirá en el body de la request **C Consulta**
+```json
+{
+  "resource": {
+    "appointmentType": [
+      {
+        "text": "Live"
+      }
+    ],
+  }
+}
+```
+#### 5. Paciente: Introdujo el consultorio -> App/Agendar: La incluye el body de C Consulta
 
 #### 6. Paciente: Agendar consulta -> App: Agendar: Selecciona el día
 
@@ -114,7 +136,10 @@ En Teeb FHIR Server se designó que haya un **Horario** por día, por lo tanto:
 1.  Consultar el endpoint `/rpc/r_locations` para obtener todos los horarios que estén disponibles.
 
 ```json
-    "insurance": ["AXA", "GNP", "Santander"], // teeb.practitioner.insurance PENDIENTE
+    "insurance": ["AXA", "GNP", "Santander"], // teeb.practitioner. PENDIENTE
+```
+
+```json
     "schedule": {
       "days": ["Lun", "Mie", "Vie"],
       "time": [
@@ -122,15 +147,6 @@ En Teeb FHIR Server se designó que haya un **Horario** por día, por lo tanto:
         { "from": "07:00pm", "to": "09:00pm" } //
       ]
     },
-    "appTypes": [
-      {
-        "type": "Online", // <Teeb_FHIR_Server_URLl>.appointment.appointmentType
-        "price": 1000,    // teeb.prices.Online.total
-        "prepayment": 500 // teeb.prices.Online.prepay
-      },
-      { "type": "Live", "price": 2000, "prepayment": 600 },
-      { "type": "Home", "price": 5000, "prepayment": 800 }
-    ],
     "colleagues": [
       {
         "mail": "marco.solis@medical.com",
