@@ -17,7 +17,7 @@ as $$
 		resource #> '{telecom}'
 	from practitioner
 	where(
-		location.resource ->> 'id' in(
+		practitioner.resource ->> 'id' in(
 			select
 				resource #>> '{practitioner,id}'
 			from practitionerrole
