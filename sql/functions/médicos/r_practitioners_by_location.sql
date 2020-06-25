@@ -16,7 +16,6 @@ as $$
 		resource #>> '{specialty,0,coding,0,display}',
 		resource #> '{telecom}'
 	from practitioner
-    where (	from location
 	where(
 		location.resource ->> 'id' in(
 			select
