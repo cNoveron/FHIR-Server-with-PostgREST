@@ -38,6 +38,12 @@ psql -h localhost -p 5435 -U teeb -d fhir_db \
 < ./sql/functions/médicos/r_generalPractitioners_of_patient.sql
 psql -h localhost -p 5435 -U teeb -d fhir_db \
 < ./sql/functions/médicos/r_practitioners.sql
+psql -h localhost -p 5435 -U teeb -d fhir_db \
+< ./sql/functions/médicos/r_practitioners_by_location.sql
+psql -h localhost -p 5435 -U teeb -d fhir_db \
+< ./sql/functions/médicos/r_practitioners_by_serviceType.sql
+psql -h localhost -p 5435 -U teeb -d fhir_db \
+< ./sql/functions/médicos/r_practitioners_by_specialty.sql
 
 # Pacientes
 psql -h localhost -p 5435 -U teeb -d fhir_db \
