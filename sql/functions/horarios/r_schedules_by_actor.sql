@@ -4,8 +4,8 @@ create or replace function r_schedules_by_actor(
 	actor_id text
 )
 returns table(
-	id text,
-	planning_horizon jsonb
+	schedule_id text,
+	schedule_planning_horizon jsonb
 )
 as $$
 	select
