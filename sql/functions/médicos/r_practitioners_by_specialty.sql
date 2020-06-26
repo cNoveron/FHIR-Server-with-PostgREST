@@ -1,7 +1,7 @@
 drop function if exists r_practitioners_by_specialty;
 
 create or replace function r_practitioners_by_specialty(
-    practitioner_specialty text
+    specialty_code text
 )
 returns table(
     practitioner_id text,
@@ -17,6 +17,6 @@ as $$
 		resource #> '{telecom}'
 	from practitioner
     where (
-        practitioner.resource #>> '{specialty,0,coding,0,display}' = practitioner_specialty
+        practitioner.resource #>> '{specialty,0,coding,0,code}' = specialty_code
     );
 $$ language sql;
