@@ -29,7 +29,7 @@ Hecho esto nos responderá una lista de datos de **Practicantes** que se verá d
 
 ```
 
-#### 2. Paciente: Elegió médico -> App/Consultorios: Desplegar Ubicaciones
+#### 2. Paciente: Elegió médico -> App/Consultorios: Desplegar consultorios:
 Cuando el paciente selecciona un médico, la app deberá de seleccionar el `practitioner_id` del médico en cuestión para incluirlo en el `body` de nuestra segunda request: **R Consultorios | médico**, que se usará para obtener todas las **Ubicaciones** (i.e. consultorios, clínicas u hospitales) donde el **Practicante** desea recibir consultas.
 
 El body para encontrar todas las **Ubicaciones** incluye el `practitioner_id` del **Practicante** elegido:
@@ -53,20 +53,20 @@ A lo cual Teeb FHIR Server responderá con un arreglo con elementos de esta mane
 ```
 En el front end se le conoce a estos datos por los siguientes nombres:
 ```json
-{
-  "resource": {
-    "name": "GOOD SAMARITAN MEDICAL CENTER",// <-- location_name
-    "address": {
-      "street": "235 NORTH PEARL STREET", // <-- location_address
-      // "suburb": "Olímpica",            // omitir
-      "area": "BROCKTON",                 // <-- location_city
-      "state": "MA",                      // <-- location_state
-      // "cp": "04710"                    // omitir
-    },
-    "phoneNumber": [
-      213123123,  // <-- appointmentType
-      328923829   // no deberían ser números enteros, deberían ser strings
-    ],
+"resource": {
+  "name": "GOOD SAMARITAN MEDICAL CENTER",// <-- location_name
+  "address": {
+    "street": "235 NORTH PEARL STREET", // <-- location_address
+    // "suburb": "Olímpica",            // omitir
+    "area": "BROCKTON",                 // <-- location_city
+    "state": "MA",                      // <-- location_state
+    // "cp": "04710"                    // omitir
+  },
+  "phoneNumber": [
+    213123123,  // <-- appointmentType
+    328923829   // no deberían ser números enteros, deberían ser strings
+  ],
+}
 ```
 Por ahora tenemos sólo una **Ubicación** por **Practicante**. Se irán mejorando los datos de prueba en las iteraciones.
 
@@ -74,91 +74,71 @@ Por ahora tenemos sólo una **Ubicación** por **Practicante**. Se irán mejoran
 En cuanto el paciente llena el campo se entiende que en la app los datos se visualizan de esta manera:
 ```json
 {
-  ....
-  "services": [
-    "Consulta general",
-    "Valoración preoperatoria"
-  ],
-  ...
+  "services": [ "Consulta general","Valoración preoperatoria"],
 }
 ```
 Una vez introducidos la app los incluirá en el body de la request **C Consulta**
+
+Si el paciente escoge **Consulta general**:
 ```json
-{
-  "resource": {
-    "reasonCode": [
-      {
-        "text": "Consulta general"
-      },
-      {
-        "text": "Valoración preoperatoria"
-      }
-    ],
-  }
+"resource": {
+  "reasonCode": [{ "text": "Consulta general" },{ "text": "Valoración preoperatoria" }]
 }
 ```
 
 #### 4. Paciente: Introdujo la modalidad de la consulta -> App/Agendar: La incluye el body de C Consulta
 En cuanto el paciente llena el campo se entiende que en la app los datos se visualizan de esta manera:
 ```json
-{
-  "appTypes": [
-    {
-      "type": "Online", // fhir_db.appointment.appointmentType
-      "price": 1000,    // teeb.prices.Online.total
-      "prepayment": 500 // teeb.prices.Online.prepay
-    },
-    { "type": "Live", "price": 2000, "prepayment": 600 },
-    { "type": "Home", "price": 5000, "prepayment": 800 }
-  ],
+"appTypes": [
+  {
+    "type": "Online", // C_Consulta.serviceType - R_Horarios_tipoDeServicio { serviceType_code }
+    "price": 1000,    // fija
+    "prepayment": 500 // fija
+  },
+  { "type": "Live", "price": 2000, "prepayment": 600 },
+  { "type": "Home", "price": 5000, "prepayment": 800 }
+],
+```
+Una vez introducidos la app los incluirá en el body de la request **C Consulta**:
+```json
+"resource": {
+  "serviceType": [{
+    "coding": [{"code": "540","display": "Online service"}] // Online
+  }],
+  "serviceType": [{
+    "coding": [{"code": "124","display": "General Practice"}] // Live
+  }],
+  "serviceType": [{
+    "coding": [{"code": "497","display": "Home Visits"}] // Home
+  }],
 }
 ```
-Una vez introducidos la app los incluirá en el body de la request **C Consulta**
-```json
-{
-  "resource": {
-    "appointmentType": [
-      {
-        "text": "Live"
-      }
-    ],
-  }
-}
-```
-#### 5. Paciente: Introdujo el consultorio -> App/Agendar: La incluye el body de C Consulta
 
-#### 6. Paciente: Agendar consulta -> App: Agendar: Selecciona el día
+#### 5. Paciente: Introdujo el consultorio -> App/Agendar: Lo incluye el body de C Consulta
+Previamente la app desplegó los consultorios en el perfil del médico usando la respuesta de **R Consultorios | médico**, es importante que se guarden los consultorios obtenidos de **R Consultorios | médico** porque se usarían más adelante y el momento es este paso. Ahora, el usuario puede elegir uno de los consultorios previamente desplegados, antes de presionar "Agendar nueva consulta".
 
-En FHIR los recursos no están diseñados para especificar días de la semana, sino que más bien hacen referencia a un bloque de tiempo contínuo definido en el recurso **Horario**, éste a su vez está referenciado por los **Espacios**, y éstos a su vez por **Consultas**.
 
-En Teeb FHIR Server se designó que haya un **Horario** por día, por lo tanto:
-
-1.  Consultar el endpoint `/rpc/r_locations` para obtener todos los horarios que estén disponibles.
+#### 6. Paciente: Seleccionó un día en el calendario -> App: Agendar: R Horarios | Día
+Se consulta **R Horarios ** para obtener todos los horarios que estén disponibles.
 
 ```json
-    "insurance": ["AXA", "GNP", "Santander"], // teeb.practitioner. PENDIENTE
-```
-
-```json
-    "schedule": {
-      "days": ["Lun", "Mie", "Vie"],
-      "time": [
-        { "from": "10:00am", "to": "4:00pm" }, // slots
-        { "from": "07:00pm", "to": "09:00pm" } //
-      ]
-    },
-    "colleagues": [
-      {
-        "mail": "marco.solis@medical.com",
-        "name": "Marco Solis",
-        "role": "Enfermera",
-        "rights": [
-          { "name": "agenda", "can": "edit" },
-          { "name": "personal data", "can": "view and edit" },
-          { "name": "medical profile", "can": "edit" }
-        ]
-      }
+"schedule": {
+  "days": ["Lun", "Mie", "Vie"],
+  "time": [
+    { "from": "10:00am", "to": "4:00pm" }, // slots
+    { "from": "07:00pm", "to": "09:00pm" } //
+  ]
+},
+"colleagues": [
+  {
+    "mail": "marco.solis@medical.com",
+    "name": "Marco Solis",
+    "role": "Enfermera",
+    "rights": [
+      { "name": "agenda", "can": "edit" },
+      { "name": "personal data", "can": "view and edit" },
+      { "name": "medical profile", "can": "edit" }
     ]
   }
-}
+]
 ```
