@@ -1,4 +1,4 @@
-#### 1. App: Mis Médicos: Desplegar médicos
+### 1. App: Mis Médicos: Desplegar médicos
 El primer paso es presentarle al usuario los **Practicantes** disponibles usando cualquiera de las 2 siguientes *requests* disponibles en nuestra coleccióń:
 - **R Médicos**: Para obtener **todos** los médicos actualmente registrados en Teeb.
 - **R Médicos | paciente**: Para obtener **sólo** los médicos de confianza del paciente a través del `patient_id` del usuario actual.
@@ -29,7 +29,7 @@ Hecho esto nos responderá una lista de datos de **Practicantes** que se verá d
 
 ```
 
-#### 2. Paciente: Elegió médico -> App/Consultorios: Desplegar consultorios:
+### 2. Paciente: Elegió médico -> App/Consultorios: Desplegar consultorios:
 Cuando el paciente selecciona un médico, la app deberá de seleccionar el `practitioner_id` del médico en cuestión para incluirlo en el `body` de nuestra segunda request: **R Consultorios | médico**, que se usará para obtener todas las **Ubicaciones** (i.e. consultorios, clínicas u hospitales) donde el **Practicante** desea recibir consultas.
 
 El body para encontrar todas las **Ubicaciones** incluye el `practitioner_id` del **Practicante** elegido:
@@ -70,7 +70,7 @@ En el front end se le conoce a estos datos por los siguientes nombres:
 ```
 Por ahora tenemos sólo una **Ubicación** por **Practicante**. Se irán mejorando los datos de prueba en las iteraciones.
 
-#### 3. Paciente: Introdujo razón de la consulta -> App/Agendar: La incluye el body de C Consulta
+### 3. Paciente: Introdujo razón de la consulta -> App/Agendar: La incluye el body de C Consulta
 En cuanto el paciente llena el campo se entiende que en la app los datos se visualizan de esta manera:
 ```json
 {
@@ -86,7 +86,7 @@ Si el paciente escoge **Consulta general**:
 }
 ```
 
-#### 4. Paciente: Introdujo la modalidad de la consulta -> App/Agendar: La incluye el body de C Consulta
+### 4. Paciente: Introdujo la modalidad de la consulta -> App/Agendar: La incluye el body de C Consulta
 En cuanto el paciente llena el campo se entiende que en la app los datos se visualizan de esta manera:
 ```json
 "appTypes": [
@@ -114,11 +114,11 @@ Una vez introducidos la app los incluirá en el body de la request **C Consulta*
 }
 ```
 
-#### 5. Paciente: Introdujo el consultorio -> App/Agendar: Lo incluye el body de C Consulta
+### 5. Paciente: Introdujo el consultorio -> App/Agendar: Lo incluye el body de C Consulta
 Previamente la app desplegó los consultorios en el perfil del médico usando la respuesta de **R Consultorios | médico**, es importante que se guarden los consultorios obtenidos de **R Consultorios | médico** porque se usarían más adelante y el momento es este paso. Ahora, el usuario puede elegir uno de los consultorios previamente desplegados, antes de presionar "Agendar nueva consulta".
 
 
-#### 6. Paciente: Seleccionó un día en el calendario -> App: Agendar: R Horarios | Día
+### 6. Paciente: Seleccionó un día en el calendario -> App: Agendar: R Horarios | Día
 Se consulta **R Horarios ** para obtener todos los horarios que estén disponibles.
 
 ```json
