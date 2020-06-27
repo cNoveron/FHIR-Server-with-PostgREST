@@ -1,0 +1,54 @@
+version: "3"
+
+volumes:
+  local_postgres_data: {}
+  local_postgres_data_backups: {}
+
+services:
+  postgrest:
+    image: postgrest/postgrest
+    ports:
+      - "4000:4000"
+    env_file:
+      - ../.envs/.local/.postgres
+      - ../.envs/.local/.postgrest
+    depends_on:
+      - fhirbase
+    links:
+      - postgres:postgres
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ../compose/production/postgres/Dockerfile
+    image: teeb_production_postgres
+    ports:
+      - "5435:5432"
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data
+      - local_postgres_data_backups:/backups
+    env_file:
+      - ../.envs/.local/.postgres
+
+  fhirbase:
+    build:
+      context: .
+      dockerfile: ../compose/production/fhirbase/Dockerfile
+    image: teeb_production_fhirbase
+    ports:
+      - "3000:3000"
+    env_file:
+      - ../.envs/.local/.postgres
+    depends_on:
+      - postgres
+    links:
+      - postgres:postgres
+
+  swagger:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "9095:8080"
+    environment:
+      API_URL: http://localhost:4000/
+    depends_on:
+      - postgres

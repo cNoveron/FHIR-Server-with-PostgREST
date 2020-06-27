@@ -3,16 +3,18 @@ psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 < ./sql/functions/agenda/r_slots.sql
 
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
-< ./sql/functions/consultas/r_appointments_in_schedules_of_actor.sql
+< ./sql/functions/consultas/r_appointments_by_actor.sql
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
-< ./sql/functions/consultas/r_appointments_in_schedules_of_service_category.sql
+< ./sql/functions/consultas/r_appointments_by_serviceCategory.sql
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
-< ./sql/functions/consultas/r_appointments_in_schedules_of_service_type.sql
+< ./sql/functions/consultas/r_appointments_by_serviceType.sql
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
-< ./sql/functions/consultas/r_appointments_in_schedules_of_specialty.sql
+< ./sql/functions/consultas/r_appointments_by_specialty.sql
 
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 < ./sql/functions/consultorios/r_locations.sql
+psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
+< ./sql/functions/consultorios/r_locations_by_practitioner.sql
 
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 < ./sql/functions/estudios_laboratorio/hemograma/r_diagnosticreport_blood_count.sql
@@ -22,10 +24,18 @@ psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 < ./sql/functions/estudios_laboratorio/tomografía/r_diagnosticreport_imaging.sql
 
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
-< ./sql/functions/horarios/r_schedules.sql
+< ./sql/functions/horarios/r_schedules_by_actor.sql
 
+psql -h localhost -p 5435 -U postgres -d fhir_db \
+< ./sql/functions/médicos/r_practitioners.sql
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 < ./sql/functions/médicos/r_generalPractitioners_of_patient.sql
+psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
+< ./sql/functions/médicos/r_practitioners_by_location.sql
+psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
+< ./sql/functions/médicos/r_practitioners_by_serviceType.sql
+psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
+< ./sql/functions/médicos/r_practitioners_by_specialty.sql
 
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 < ./sql/functions/pacientes/r_patients.sql
