@@ -1,3 +1,4 @@
+```json
 {
   "resource": {
     "photo": "url",
@@ -16,21 +17,26 @@
     "phoneNumber": 213123123,
     "registerNumber": 432423432,
     "rating": 5,
+```
+```json
     "mainOffice": {
       "name": "Clínica Gran Sur", // <-- location_name
       "phoneNumber": [213123123, 328923829], // fhir_server.r_locations_by_practitioner.location_phone
+      // Los teléfonos no deben ser integers sino strings
       "address": {
-        "street": "Avery Brundage 6",// fhir_server.r_locations_by_practitioner.location_address
-        "suburb": "Olímpica",// omitir o usar como segunda línea (concatenar después de `street` en el front)
-        "area": "Coyoacan",// fhir_server.r_locations_by_practitioner.location_phone
-        "state": "Ciudad de México",// fhir_server.r_locations_by_practitioner.location_phone
-        "cp": "04710"// fhir_server.r_locations_by_practitioner.location_phone
+        "street": "Avery Brundage 6", // fhir_server.r_locations_by_practitioner.location_address
+        "suburb": "Olímpica",         // omitir o usar como segunda línea (concatenar después de `street` en el front)
+        "area": "Coyoacan",           // fhir_server.r_locations_by_practitioner.location_city
+        "state": "Ciudad de México",  // fhir_server.r_locations_by_practitioner.location_state
+        "cp": "04710"                 // fhir_server.r_locations_by_practitioner.location_postalCode
       },
       "insurance": ["AXA", "GNP", "Santander"], // teeb.practitioner.insurance PENDIENTE
-      "schedule": { // fhir_server.r_appointments_in_schedules_of_actor
-        "days": ["Lun", "Mie", "Vie"],
+      "schedule": {                   // fhir_server.r_appointments_in_schedules_of_actor
+        "days": ["Lun", "Mie", "Vie"],// si queremos desplegar días, se necesitará más lógica en el front
         "time": [
-          { "from": "10:00am", "to": "4:00pm" },
+          {"from": "10:00am",        // fhir_server.r_schedules_by_actor.schedule_planningHorizon
+            "to": "4:00pm"
+          },
           { "from": "07:00pm", "to": "09:00pm" }
         ]
       },
@@ -60,3 +66,4 @@
     }
   }
 }
+```
