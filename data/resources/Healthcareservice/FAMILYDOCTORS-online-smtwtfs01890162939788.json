@@ -24,17 +24,11 @@
     "notAvailable": [
         {
             "description": "Christmas/Boxing Day",
-            "during": {
-                "start": "2015-12-25",
-                "end": "2015-12-26"
-            }
+            "during": {"start":"2015-12-25","end":"2015-12-26"}
         },
         {
             "description": "New Years Day",
-            "during": {
-                "start": "2016-01-01",
-                "end": "2016-01-01"
-            }
+            "during": {"start":"2016-01-01","end":"2016-01-01"}
         }
     ]
 }
