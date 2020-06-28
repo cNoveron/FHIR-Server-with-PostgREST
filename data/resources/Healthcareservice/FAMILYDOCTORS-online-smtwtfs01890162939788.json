@@ -1,12 +1,10 @@
 {
     "resourceType": "HealthcareService",
     "id": "HealthcareService_FAMILYDOCTORS-online-smtwtfs01890162939788",
-    "location": [
-        {
-            "reference": "Location/3d5003ea-0408-4b1a-873d-418988cc5b05",
-            "display": "FAMILY DOCTORS"
-        }
-    ],
+    "location": [{
+        "reference": "Location/3d5003ea-0408-4b1a-873d-418988cc5b05",
+        "display": "FAMILY DOCTORS"
+    }],
     "type": [
         {"coding":[{"display":"Online service"}]},
         {"coding":[{"display":"Psychiatry"}]}
