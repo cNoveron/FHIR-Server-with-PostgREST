@@ -1,6 +1,6 @@
 {
     "resourceType": "HealthcareService",
-    "id": "example",
+    "id": "HealthcareService_FAMILYDOCTORS-online-smtwtfs01890162939788",
     "location": [
         {
             "reference": "Location/3d5003ea-0408-4b1a-873d-418988cc5b05",
@@ -8,11 +8,11 @@
         }
     ],
     "type": [
-        {"coding":[{"code":"540","display":"Online service"}]},
+        {"coding":[{"display":"Online service"}]},
         {"coding":[{"display":"Psychiatry"}]}
     ],
     "specialty": [
-        {"coding":[{"code":"47505003","display":"Posttraumatic stress disorder"}]}
+        {"coding":[{"display":"Posttraumatic stress disorder"}]}
     ],
     "telecom": [
         {"system":"phone","value":"(55) 9999-0000","use":"work"},
