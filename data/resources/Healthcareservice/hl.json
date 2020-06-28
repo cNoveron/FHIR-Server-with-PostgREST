@@ -1,88 +1,43 @@
 {
     "resourceType": "HealthcareService",
     "id": "example",
-    "text": {
-        "status": "generated",
-        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\t\t\t25 Dec 2013 9:15am - 9:30am: <b>Busy</b> Physiotherapy\n\t\t</div>"
-    },
     "contained": [
         {
             "resourceType": "Location",
-            "id": "DenBurg",
-            "description": "Greater Denburg area",
-            "mode": "instance",
-            "physicalType": {
-                "coding": [
-                    {
-                        "code": "area",
-                        "display": "Area"
-                    }
-                ]
+            "id": "3d5003ea-0408-4b1a-873d-418988cc5b05",
+            "status": "active",
+            "name": "FAMILY DOCTORS",
+            "telecom": [{"system":"phone","value":"781-596-4150"}],
+            "address": {
+                "line": ["250 PARADISE ROAD"],
+                "city": "SWAMPSCOTT",
+                "state": "MA",
+                "postalCode": "1907",
+                "country": "US"
+            },
+            "position": {
+                "longitude": -70.9125322,
+                "latitude": 42.47636
+            },
+            "managingOrganization": {
+                "reference": "Organization/9b5f23f1-c387-3a77-9359-752d26d7f997",
+                "display": "FAMILY DOCTORS"
             }
-        }
-    ],
-    "identifier": [
-        {
-            "system": "http://example.org/shared-ids",
-            "value": "HS-12"
-        }
-    ],
-    "active": true,
-    "providedBy": {
-        "reference": "Organization/f001",
-        "display": "Burgers University Medical Center"
-    },
-    "category": [
-        {
-            "coding": [
-                {
-                    "system": "http://terminology.hl7.org/CodeSystem/service-category",
-                    "code": "8",
-                    "display": "Counselling"
-                }
-            ],
-            "text": "Counselling"
         }
     ],
     "type": [
         {
-            "coding": [
-                {
-                    "system": "http://snomed.info/sct",
-                    "code": "394913002",
-                    "display": "Psychotherapy"
-                }
-            ]
+            "coding": [{"code":"540","display":"Online service"}] // Online
         },
         {
-            "coding": [
-                {
-                    "system": "http://snomed.info/sct",
-                    "code": "394587001",
-                    "display": "Psychiatry"
-                }
-            ]
+            "coding": [{"display":"Psychiatry"}]
         }
     ],
     "specialty": [
         {
-            "coding": [
-                {
-                    "system": "http://snomed.info/sct",
-                    "code": "47505003",
-                    "display": "Posttraumatic stress disorder"
-                }
-            ]
+            "coding": [{"code":"47505003","display":"Posttraumatic stress disorder"}]
         }
     ],
-    "location": [
-        {
-            "reference": "Location/1"
-        }
-    ],
-    "name": "Consulting psychologists and/or psychology services",
-    "comment": "Providing Specialist psychology services to the greater Den Burg area, many years of experience dealing with PTSD issues",
-    "extraDetails": "Several assessments are required for these specialist services, and the waiting times can be greater than 3 months at times. Existing patients are prioritized when requesting appointments on the schedule.",
     "telecom": [
         {
             "system": "phone",
@@ -95,106 +50,18 @@
             "use": "work"
         }
     ],
-    "coverageArea": [
-        {
-            "reference": "#DenBurg",
-            "display": "Greater Denburg area"
-        }
-    ],
-    "serviceProvisionCode": [
-        {
-            "coding": [
-                {
-                    "system": "http://terminology.hl7.org/CodeSystem/service-provision-conditions",
-                    "code": "cost",
-                    "display": "Fees apply"
-                }
-            ]
-        }
-    ],
-    "eligibility": [
-        {
-            "code": {
-                "coding": [
-                    {
-                        "display": "DVA Required"
-                    }
-                ]
-            },
-            "comment": "Evidence of application for DVA status may be sufficient for commencing assessment"
-        }
-    ],
-    "program": [
-        {
-            "text": "PTSD outreach"
-        }
-    ],
-    "characteristic": [
-        {
-            "coding": [
-                {
-                    "display": "Wheelchair access"
-                }
-            ]
-        }
-    ],
-    "referralMethod": [
-        {
-            "coding": [
-                {
-                    "code": "phone",
-                    "display": "Phone"
-                }
-            ]
-        },
-        {
-            "coding": [
-                {
-                    "code": "fax",
-                    "display": "Fax"
-                }
-            ]
-        },
-        {
-            "coding": [
-                {
-                    "code": "elec",
-                    "display": "Secure Messaging"
-                }
-            ]
-        },
-        {
-            "coding": [
-                {
-                    "code": "semail",
-                    "display": "Secure Email"
-                }
-            ]
-        }
-    ],
-    "appointmentRequired": false,
     "availableTime": [
         {
-            "daysOfWeek": [
-                "wed"
-            ],
+            "daysOfWeek": ["wed"],
             "allDay": true
         },
         {
-            "daysOfWeek": [
-                "mon",
-                "tue",
-                "thu",
-                "fri"
-            ],
+            "daysOfWeek": ["mon","tue","thu","fri"],
             "availableStartTime": "08:30:00",
             "availableEndTime": "05:30:00"
         },
         {
-            "daysOfWeek": [
-                "sat",
-                "fri"
-            ],
+            "daysOfWeek": ["sat","fri"],
             "availableStartTime": "09:30:00",
             "availableEndTime": "04:30:00"
         }
@@ -213,12 +80,6 @@
                 "start": "2016-01-01",
                 "end": "2016-01-01"
             }
-        }
-    ],
-    "availabilityExceptions": "Reduced capacity is available during the Christmas period",
-    "endpoint": [
-        {
-            "reference": "Endpoint/example"
         }
     ]
 }
