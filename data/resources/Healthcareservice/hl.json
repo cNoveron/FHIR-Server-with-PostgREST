@@ -1,70 +1,27 @@
 {
     "resourceType": "HealthcareService",
     "id": "example",
-    "contained": [
+    "location": [
         {
-            "resourceType": "Location",
-            "id": "3d5003ea-0408-4b1a-873d-418988cc5b05",
-            "status": "active",
-            "name": "FAMILY DOCTORS",
-            "telecom": [{"system":"phone","value":"781-596-4150"}],
-            "address": {
-                "line": ["250 PARADISE ROAD"],
-                "city": "SWAMPSCOTT",
-                "state": "MA",
-                "postalCode": "1907",
-                "country": "US"
-            },
-            "position": {
-                "longitude": -70.9125322,
-                "latitude": 42.47636
-            },
-            "managingOrganization": {
-                "reference": "Organization/9b5f23f1-c387-3a77-9359-752d26d7f997",
-                "display": "FAMILY DOCTORS"
-            }
+            "reference": "Location/3d5003ea-0408-4b1a-873d-418988cc5b05",
+            "display": "FAMILY DOCTORS"
         }
     ],
     "type": [
-        {
-            "coding": [{"code":"540","display":"Online service"}] // Online
-        },
-        {
-            "coding": [{"display":"Psychiatry"}]
-        }
+        {"coding":[{"code":"540","display":"Online service"}]},
+        {"coding":[{"display":"Psychiatry"}]}
     ],
     "specialty": [
-        {
-            "coding": [{"code":"47505003","display":"Posttraumatic stress disorder"}]
-        }
+        {"coding":[{"code":"47505003","display":"Posttraumatic stress disorder"}]}
     ],
     "telecom": [
-        {
-            "system": "phone",
-            "value": "(555) silent",
-            "use": "work"
-        },
-        {
-            "system": "email",
-            "value": "directaddress@example.com",
-            "use": "work"
-        }
+        {"system":"phone","value":"(55) 9999-0000","use":"work"},
+        {"system":"email","value":"directaddress@example.com","use":"work"}
     ],
     "availableTime": [
-        {
-            "daysOfWeek": ["wed"],
-            "allDay": true
-        },
-        {
-            "daysOfWeek": ["mon","tue","thu","fri"],
-            "availableStartTime": "08:30:00",
-            "availableEndTime": "05:30:00"
-        },
-        {
-            "daysOfWeek": ["sat","fri"],
-            "availableStartTime": "09:30:00",
-            "availableEndTime": "04:30:00"
-        }
+        {"daysOfWeek":["wed"],"allDay":true},
+        {"daysOfWeek":["mon","tue","thu","fri"],"availableStartTime":"08:30:00","availableEndTime":"05:30:00"},
+        {"daysOfWeek":["sat","fri"],"availableStartTime":"09:30:00","availableEndTime":"04:30:00"}
     ],
     "notAvailable": [
         {
