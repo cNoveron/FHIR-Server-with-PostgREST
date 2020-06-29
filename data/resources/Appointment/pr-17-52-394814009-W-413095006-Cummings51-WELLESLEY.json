@@ -1,10 +1,10 @@
 {
   "resourceType": "Appointment",
-  "id": "Appointment_03",
+  "id": "Appointment_pr-17-52-394814009-W-413095006-Cummings51-WELLESLEY",
   "identifier": [
     {
       "system": "teeb_internal",
-      "value": "appointment(stts=prpsd,sC=17,sT=52,sp=394814009,ppnt=['Olga567 Cummings51','WELLESLEY HILLS HOSPITAL'])->slot->schedule->location(id='5977f2c0-d77c-40e2-900f-b5a4ee484218',n='WELLESLEY HILLS HOSPITAL')"
+      "value": "appointment(stts=pr,sC=17,sT=52,sp=394814009,aT=W,rC=413095006,ppnt=['Cummings51','WELLESLEY'])->slot->schedule->location(id='5977f2c0',n='WELLESLEY')"
     }
   ],
   "status": "proposed",
@@ -65,7 +65,7 @@
   "minutesDuration": 15,
   "slot": [
     {
-      "reference": "Slot/Slot_WELLESLEY_2020-06-11_12:00-13:00"
+      "reference": "Slot/Slot_WELLESLEY_2020-06-11-12:00-21:00_12"
     }
   ],
   "created": "2020-05-27 14:35:27.407850+00",
@@ -90,8 +90,8 @@
   ],
   "requestedPeriod": [
     {
-      "start": "2020-06-11 11:00:00.000000+00",
-      "end": "2020-06-11 11:14:59.999999+00"
+      "start": "2020-06-11 13:00:00.000000+00",
+      "end": "2020-06-11 14:14:59.999999+00"
     }
   ]
 }

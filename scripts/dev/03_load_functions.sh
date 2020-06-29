@@ -3,7 +3,7 @@ set -e
 
 # Agenda
 psql -h localhost -p 5435 -U postgres -d fhir_db \
-< ./sql/functions/agenda/r_slots.sql
+< ./sql/functions/espacios_agenda/r_slots.sql
 
 # Consultas
 psql -h localhost -p 5435 -U postgres -d fhir_db \
@@ -50,3 +50,15 @@ psql -h localhost -p 5435 -U postgres -d fhir_db \
 < ./sql/functions/pacientes/r_patients.sql
 psql -h localhost -p 5435 -U postgres -d fhir_db \
 < ./sql/functions/pacientes/r_patients_of_practitioner.sql
+
+# Roles de Paciente
+psql -h localhost -p 5435 -U postgres -d fhir_db \
+< ./sql/functions/practitionerrole/r_practitionerroles_by_chargeitem_note.sql
+psql -h localhost -p 5435 -U postgres -d fhir_db \
+< ./sql/functions/practitionerrole/r_practitionerroles_by_location.sql
+psql -h localhost -p 5435 -U postgres -d fhir_db \
+< ./sql/functions/practitionerrole/r_practitionerroles_by_organization.sql
+psql -h localhost -p 5435 -U postgres -d fhir_db \
+< ./sql/functions/practitionerrole/r_practitionerroles_by_practitioner_name.sql
+psql -h localhost -p 5435 -U postgres -d fhir_db \
+< ./sql/functions/practitionerrole/r_practitionerroles_by_specialty.sql

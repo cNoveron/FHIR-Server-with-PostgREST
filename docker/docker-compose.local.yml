@@ -10,8 +10,8 @@ services:
     ports:
       - "4000:4000"
     env_file:
-      - ./.envs/.local/.postgres
-      - ./.envs/.local/.postgrest
+      - ../.envs/.local/.postgres
+      - ../.envs/.local/.postgrest
     depends_on:
       - fhirbase
     links:
@@ -20,7 +20,7 @@ services:
   postgres:
     build:
       context: .
-      dockerfile: ./compose/production/postgres/Dockerfile
+      dockerfile: ../compose/production/postgres/Dockerfile
     image: teeb_production_postgres
     ports:
       - "5435:5432"
@@ -28,17 +28,17 @@ services:
       - local_postgres_data:/var/lib/postgresql/data
       - local_postgres_data_backups:/backups
     env_file:
-      - ./.envs/.local/.postgres
+      - ../.envs/.local/.postgres
 
   fhirbase:
     build:
       context: .
-      dockerfile: ./compose/production/fhirbase/Dockerfile
+      dockerfile: ../compose/production/fhirbase/Dockerfile
     image: teeb_production_fhirbase
     ports:
       - "3000:3000"
     env_file:
-      - ./.envs/.local/.postgres
+      - ../.envs/.local/.postgres
     depends_on:
       - postgres
     links:
