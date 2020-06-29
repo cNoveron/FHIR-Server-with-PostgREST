@@ -8,7 +8,7 @@ returns table(
 )
 as $$
 	select
-		resource #> '{name}'
+		resource #>> '{name}'
 	from practitioner
 	where(
 		practitioner.resource ->> 'id' in(
