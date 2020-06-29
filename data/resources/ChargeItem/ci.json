@@ -12,7 +12,7 @@
         "currency": "MXN"
     },
     "note": [
-        {"text":"Método de pago: Tarjeta"},
-        {"text":"Método de pago: Efectivo"}
+        {"text":"tarjeta"},
+        {"text":"efectivo"}
     ]
 }
