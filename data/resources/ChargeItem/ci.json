@@ -1,12 +1,12 @@
 {
     "resourceType": "ChargeItem",
-    "id": "ci",
+    "id": "ChargeItem_OLH-d52555b3-1000-TE",
     "code": {"coding":[
         {"display":"Online"},
         {"display":"Live"},
         {"display":"Home"}
     ]},
-    "performer": [{"actor":{"reference":"Practitioner/example"}}],
+    "performer": [{"actor":{"reference":"Practitioner/d52555b3-a8c0-3b82-9468-af392f918fcd"}}],
     "priceOverride": {
         "value": 1000,
         "currency": "MXN"
