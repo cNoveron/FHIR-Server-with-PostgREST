@@ -11,8 +11,8 @@
     "specialty": [{"coding":[{"code":"57","display":"General practice"}]}],
     "location": [
         {
-            "reference": "Location/1",
-            "display": "South Wing, second floor"
+            "reference": "Location/a1064fb1-4ed7-4da5-9a70-364f1bc083cd",
+            "display": "NORTH SHORE MEDICAL CENTER"
         }
     ],
     "healthcareService": [
