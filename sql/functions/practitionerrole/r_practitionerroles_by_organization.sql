@@ -1,7 +1,7 @@
 drop function if exists r_practitionerroles_by_organization;
 
 create or replace function r_practitionerroles_by_organization(
-    location_id text
+    organization_id text
 )
 returns table(
     practitionerrole_id text,

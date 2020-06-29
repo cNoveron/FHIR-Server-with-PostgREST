@@ -6,7 +6,7 @@ create or replace function r_practitionerroles_by_specialty(
 returns table(
     practitionerrole_id text,
     practitionerrole_availableTime jsonb,
-    practitionerrole_location text,
+    practitionerrole_    text,
 	practitionerrole_telecom jsonb
 )
 as $$
