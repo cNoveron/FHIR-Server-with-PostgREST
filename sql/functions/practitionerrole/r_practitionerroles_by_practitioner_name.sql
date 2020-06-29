@@ -16,4 +16,14 @@ as $$
 		resource #>> '{location,0,display}',
 		resource #> '{telecom}'
 	from practitionerrole
+	where(
+		practitionerrole.resource #>> '{practitioner,id}' in(
+			select
+				resource ->> 'id'
+			from practitioner
+			where(
+				practitioner.resource @> ('{"name":"{"family":'||practitioner_name||'"}}')::jsonb
+			)
+		)
+	);
 $$ language sql;
