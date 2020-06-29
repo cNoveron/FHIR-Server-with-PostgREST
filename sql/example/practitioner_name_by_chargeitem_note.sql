@@ -21,7 +21,7 @@ as $$
 						resource #>> '{performer,0,actor,id}'
 					from chargeitem
 					where(
-						chargeitem.resource @> ('{"note":"'||chargeitem_note||'"}')::jsonb
+						chargeitem.resource @> ('{"note":[{"text":"'||chargeitem_note||'"}]}')::jsonb
 					)
 				)
 			)
