@@ -1,15 +1,14 @@
 {
     "resourceType": "PractitionerRole",
-    "id": "example",
+    "id": "PractitionerRole_AdamCareful-f001-General-1",
     "practitioner": {
-        "reference": "Practitioner/example",
-        "display": "Dr Adam Careful"
+        "reference": "Practitioner/9bcab467-50f4-37eb-84b2-d3fefe10169e",
+        "display": "Elaine830 Reilly981"
     },
     "organization": {
-        "reference": "Organization/f001",
-        "text": "Aseguradora"
+        "reference": "Organization/Organization_AXA"
     },
-    "specialty": [{"coding":[{"display":"General medical practice"}]}],
+    "specialty": [{"coding":[{"code":"57","display":"General practice"}]}],
     "location": [
         {
             "reference": "Location/1",
@@ -18,7 +17,7 @@
     ],
     "healthcareService": [
         {
-            "reference": "HealthcareService/example"
+            "reference": "HealthcareService/HealthcareService_FAMILYDOCTORS-online-smtwtfs01890162939788"
         }
     ],
     "telecom": [
