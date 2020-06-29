@@ -10,4 +10,11 @@ returns table(
 	practitionerrole_telecom jsonb
 )
 as $$
+	select
+		resource ->> 'id',
+		resource #> '{availableTime}',
+		resource #>> '{location,0,display}',
+		resource #> '{telecom}'
+	from practitionerrole
+
 $$ language sql;
