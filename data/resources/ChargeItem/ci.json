@@ -1,0 +1,18 @@
+{
+    "resourceType": "ChargeItem",
+    "id": "ci",
+    "code": {"coding":[
+        {"display":"Online"},
+        {"display":"Live"},
+        {"display":"Home"}
+    ]},
+    "performer": [{"actor":{"reference":"Practitioner/example"}}],
+    "priceOverride": {
+        "value": 1000,
+        "currency": "MXN"
+    },
+    "note": [
+        {"text":"Método de pago: Tarjeta"},
+        {"text":"Método de pago: Efectivo"}
+    ]
+}
