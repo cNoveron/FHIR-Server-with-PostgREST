@@ -22,7 +22,7 @@ as $$
 				resource ->> 'id'
 			from practitioner
 			where(
-				practitioner.resource @> ('{"name":"{"family":'||practitioner_name||'"}}')::jsonb
+				practitioner.resource @> ('{"name":"{"family":"'||practitioner_name||'"}}')::jsonb
 			)
 		)
 	);

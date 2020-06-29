@@ -17,6 +17,6 @@ as $$
 		resource #> '{telecom}'
 	from practitionerrole
     where (
-		resource @> ('{"location":"[{"id":"'||location_id||'"}]}')::jsonb
+		resource @> ('{"location":[{"id":"'||location_id||'"}]}')::jsonb
     );
 $$ language sql;
