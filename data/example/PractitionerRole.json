@@ -2,27 +2,17 @@
     "resourceType": "PractitionerRole",
     "id": "PractitionerRole_AdamCareful-f001-General-1",
     "practitioner": {
-        "reference": "Practitioner/example",
-        "display": "Dr Adam Careful"
+        "reference": "Practitioner/9bcab467-50f4-37eb-84b2-d3fefe10169e",
+        "display": "Elaine830 Reilly981"
     },
     "organization": {
-        "reference": "Organization/f001"
+        "reference": "Organization/Organization_AXA"
     },
-    "specialty": [
-        {
-            "coding": [
-                {
-                    "system": "http://snomed.info/sct",
-                    "code": "408443003",
-                    "display": "General medical practice"
-                }
-            ]
-        }
-    ],
+    "specialty": [{"coding":[{"code":"57","display":"General practice"}]}],
     "location": [
         {
-            "reference": "Location/1",
-            "display": "South Wing, second floor"
+            "reference": "Location/0bb542b6-9faa-48f2-82b2-68e27c775b9b",
+            "display": "GOOD SAMARITAN MEDICAL CENTER"
         }
     ],
     "healthcareService": [
@@ -44,19 +34,12 @@
     ],
     "availableTime": [
         {
-            "daysOfWeek": [
-                "mon",
-                "tue",
-                "wed"
-            ],
+            "daysOfWeek": ["mon","tue","wed"],
             "availableStartTime": "09:00:00",
             "availableEndTime": "16:30:00"
         },
         {
-            "daysOfWeek": [
-                "thu",
-                "fri"
-            ],
+            "daysOfWeek": ["thu","fri"],
             "availableStartTime": "09:00:00",
             "availableEndTime": "12:00:00"
         }
