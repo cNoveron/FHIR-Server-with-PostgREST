@@ -15,7 +15,14 @@ returns table(
 as $$
 begin
 	return query select
-		*
+		practitionerrole_id,
+		practitioner_name,
+		practitionerrole_availableTime,
+		practitionerrole_location,
+		practitionerrole_telecom,
+		serviceType_code,
+		practitionerrole_base_appointment_price,
+		healthcareservice.resource #>> '{type}'
 	from consultorios_by_chargeitem_note(chargeitem_note) as consultorios inner join healthcareservice
 	on healthcareservice.resource #>> '{location,0,id}' = consultorios.practitionerrole_location;
 end;
