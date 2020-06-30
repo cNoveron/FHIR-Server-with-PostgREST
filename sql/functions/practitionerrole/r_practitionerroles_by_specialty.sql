@@ -5,6 +5,7 @@ create or replace function r_practitionerroles_by_specialty(
 )
 returns table(
     practitionerrole_id text,
+    practitioner_name text,
     practitionerrole_availableTime jsonb,
     practitionerrole_    text,
 	practitionerrole_telecom jsonb
@@ -12,6 +13,7 @@ returns table(
 as $$
 	select
 		resource ->> 'id',
+		resource #>> '{practitioner,display}',
 		resource #> '{availableTime}',
 		resource #>> '{location,0,display}',
 		resource #> '{telecom}'
