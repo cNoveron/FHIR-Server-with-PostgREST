@@ -9,7 +9,7 @@ returns table(
     practitionerrole_availableTime jsonb,
     practitionerrole_location text,
 	practitionerrole_telecom jsonb,
-	serviceType_code text,
+	serviceType_code jsonb,
 	practitionerrole_base_appointment_price jsonb
 )
 as $$
@@ -19,7 +19,7 @@ as $$
 		practitionerrole.resource #> '{availableTime}',
 		practitionerrole.resource #>> '{location,0,display}',
 		practitionerrole.resource #> '{telecom}',
-		chargeitem.resource #>> '{code,display}',
+		chargeitem.resource #> '{code,coding}',
 		chargeitem.resource #> '{priceOverride}'
 	from practitionerrole inner join chargeitem
 	on practitionerrole.resource #>> '{id}' = chargeitem.resource #>> '{performer,0,actor,id}'
