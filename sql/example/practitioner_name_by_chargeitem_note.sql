@@ -8,22 +8,15 @@ returns table(
 )
 as $$
 	select
-		resource #>> '{name}'
-	from practitioner
+		resource #>> '{practitioner,display}'
+	from practitionerrole
 	where(
-		practitioner.resource ->> 'id' in(
+		practitionerrole.resource ->> 'id' in(
 			select
-				resource #>> '{practitioner,id}'
-			from practitionerrole
+				resource #>> '{performer,0,actor,id}'
+			from chargeitem
 			where(
-				practitionerrole.resource ->> 'id' in(
-					select
-						resource #>> '{performer,0,actor,id}'
-					from chargeitem
-					where(
-						chargeitem.resource @> ('{"note":[{"text":"'||chargeitem_note||'"}]}')::jsonb
-					)
-				)
+				chargeitem.resource @> ('{"note":[{"text":"'||'tarjeta'||'"}]}')::jsonb
 			)
 		)
 	);
