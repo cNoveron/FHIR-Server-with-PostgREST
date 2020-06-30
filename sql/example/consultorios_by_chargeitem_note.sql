@@ -13,7 +13,8 @@ returns table(
 	practitionerrole_base_appointment_price jsonb
 )
 as $$
-	select
+begin
+	return query select
 		practitionerrole.resource ->> 'id',
 		practitionerrole.resource #>> '{practitioner,display}',
 		practitionerrole.resource #> '{availableTime}',
@@ -26,4 +27,5 @@ as $$
 	where(
 		chargeitem.resource @> ('{"note":[{"text":"'||chargeitem_note||'"}]}')::jsonb
 	);
-$$ language sql;
+end;
+$$ language 'plpgsql';
