@@ -6,7 +6,7 @@
         {"display":"Live"},
         {"display":"Home"}
     ]},
-    "performer": [{"actor":{"reference":"Practitioner/d52555b3-a8c0-3b82-9468-af392f918fcd"}}],
+    "performer": [{"actor":{"id":"d52555b3-a8c0-3b82-9468-af392f918fcd","resourceType":"Practitioner"}}],
     "priceOverride": {
         "value": 1000,
         "currency": "MXN"
