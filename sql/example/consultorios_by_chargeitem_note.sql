@@ -26,6 +26,8 @@ begin
 	on practitionerrole.resource #>> '{id}' = chargeitem.resource #>> '{performer,0,actor,id}'
 	where(
 		chargeitem.resource @> ('{"note":[{"text":"'||chargeitem_note||'"}]}')::jsonb
+		and
+		practitionerrole.resource @> ('{"organization":{"id":"'||organization_id||'"}}')::jsonb
 	);
 end;
 $$ language 'plpgsql';
