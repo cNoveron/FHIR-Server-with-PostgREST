@@ -11,8 +11,8 @@
     "specialty": [{"coding":[{"code":"57","display":"General practice"}]}],
     "location": [
         {
-            "reference": "Location/a1064fb1-4ed7-4da5-9a70-364f1bc083cd",
-            "display": "NORTH SHORE MEDICAL CENTER"
+            "reference": "Location/3d5003ea-0408-4b1a-873d-418988cc5b05",
+            "display": "FAMILY DOCTORS"
         }
     ],
     "healthcareService": [

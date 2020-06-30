@@ -7,10 +7,11 @@
     }],
     "type": [
         {"coding":[{"display":"Online service"}]},
-        {"coding":[{"display":"Psychiatry"}]}
+        {"coding":[{"display":"General practice"}]},
+        {"coding":[{"display":"Home visits"}]}
     ],
     "specialty": [
-        {"coding":[{"display":"Posttraumatic stress disorder"}]}
+        {"coding":[{"display":"Cardiology"}]}
     ],
     "telecom": [
         {"system":"phone","value":"(55) 9999-0000","use":"work"},
