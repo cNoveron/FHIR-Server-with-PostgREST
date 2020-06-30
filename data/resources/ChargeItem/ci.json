@@ -6,7 +6,7 @@
         {"display":"Live"},
         {"display":"Home"}
     ]},
-    "performer": [{"actor":{"id":"d52555b3-a8c0-3b82-9468-af392f918fcd","resourceType":"Practitioner"}}],
+    "performer": [{"actor":{"id":"Reilly981-AXA-57-a1064fb1-FAMILYDOCTORS","resourceType":"PractitionerRole"}}],
     "priceOverride": {
         "value": 1000,
         "currency": "MXN"
