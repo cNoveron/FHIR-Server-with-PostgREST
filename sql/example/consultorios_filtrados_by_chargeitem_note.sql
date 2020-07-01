@@ -3,7 +3,8 @@ drop function if exists consultorios_filtrados_by_chargeitem_note;
 create or replace function consultorios_filtrados_by_chargeitem_note(
     chargeitem_note text,
 	organization_id text,
-	specialty_code text
+	specialty_code text,
+	practitioner_name_string text
 )
 returns table(
     practitionerrole_id text,
@@ -26,7 +27,13 @@ begin
 		consultorios.serviceType_code,
 		consultorios.practitionerrole_base_appointment_price,
 		healthcareservice.resource #> '{type}'
-	from consultorios_by_chargeitem_note(chargeitem_note,organization_id, specialty_code) as consultorios inner join healthcareservice
+	from consultorios_by_chargeitem_note(
+			chargeitem_note,
+			organization_id,
+			specialty_code,
+			practitioner_name_string
+		) as consultorios
+		inner join healthcareservice
 	on healthcareservice.resource #>> '{location,0,id}' = consultorios.practitionerrole_location;
 end;
 $$ language 'plpgsql';
