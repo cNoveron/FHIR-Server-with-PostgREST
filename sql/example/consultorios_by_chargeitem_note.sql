@@ -2,7 +2,8 @@ drop function if exists consultorios_by_chargeitem_note;
 
 create or replace function consultorios_by_chargeitem_note(
     chargeitem_note text,
-	organization_id text
+	organization_id text,
+	specialty_code text
 )
 returns table(
     practitionerrole_id text,
@@ -29,6 +30,8 @@ begin
 		chargeitem.resource @> ('{"note":[{"text":"'||chargeitem_note||'"}]}')::jsonb
 		and
 		practitionerrole.resource @> ('{"organization":{"id":"'||organization_id||'"}}')::jsonb
+		and
+		practitionerrole.resource @> ('{"specialty":[{"coding":[{"code":"'||specialty_code||'"}]}]}')::jsonb
 	);
 end;
 $$ language 'plpgsql';
