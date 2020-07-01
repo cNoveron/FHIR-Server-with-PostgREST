@@ -1,0 +1,41 @@
+{
+    "id": "bf65c739-9e4d-4208-8fef-673955b34201",
+    "txid": 740730564,
+    "ts": "2020-07-01T10:40:08.292805-06:00",
+    "resource_type": "FamilyMemberHistory",
+    "status": "created",
+    "resource": {
+        "id": "bf65c739-9e4d-4208-8fef-673955b34201",
+        "date": "2020-07-01 11:40:05.772325",
+        "status": "completed",
+        "patient": {
+            "id":"581a2280-899d-11ea-8721-635ef2c56ff4",
+            "display": "Shalom Eli Paredes Ruiz",
+            "reference": "Patient/581a2280-899d-11ea-8721-635ef2c56ff4"
+        },
+        "condition": [
+            {
+                "code": {
+                    "text": "Diabetes Mellitus",
+                    "coding": [
+                        {
+                            "code": 73211009,
+                            "system": "http://snomed.info/sct",
+                            "display": "Diabetes Mellitus"
+                        }
+                    ]
+                }
+            }
+        ],
+        "relationship": {
+            "coding": [
+                {
+                    "code": 73211009,
+                    "system": "http://snomed.info/sct",
+                    "display": "Abuelos paternos,Abuelos maternos"
+                }
+            ]
+        },
+        "resourceType": "FamilyMemberHistory"
+    }
+}
