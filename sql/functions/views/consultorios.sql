@@ -2,6 +2,7 @@ drop function if exists consultorios;
 
 create or replace function consultorios(
     chargeitem_note text,
+    chargeitem_code_display text,
 	organization_id text,
 	specialty_code text,
 	practitioner_name_string text,
@@ -31,13 +32,15 @@ begin
 	where(
 		chargeitem.resource @> ('{"note":[{"text":"'||chargeitem_note||'"}]}')::jsonb
 		and
+		chargeitem.resource @> ('{"code":{"coding":[{"display":"'||chargeitem_code_display||'"}]}}')::jsonb
+		and
 		practitionerrole.resource @> ('{"organization":{"id":"'||organization_id||'"}}')::jsonb
 		and
 		practitionerrole.resource @> ('{"specialty":[{"coding":[{"code":"'||specialty_code||'"}]}]}')::jsonb
 		and
-		practitionerrole.resource @> ('{"practitioner":{"dislpay":"'||practitioner_name_string||'"}}')::jsonb
+		practitionerrole.resource #>> '{practitioner,display}' @@ practitioner_name_string
 		and
-		practitionerrole.resource @> ('{"location":[{"dislpay":"'||location_name_string||'"}]}')::jsonb
+		practitionerrole.resource #>> '{location,0,display}' @@ location_name_string
 	);
 end;
 $$ language 'plpgsql';

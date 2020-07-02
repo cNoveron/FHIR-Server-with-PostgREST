@@ -2,6 +2,7 @@ drop function if exists consultorios_filtrados;
 
 create or replace function consultorios_filtrados(
     chargeitem_note text,
+    chargeitem_code_display text,
 	organization_id text,
 	specialty_code text,
 	practitioner_name_string text,
@@ -30,6 +31,7 @@ begin
 		healthcareservice.resource #> '{type}'
 	from consultorios(
 			chargeitem_note,
+			chargeitem_code_display,
 			organization_id,
 			specialty_code,
 			practitioner_name_string,

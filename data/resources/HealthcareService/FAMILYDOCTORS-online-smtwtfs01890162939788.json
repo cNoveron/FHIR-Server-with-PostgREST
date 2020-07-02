@@ -8,7 +8,9 @@
     "type": [
         {"coding":[{"display":"Online service"}]},
         {"coding":[{"display":"General practice"}]},
-        {"coding":[{"display":"Home visits"}]}
+        {"coding":[{"display":"Home visits"}]},
+        {"coding":[{"display":"Immunization"}]},
+        {"coding":[{"display":"Prescriptions"}]}
     ],
     "specialty": [
         {"coding":[{"display":"Cardiology"}]}
