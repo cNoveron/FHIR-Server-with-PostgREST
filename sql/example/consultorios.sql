@@ -18,7 +18,15 @@ returns table(
 )
 as $$
 begin
-	if location_name_string = '' then
+	if chargeitem_note = '' then
+		raise notice 'empty chargeitem_note';
+	elsif organization_id = '' then
+		raise notice 'empty organization_id';
+	elsif specialty_code = '' then
+		raise notice 'empty specialty_code';
+	elsif practitioner_name_string = '' then
+		raise notice 'empty practitioner_name_string';
+	elsif location_name_string = '' then
 		raise notice 'empty location_name_string';
 	else
 		return query select
