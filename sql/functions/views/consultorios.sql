@@ -35,9 +35,9 @@ begin
 		and
 		practitionerrole.resource @> ('{"specialty":[{"coding":[{"code":"'||specialty_code||'"}]}]}')::jsonb
 		and
-		practitionerrole.resource @> ('{"practitioner":{"dislpay":"'||practitioner_name_string||'"}}')::jsonb
+		practitionerrole.resource #>> '{practitioner,display}' @@ practitioner_name_string
 		and
-		practitionerrole.resource @> ('{"location":[{"dislpay":"'||location_name_string||'"}]}')::jsonb
+		practitionerrole.resource #>> '{location,0,display}' @@ location_name_string
 	);
 end;
 $$ language 'plpgsql';
