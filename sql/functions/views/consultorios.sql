@@ -2,6 +2,7 @@ drop function if exists consultorios;
 
 create or replace function consultorios(
     chargeitem_note text,
+    chargeitem_code_display text,
 	organization_id text,
 	specialty_code text,
 	practitioner_name_string text,
@@ -30,6 +31,8 @@ begin
 	on practitionerrole.resource #>> '{id}' = chargeitem.resource #>> '{performer,0,actor,id}'
 	where(
 		chargeitem.resource @> ('{"note":[{"text":"'||chargeitem_note||'"}]}')::jsonb
+		and
+		chargeitem.resource @> ('{"code":{"coding":[{"display":"'||chargeitem_code_display||'"}]}}')::jsonb
 		and
 		practitionerrole.resource @> ('{"organization":{"id":"'||organization_id||'"}}')::jsonb
 		and
