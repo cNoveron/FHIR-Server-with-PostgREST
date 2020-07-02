@@ -13,8 +13,8 @@ returns table(
     practitionerrole_availableTime jsonb,
     practitionerrole_location text,
 	practitionerrole_telecom jsonb,
-	serviceType_code jsonb,
-	practitionerrole_base_appointment_price jsonb,
+	chargeitem_code jsonb,
+	chargeitem_base_appointment_price jsonb,
 	healthcareservice_type jsonb
 )
 as $$
@@ -25,8 +25,8 @@ begin
 		consultorios.practitionerrole_availableTime,
 		consultorios.practitionerrole_location,
 		consultorios.practitionerrole_telecom,
-		consultorios.serviceType_code,
-		consultorios.practitionerrole_base_appointment_price,
+		consultorios.chargeitem_code,
+		consultorios.chargeitem_base_appointment_price,
 		healthcareservice.resource #> '{type}'
 	from consultorios(
 			chargeitem_note,

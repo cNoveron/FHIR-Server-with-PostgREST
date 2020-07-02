@@ -13,8 +13,8 @@ returns table(
     practitionerrole_availableTime jsonb,
     practitionerrole_location text,
 	practitionerrole_telecom jsonb,
-	serviceType_code jsonb,
-	practitionerrole_base_appointment_price jsonb
+	chargeitem_code jsonb,
+	chargeitem_base_appointment_price jsonb
 )
 as $$
 begin
@@ -37,8 +37,8 @@ begin
 			practitionerrole.resource @> ('{"organization":{"id":"'||organization_id||'"}}')::jsonb
 			and
 			practitionerrole.resource @> ('{"specialty":[{"coding":[{"code":"'||specialty_code||'"}]}]}')::jsonb
-			-- and
-			-- practitionerrole.resource #>> '{practitioner,display}' @@ practitioner_name_string
+			and
+			practitionerrole.resource #>> '{practitioner,display}' @@ practitioner_name_string
 			and
 			practitionerrole.resource #>> '{location,0,display}' @@ location_name_string
 		);
