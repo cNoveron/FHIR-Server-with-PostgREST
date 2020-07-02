@@ -18,26 +18,30 @@ returns table(
 )
 as $$
 begin
-	return query select
-		practitionerrole.resource ->> 'id',
-		practitionerrole.resource #>> '{practitioner,display}',
-		practitionerrole.resource #> '{availableTime}',
-		practitionerrole.resource #>> '{location,0,id}',
-		practitionerrole.resource #> '{telecom}',
-		chargeitem.resource #> '{code,coding}',
-		chargeitem.resource #> '{priceOverride}'
-	from practitionerrole inner join chargeitem
-	on practitionerrole.resource #>> '{id}' = chargeitem.resource #>> '{performer,0,actor,id}'
-	where(
-		chargeitem.resource @> ('{"note":[{"text":"'||chargeitem_note||'"}]}')::jsonb
-		and
-		practitionerrole.resource @> ('{"organization":{"id":"'||organization_id||'"}}')::jsonb
-		and
-		practitionerrole.resource @> ('{"specialty":[{"coding":[{"code":"'||specialty_code||'"}]}]}')::jsonb
-		and
-		practitionerrole.resource @> ('{"practitioner":{"dislpay":"'||practitioner_name_string||'"}}')::jsonb
-		and
-		practitionerrole.resource @> ('{"location":[{"dislpay":"'||location_name_string||'"}]}')::jsonb
-	);
+	if location_name_string = '' then
+		raise notice 'empty location_name_string';
+	else
+		return query select
+			practitionerrole.resource ->> 'id',
+			practitionerrole.resource #>> '{practitioner,display}',
+			practitionerrole.resource #> '{availableTime}',
+			practitionerrole.resource #>> '{location,0,id}',
+			practitionerrole.resource #> '{telecom}',
+			chargeitem.resource #> '{code,coding}',
+			chargeitem.resource #> '{priceOverride}'
+		from practitionerrole inner join chargeitem
+		on practitionerrole.resource #>> '{id}' = chargeitem.resource #>> '{performer,0,actor,id}'
+		where(
+			chargeitem.resource @> ('{"note":[{"text":"'||chargeitem_note||'"}]}')::jsonb
+			and
+			practitionerrole.resource @> ('{"organization":{"id":"'||organization_id||'"}}')::jsonb
+			and
+			practitionerrole.resource @> ('{"specialty":[{"coding":[{"code":"'||specialty_code||'"}]}]}')::jsonb
+			-- and
+			-- practitionerrole.resource #>> '{practitioner,display}' @@ practitioner_name_string
+			and
+			practitionerrole.resource #>> '{location,0,display}' @@ location_name_string
+		);
+	end if;
 end;
 $$ language 'plpgsql';
