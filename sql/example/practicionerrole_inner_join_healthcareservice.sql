@@ -20,22 +20,22 @@ returns table(
 as $$
 begin
 	return query select
-		consultorios.practitionerrole_id,
-		consultorios.practitioner_name,
-		consultorios.practitionerrole_availableTime,
-		consultorios.practitionerrole_location,
-		consultorios.practitionerrole_telecom,
-		consultorios.chargeitem_code,
-		consultorios.chargeitem_base_appointment_price,
+		joined_once.practitionerrole_id,
+		joined_once.practitioner_name,
+		joined_once.practitionerrole_availableTime,
+		joined_once.practitionerrole_location,
+		joined_once.practitionerrole_telecom,
+		joined_once.chargeitem_code,
+		joined_once.chargeitem_base_appointment_price,
 		healthcareservice.resource #> '{type}'
-	from consultorios(
+	from practicionerrole_inner_join_chargeitem(
 			chargeitem_note,
 			organization_id,
 			specialty_code,
 			practitioner_name_string,
 			location_name_string
-		) as consultorios
+		) as joined_once
 		inner join healthcareservice
-	on healthcareservice.resource #>> '{location,0,id}' = consultorios.practitionerrole_location;
+	on healthcareservice.resource #>> '{location,0,id}' = joined_once.practitionerrole_location;
 end;
 $$ language 'plpgsql';
