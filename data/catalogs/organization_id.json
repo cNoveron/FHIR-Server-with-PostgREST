@@ -1,0 +1,15 @@
+[
+	{"id":"Organization_GNP", "display":"GNP"},
+	{"id":"Organization_BANORTE", "display":"Seguros Banorte"},
+	{"id":"Organization_INBURSA", "display":"Seguros Inbursa"},
+	{"id":"Organization_ALLIANZ", "display":"Allianz México"},
+	{"id":"Organization_AXA", "display":"AXA Seguros"},
+	{"id":"Organization_MONTERREY_NYLIFE", "display":"Seguros Monterrey New York Life"},
+	{"id":"Organization_MAPFRE", "display":"Mapfre México"},
+	{"id":"Organization_ATLAS", "display":"Seguros Atlas"},
+	{"id":"Organization_PLAN", "display":"Plan Seguro"},
+	{"id":"Organization_VEPORMAS", "display":"Ve por Más"},
+	{"id":"Organization_BUPA", "display":"Bupa México"},
+	{"id":"Organization_PANAMERICAN", "display":"Pan-American México"},
+	{"id":"Organization_METLIFE", "display":"Metlife México"}
+]
