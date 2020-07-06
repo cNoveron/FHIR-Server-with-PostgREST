@@ -1,6 +1,6 @@
-drop function if exists consultorios;
+drop function if exists practicionerrole_inner_join_chargeitem;
 
-create or replace function consultorios(
+create or replace function practicionerrole_inner_join_chargeitem(
     chargeitem_note text,
 	organization_id text,
 	specialty_code text,
