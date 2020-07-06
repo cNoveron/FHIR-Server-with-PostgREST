@@ -38,6 +38,6 @@ begin
 			location_name_string
 		) as consultorios
 		inner join healthcareservice
-	on healthcareservice.resource #>> '{location,0,display}' = consultorios.practitionerrole_location;
+	on healthcareservice.resource #>> '{location,0,id}' = consultorios.practitionerrole_location;
 end;
 $$ language 'plpgsql';

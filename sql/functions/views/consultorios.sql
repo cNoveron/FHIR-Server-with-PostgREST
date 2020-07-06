@@ -23,7 +23,7 @@ begin
 		practitionerrole.resource ->> 'id',
 		practitionerrole.resource #>> '{practitioner,display}',
 		practitionerrole.resource #> '{availableTime}',
-		practitionerrole.resource #>> '{location,0,display}',
+		practitionerrole.resource #>> '{location,0,id}',
 		practitionerrole.resource #> '{telecom}',
 		chargeitem.resource #> '{code,coding}',
 		chargeitem.resource #> '{priceOverride}'
