@@ -1,6 +1,6 @@
-drop function if exists r_slots;
+drop function if exists r_slots_by_schedule;
 
-create or replace function r_slots(
+create or replace function r_slots_by_schedule(
 	schedule_id text
 )
 returns table(
