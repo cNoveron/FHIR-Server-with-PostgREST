@@ -4,7 +4,7 @@ create or replace function consultorios_filtrados(
     chargeitem_note text,
     chargeitem_code_display text,
 	organization_id text,
-	specialty_code text,
+	specialty_code_display text,
 	practitioner_name_string text,
 	location_name_string text
 )
@@ -33,7 +33,7 @@ begin
 			chargeitem_note,
 			chargeitem_code_display,
 			organization_id,
-			specialty_code,
+			specialty_code_display,
 			practitioner_name_string,
 			location_name_string
 		) as consultorios

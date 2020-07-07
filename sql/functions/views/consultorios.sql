@@ -4,7 +4,7 @@ create or replace function consultorios(
     chargeitem_note text,
     chargeitem_code_display text,
 	organization_id text,
-	specialty_code text,
+	specialty_code_display text,
 	practitioner_name_string text,
 	location_name_string text
 )
@@ -36,7 +36,7 @@ begin
 		and
 		practitionerrole.resource @> ('{"organization":{"id":"'||organization_id||'"}}')::jsonb
 		and
-		practitionerrole.resource @> ('{"specialty":[{"coding":[{"code":"'||specialty_code||'"}]}]}')::jsonb
+		practitionerrole.resource #> '{specialty}' @> ('[{"coding":[{"display":"'||specialty_code_display||'"}]}]')::jsonb
 		and
 		practitionerrole.resource #>> '{practitioner,display}' @@ practitioner_name_string
 		and
