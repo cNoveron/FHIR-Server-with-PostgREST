@@ -8,7 +8,11 @@
     "organization": {
         "reference": "Organization/Organization_AXA"
     },
-    "specialty": [{"coding":[{"code":"57","display":"General practice"}]}],
+    "specialty": [
+		{"system":"teeb","coding":[{"code":"TEEB_000","display":"Médico General"}]},
+		{"system":"teeb","coding":[{"code":"TEEB_019","display":"Cardiología"}]},
+        {"system":"teeb","coding":[{"code":"TEEB_005","display":"Cardiología pediátrica"}]}
+	],
     "location": [
         {
             "reference": "Location/3d5003ea-0408-4b1a-873d-418988cc5b05",
