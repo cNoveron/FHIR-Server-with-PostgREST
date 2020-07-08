@@ -1,0 +1,16 @@
+{
+	"resourceType": "Schedule",
+	"id": "Schedule_Elaine830Reilly981-2020-07-07",
+	"serviceType": [{"coding":[{"code":"57","display":"Immunization"}]}],
+	"specialty": [{"coding":[{"code":"408480009","display":"Clinical immunology"}]}],
+	"actor": [
+		{
+			"reference": "Practitioner/9bcab467-50f4-37eb-84b2-d3fefe10169e",
+			"display": "Elaine830 Reilly981"
+		}
+	],
+	"planningHorizon": {
+		"start": "2020-07-07 8:00:00.000000+00",
+		"end": "2020-07-07 20:59:59.999999+99"
+	}
+}
