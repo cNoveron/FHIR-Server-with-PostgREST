@@ -24,9 +24,9 @@ as $$
 			where(
 				schedule.resource #>> '{actor}' = actor_id
 				and
-				to_timestamp(slot.resource #>> '{start}', 'YYYY-MM-DD HH:MI:SS') > CURRENT_TIMESTAMP
+				to_timestamp(slot.resource #>> '{start}', 'YYYY-MM-DD HH24:MI:SS') > CURRENT_TIMESTAMP
 				and
-				to_date(slot.resource #>> '{start}', 'YYYY-MM-DD HH:MI:SS') < CURRENT_DATE + '1 day'::interval
+				to_date(slot.resource #>> '{start}', 'YYYY-MM-DD HH24:MI:SS') < CURRENT_DATE + '1 day'::interval
 			)
 		)
 	);
