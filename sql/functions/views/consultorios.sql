@@ -30,17 +30,21 @@ begin
 	from practitionerrole inner join chargeitem
 	on practitionerrole.resource #>> '{id}' = chargeitem.resource #>> '{performer,0,actor,id}'
 	where(
-		practitionerrole.resource #> '{specialty}' @> ('[{"coding":[{"display":"'||specialty_code_display||'"}]}]')::jsonb
+		chargeitem.resource @> ('{"note":[{"text":"'||chargeitem_note||'"}]}')::jsonb
+		and
+		chargeitem.resource @> ('{"code":{"coding":[{"display":"'||chargeitem_code_display||'"}]}}')::jsonb
+		and
+		practitionerrole.resource #> '{specialty,0,coding,0,display}' @@ specialty_code_display
+		and
+		practitionerrole.resource #> '{specialty,1,coding,0,display}' @@ specialty_code_display
+		and
+		practitionerrole.resource #> '{specialty,2,coding,0,display}' @@ specialty_code_display
 		and
 		practitionerrole.resource #> '{organization,display}' @@ organization_display
 		and
 		practitionerrole.resource #>> '{practitioner,display}' @@ practitioner_name_string
 		and
 		practitionerrole.resource #>> '{location,0,display}' @@ location_name_string
-		and
-		chargeitem.resource @> ('{"note":[{"text":"'||chargeitem_note||'"}]}')::jsonb
-		and
-		chargeitem.resource @> ('{"code":{"coding":[{"display":"'||chargeitem_code_display||'"}]}}')::jsonb
 	);
 end;
 $$ language 'plpgsql';
