@@ -36,10 +36,15 @@ begin
 		practitionerrole.resource @> ('{"organization":{"id":"'||organization_id||'"}}')::jsonb
 		and
 		practitionerrole.resource @> ('{"specialty":[{"coding":[{"code":"'||specialty_code||'"}]}]}')::jsonb
-		and
-		practitionerrole.resource #>> '{practitioner,display}' @@ search_text
-		and
-		practitionerrole.resource #>> '{location,0,display}' @@ search_text
+		and(
+			practitionerrole.resource #>> '{practitioner,display}' @@ search_text
+			or
+			practitionerrole.resource #>> '{practitioner,display}' ilike search_text||'%'
+			or
+			practitionerrole.resource #>> '{location,0,display}' @@ search_text
+			or
+			practitionerrole.resource #>> '{location,0,display}' ilike search_text||'%'
+		)
 	);
 end;
 $$ language 'plpgsql';
