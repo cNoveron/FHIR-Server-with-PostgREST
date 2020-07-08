@@ -6,7 +6,8 @@
         "display": "Elaine830 Reilly981"
     },
     "organization": {
-        "reference": "Organization/Organization_AXA"
+        "reference": "Organization/Organization_AXA",
+		"display": "Seguros AXA"
     },
     "specialty": [
 		{"system":"teeb","coding":[{"code":"TEEB_000","display":"Médico General"}]},
