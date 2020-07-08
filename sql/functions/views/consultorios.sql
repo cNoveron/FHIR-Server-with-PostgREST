@@ -3,7 +3,7 @@ drop function if exists consultorios;
 create or replace function consultorios(
     chargeitem_note text,
     chargeitem_code_display text,
-	organization_id text,
+	organization_display text,
 	specialty_code_display text,
 	practitioner_name_string text,
 	location_name_string text
