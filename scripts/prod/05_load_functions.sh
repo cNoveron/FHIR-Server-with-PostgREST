@@ -26,7 +26,7 @@ psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 < ./sql/functions/horarios/r_schedules_by_actor.sql
 
-psql -h localhost -p 5435 -U postgres -d fhir_db \
+psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 < ./sql/functions/médicos/r_practitioners.sql
 psql "postgres://teeb:$1@119.8.11.33:5432/fhirbase_v4" \
 < ./sql/functions/médicos/r_generalPractitioners_of_patient.sql
