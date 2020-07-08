@@ -13,10 +13,8 @@ as $$
 		resource -> 'planningHorizon'
 	from schedule
 	where(
-		to_timestamp(resource #>> '{planningHorizon,start}','YYYY-MM-DD HH:MI:SS')
-		> CURRENT_TIMESTAMP
+		to_timestamp(resource #>> '{planningHorizon,start}','YYYY-MM-DD HH:MI:SS') > CURRENT_TIMESTAMP
 		and
-		resource #>> '{actor,0,id}'
-		= actor_id
+		resource #>> '{actor,0,id}' = actor_id
 	);
 $$ language sql;
