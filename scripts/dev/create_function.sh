@@ -1,0 +1,1 @@
+psql -h localhost -p 5435 -U postgres -d fhir_db < "$1"
