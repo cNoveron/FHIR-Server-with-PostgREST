@@ -5,8 +5,7 @@ create or replace function consultorios(
     chargeitem_code_display text,
 	organization_id text,
 	specialty_code text,
-	practitioner_name_string text,
-	location_name_string text
+	search_text text
 )
 returns table(
     practitionerrole_id text,
@@ -38,9 +37,9 @@ begin
 		and
 		practitionerrole.resource @> ('{"specialty":[{"coding":[{"code":"'||specialty_code||'"}]}]}')::jsonb
 		and
-		practitionerrole.resource #>> '{practitioner,display}' @@ practitioner_name_string
+		practitionerrole.resource #>> '{practitioner,display}' @@ search_text
 		and
-		practitionerrole.resource #>> '{location,0,display}' @@ location_name_string
+		practitionerrole.resource #>> '{location,0,display}' @@ search_text
 	);
 end;
 $$ language 'plpgsql';
