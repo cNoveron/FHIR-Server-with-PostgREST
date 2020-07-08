@@ -3,8 +3,8 @@ drop function if exists consultorios;
 create or replace function consultorios(
     chargeitem_note text,
     chargeitem_code_display text,
-	organization_display text,
-	specialty_code_display text,
+	organization_id text,
+	specialty_code text,
 	practitioner_name_string text,
 	location_name_string text
 )
@@ -34,13 +34,9 @@ begin
 		and
 		chargeitem.resource @> ('{"code":{"coding":[{"display":"'||chargeitem_code_display||'"}]}}')::jsonb
 		and
-		practitionerrole.resource #>> '{specialty,0,coding,0,display}' @@ specialty_code_display
+		practitionerrole.resource @> ('{"organization":{"id":"'||organization_id||'"}}')::jsonb
 		and
-		practitionerrole.resource #>> '{specialty,1,coding,0,display}' @@ specialty_code_display
-		and
-		practitionerrole.resource #>> '{specialty,2,coding,0,display}' @@ specialty_code_display
-		and
-		practitionerrole.resource #>> '{organization,display}' @@ organization_display
+		practitionerrole.resource @> ('{"specialty":[{"coding":[{"code":"'||specialty_code||'"}]}]}')::jsonb
 		and
 		practitionerrole.resource #>> '{practitioner,display}' @@ practitioner_name_string
 		and
