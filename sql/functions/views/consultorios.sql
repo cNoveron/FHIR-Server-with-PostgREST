@@ -30,13 +30,17 @@ begin
 	on practitionerrole.resource #>> '{id}' = chargeitem.resource #>> '{performer,0,actor,id}'
 	where(
 		chargeitem.resource @> ('{"note":[{"text":"'||chargeitem_note||'"}]}')::jsonb
-		and
+		or chargeitem_note is null
+		or
 		chargeitem.resource @> ('{"code":{"coding":[{"display":"'||chargeitem_code_display||'"}]}}')::jsonb
-		and
+		or chargeitem_code_display is null
+		or
 		practitionerrole.resource @> ('{"organization":{"id":"'||organization_id||'"}}')::jsonb
-		and
+		or organization_id is null
+		or
 		practitionerrole.resource @> ('{"specialty":[{"coding":[{"code":"'||specialty_code||'"}]}]}')::jsonb
-		and(
+		or specialty_code is null
+		or(
 			practitionerrole.resource #>> '{practitioner,display}' @@ search_text
 			or
 			practitionerrole.resource #>> '{practitioner,display}' ilike search_text||'%'
