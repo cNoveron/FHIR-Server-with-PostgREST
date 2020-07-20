@@ -22,7 +22,7 @@ as $$
 				resource ->> 'id'
 			from schedule
 			where(
-				schedule.resource #>> '{actor}' = actor_id
+				schedule.resource #>> '{actor,0,id}' = actor_id
 				and
 				to_timestamp(slot.resource #>> '{start}', 'YYYY-MM-DD HH24:MI:SS') > CURRENT_TIMESTAMP
 				and
