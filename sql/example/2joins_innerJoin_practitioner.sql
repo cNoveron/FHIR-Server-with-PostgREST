@@ -1,6 +1,6 @@
-drop function if exists practicionerrole_inner_join_healthcareservice;
+drop function if exists 2joins_innerJoin_practitioner;
 
-create or replace function practicionerrole_inner_join_healthcareservice(
+create or replace function 2joins_innerJoin_practitioner(
     chargeitem_note text,
 	organization_id text,
 	specialty_code text,
@@ -20,14 +20,15 @@ returns table(
 as $$
 begin
 	return query select
-		joined_once.practitionerrole_id,
-		joined_once.practitioner_name,
-		joined_once.practitionerrole_availableTime,
-		joined_once.practitionerrole_location,
-		joined_once.practitionerrole_telecom,
-		joined_once.chargeitem_code,
-		joined_once.chargeitem_base_appointment_price,
-		joined_twice.
+		joined_twice.practitionerrole_id,
+		joined_twice.practitioner_name,
+		joined_twice.practitionerrole_availableTime,
+		joined_twice.practitionerrole_location,
+		joined_twice.practitionerrole_telecom,
+		joined_twice.chargeitem_code,
+		joined_twice.chargeitem_base_appointment_price,
+		joined_twice.healthcareservice_type,
+		practitioner.resource #>> '{qualification,issuer}'
 	from practicionerrole_inner_join_chargeitem(
 			chargeitem_note,
 			organization_id,
@@ -35,7 +36,7 @@ begin
 			practitioner_name_string,
 			location_name_string
 		) as joined_twice
-		inner join healthcareservice
-	on healthcareservice.resource #>> '{location,0,id}' = joined_once.practitionerrole_location;
+		inner join practitioner
+	on practitioner.resource #>> '{id}' = joined_twice.practitioner_id;
 end;
 $$ language 'plpgsql';
