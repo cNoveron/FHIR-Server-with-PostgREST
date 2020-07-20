@@ -5,8 +5,7 @@ create or replace function consultorios_filtrados(
     chargeitem_code_display text,
 	organization_id text,
 	specialty_code text,
-	practitioner_name_string text,
-	location_name_string text
+	search_text text
 )
 returns table(
     practitionerrole_id text,
@@ -34,8 +33,7 @@ begin
 			chargeitem_code_display,
 			organization_id,
 			specialty_code,
-			practitioner_name_string,
-			location_name_string
+			search_text
 		) as consultorios
 		inner join healthcareservice
 	on healthcareservice.resource #>> '{location,0,id}' = consultorios.practitionerrole_location;
