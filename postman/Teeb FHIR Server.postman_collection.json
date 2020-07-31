@@ -646,14 +646,14 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": \"q1w2e3r4t5y6u7i8o90p0\",\n    \"txid\": \"1595866999611q1w2e3r4t5y6u7i8o90p0\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"id\": \"q1w2e3r4t5y6u7i8o90p0\",\n        \"gender\": \"male\",\n        \"name\": [\n            {\n                \"use\": \"official\",\n                \"family\": \"Noveron\",\n                \"given\": [\n                    \"Carlos\"\n                ]\n            }\n        ],\n        \"telecom\": [\n            {\n                \"system\": \"email\",\n                \"value\": \"carlos.psigram@gmail.com\"\n            },\n            {\n                \"system\": \"phone\",\n                \"value\": \"+525591081521\"\n            }\n        ],\n        \"resourceType\": \"Practitioner\",\n        \"birthDate\": \"Tue Oct 06 1992\"\n    }\n}",
+									"raw": "{\n    \"id\": \"q1w2e3r4t5y6u7i8o90p0\",\n    \"txid\": \"1595866999611q1w2e3r4t5y6u7i8o90p0\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"id\": \"q1w2e3r4t5y6u7i8o90p0\",\n        \"gender\": \"male\",\n        \"name\": [\n            {\n                \"use\": \"official\",\n                \"family\": \"Noveron\",\n                \"given\": [\n                    \"Carlos\"\n                ]\n            }\n        ],\n        \"telecom\": [\n            {\n                \"system\": \"email\",\n                \"value\": \"carlos.psigram@gmail.com\"\n            },\n            {\n                \"system\": \"phone\",\n                \"value\": \"+525591081521\"\n            }\n        ],\n        \"resourceType\": \"Practitioner\",\n        \"birthDate\": \"Tue Oct 06 1992\",\n        \"qualification\": [\n            { \"identifier\": [\n                    { \"value\": \"CP2346327\"\n                    }\n                ],\n                \"code\": { \"coding\": [{ \"display\": \"Médico Cirujano y Partero\" }] }\n            }\n        ],\n        \"communication\": { \"coding\": [{ \"display\": \"Español\" },{ \"display\": \"Náhuatl\" }] }\n    }\n}",
 									"options": {
 										"raw": {}
 									}
 								},
 								"url": {
-									"raw": "http://{{host}}:{{port}}/practitioner",
-									"protocol": "http",
+									"raw": "{{protocol}}://{{host}}:{{port}}/practitioner",
+									"protocol": "{{protocol}}",
 									"host": [
 										"{{host}}"
 									],
