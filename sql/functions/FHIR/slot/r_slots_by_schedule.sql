@@ -17,7 +17,7 @@ as $$
 		resource ->> 'status'
 	from slot
 	where(
-		resource #>> '{schedule,id}' in(
+		slot.resource #>> '{schedule,id}' in(
 			select
 				resource ->> 'id'
 			from schedule
