@@ -7,551 +7,372 @@
 	},
 	"item": [
 		{
-			"name": "App - Paciente",
+			"name": "FHIR",
 			"item": [
 				{
-					"name": "Historial Médico",
-					"item": [],
-					"description": "Esta sección incluye todos los servicios de la pantalla [Historial Médico](https://projects.invisionapp.com/share/XRWBR529CD4#/screens/411304566).\n\n",
-					"event": [
+					"name": "Appointment",
+					"item": [
 						{
-							"listen": "prerequest",
-							"script": {
-								"id": "bf56db44-dccc-4194-b1dc-5adf25a98bf2",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
+							"name": "C Consulta",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\":\"qf097g98y-sf892-230sd-aljiw029h7\",\n    \"txid\": 0,\n    \"resource_type\": \"Practitioner\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"Appointment\",\n        \"id\": \"24977610491\",\n        \"status\": \"proposed\",\n        \"serviceCategory\": [\n            {\n                \"coding\": [\n                    {\n                        \"code\": \"17\",\n                        \"display\": \"General Practice\"\n                    }\n                ]\n            }\n        ],\n        \"specialty\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"394814009\",\n                        \"display\": \"General practice\"\n                    }\n                ]\n            }\n        ],\n        \"appointmentType\": {\n            \"coding\": [\n                {\n                    \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0276\",\n                    \"code\": \"WALKIN\",\n                    \"display\": \"A previously unscheduled walk-in visit\"\n                }\n            ]\n        },\n        \"reasonCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"413095006\"\n                    }\n                ],\n                \"text\": \"Clinical Review\"\n            }\n        ],\n        \"priority\": 5,\n        \"description\": \"Discussion on the results of your recent MRI\",\n        \"minutesDuration\": 15,\n        \"slot\": [\n            {\n                \"reference\": \"Slot/010639847\"\n            }\n        ],\n        \"created\": \"2020-05-27 14:35:27.407850+00\",\n        \"comment\": \"Further expand on the results of the MRI and determine the next actions that may be appropriate.\",\n        \"participant\": [\n            {\n                \"actor\": {\n                    \"reference\": \"Patient/9a77fd59-814e-437d-9609-f7784f9386dc\",\n                    \"display\": \"Mrs. Olga567 Cummings51\"\n                },\n                \"required\": \"required\",\n                \"status\": \"needs-action\"\n            },\n            {\n                \"type\": [\n                    {\n                        \"coding\": [\n                            {\n                                \"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\",\n                                \"code\": \"ATND\"\n                            }\n                        ]\n                    }\n                ],\n                \"required\": \"required\",\n                \"status\": \"needs-action\"\n            },\n            {\n                \"actor\": {\n                    \"reference\": \"Practitioner/42c59fae-9102-3452-848b-5ade35bbb98b\",\n                    \"display\": \"Dr. Rachel Cole\"\n                },\n                \"required\": \"required\",\n                \"status\": \"proposed\"\n            }\n        ],\n        \"requestedPeriod\": [\n            {\n                \"start\": \"2020-06-02 16:00:00.000000+00\",\n                \"end\": \"2020-06-02 16:19:59.000000+00\"\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/appointment",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"appointment"
+									]
+								}
+							},
+							"response": []
 						},
 						{
-							"listen": "test",
-							"script": {
-								"id": "8647bbc0-2bdc-4306-98f4-cb7449c689d5",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
+							"name": "R Consultas | médico o consultorio",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"schedule_actor_id\": \"5977f2c0-d77c-40e2-900f-b5a4ee484218\"\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_appointments_in_schedules_of_actor",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_appointments_in_schedules_of_actor"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Consultas | categoría de servicio",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "a",
+										"type": "text",
+										"value": "1"
+									},
+									{
+										"key": "b",
+										"type": "text",
+										"value": "2"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"schedule_service_type_code\": \"57\"\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_appointments_in_schedules_of_service_category",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_appointments_in_schedules_of_service_category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Consultas | tipo de servicio",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"schedule_service_type_code\": \"57\"\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_appointments_in_schedules_of_service_type",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_appointments_in_schedules_of_service_type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Consultas | especialidad",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"schedule_specialty_code\": \"408480009\"\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_appointments_in_schedules_of_specialty",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_appointments_in_schedules_of_specialty"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Consultas",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/appointment",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"appointment"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
-				}
-			],
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "e03b210a-1e41-41af-8e40-46c52fa800fc",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
 				},
 				{
-					"listen": "test",
-					"script": {
-						"id": "8bb5418d-d40e-4d1e-ac51-6c6cc517195a",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "FHIR",
-			"item": [
-				{
-					"name": "Estudios de Laboratorio",
+					"name": "DiagnosticReport",
 					"item": [
 						{
-							"name": "Hemograma",
-							"item": [
-								{
-									"name": "C Hemograma",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{jwt}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n\t\"id\": \"f202\",\n\t\"txid\": \"1097234706123408\",\n\t\"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"DiagnosticReport\",\n        \"id\": \"f201\",\n        \"status\": \"final\",\n        \"category\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0074\",\n                        \"code\": \"LAB\"\n                    }\n                ]\n            }\n        ],\n        \"code\": {\n            \"coding\": [\n                {\n                    \"code\": \"58410-2\",\n                    \"system\": \"http://loinc.org\",\n                    \"display\": \"Blood count (complete) panel\"\n                }\n            ],\n            \"text\": \"CT of head-neck\"\n        },\n        \"subject\": {\n        \t\"id\": \"9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"reference\": \"Patient/9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"display\": \"Roel\"\n        },\n        \"effectiveDateTime\": \"2012-12-01T12:00:00+01:00\",\n        \"issued\": \"2012-12-01T12:00:00+01:00\",\n        \"performer\": [\n            {\n                \"reference\": \"Organization/f203\",\n                \"display\": \"Blijdorp MC\"\n            }\n        ],\n        \"conclusion\": \"Altos niveles de bilirrubina\",\n        \"conclusionCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"display\": \"Altos niveles de bilirrubina\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
-										},
-										"url": {
-											"raw": "http://{{host}}:{{port}}/diagnosticreport",
-											"protocol": "http",
-											"host": [
-												"{{host}}"
-											],
-											"port": "{{port}}",
-											"path": [
-												"diagnosticreport"
-											]
+							"name": "C Hemograma",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
 										}
-									},
-									"response": []
+									]
 								},
-								{
-									"name": "R Hemograma (flexible)",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "http://{{host}}:{{port}}/diagnosticreport?resource->code->coding->0->>code=eq.58410-2&resource->subject->>id=eq.51f25282-57bd-42ab-aec7-716a63d2a8a8&select=resource->id,resource->issued",
-											"protocol": "http",
-											"host": [
-												"{{host}}"
-											],
-											"port": "{{port}}",
-											"path": [
-												"diagnosticreport"
-											],
-											"query": [
-												{
-													"key": "resource->code->coding->0->>code",
-													"value": "eq.58410-2"
-												},
-												{
-													"key": "resource->subject->>id",
-													"value": "eq.51f25282-57bd-42ab-aec7-716a63d2a8a8"
-												},
-												{
-													"key": "select",
-													"value": "resource->id,resource->issued"
-												}
-											]
-										}
-									},
-									"response": []
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": \"f202\",\n\t\"txid\": \"1097234706123408\",\n\t\"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"DiagnosticReport\",\n        \"id\": \"f201\",\n        \"status\": \"final\",\n        \"category\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0074\",\n                        \"code\": \"LAB\"\n                    }\n                ]\n            }\n        ],\n        \"code\": {\n            \"coding\": [\n                {\n                    \"code\": \"58410-2\",\n                    \"system\": \"http://loinc.org\",\n                    \"display\": \"Blood count (complete) panel\"\n                }\n            ],\n            \"text\": \"CT of head-neck\"\n        },\n        \"subject\": {\n        \t\"id\": \"9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"reference\": \"Patient/9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"display\": \"Roel\"\n        },\n        \"effectiveDateTime\": \"2012-12-01T12:00:00+01:00\",\n        \"issued\": \"2012-12-01T12:00:00+01:00\",\n        \"performer\": [\n            {\n                \"reference\": \"Organization/f203\",\n                \"display\": \"Blijdorp MC\"\n            }\n        ],\n        \"conclusion\": \"Altos niveles de bilirrubina\",\n        \"conclusionCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"display\": \"Altos niveles de bilirrubina\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
 								},
-								{
-									"name": "R Hemograma",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "a",
-												"type": "text",
-												"value": "1"
-											},
-											{
-												"key": "b",
-												"type": "text",
-												"value": "2"
-											},
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n\t\"subject_id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\"\n}\n"
-										},
-										"url": {
-											"raw": "http://{{host}}:{{port}}/rpc/r_diagnosticreport_blood_count",
-											"protocol": "http",
-											"host": [
-												"{{host}}"
-											],
-											"port": "{{port}}",
-											"path": [
-												"rpc",
-												"r_diagnosticreport_blood_count"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "U Hemograma",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{jwt}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											},
-											{
-												"key": "Prefer",
-												"value": "resolution=merge-duplicates",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n\t\"id\": \"f201\",\n\t\"txid\": \"1097234706123408\",\n\t\"status\": \"updated\",\n    \"resource\": {\n        \"resourceType\": \"DiagnosticReport\",\n        \"id\": \"f201\",\n        \"status\": \"final\",\n        \"category\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0074\",\n                        \"code\": \"LAB\"\n                    }\n                ]\n            }\n        ],\n        \"code\": {\n            \"coding\": [\n                {\n                    \"code\": \"72230-6\",\n                    \"system\": \"http://loinc.org\",\n                    \"display\": \"Diagnostic imaging report - recommended C-CDA R1.1 sections\"\n                }\n            ],\n            \"text\": \"CT of head-neck\"\n        },\n        \"subject\": {\n        \t\"id\": \"9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"reference\": \"Patient/9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"display\": \"Roel\"\n        },\n        \"effectiveDateTime\": \"2012-12-01T12:00:00+01:00\",\n        \"issued\": \"2012-12-01T12:00:00+01:00\",\n        \"performer\": [\n            {\n                \"reference\": \"Organization/f203\",\n                \"display\": \"Blijdorp MC\"\n            }\n        ],\n        \"conclusion\": \"Altos niveles de bilirrubina\",\n        \"conclusionCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"display\": \"Altos niveles de bilirrubina\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
-										},
-										"url": {
-											"raw": "http://{{host}}:{{port}}/diagnosticreport",
-											"protocol": "http",
-											"host": [
-												"{{host}}"
-											],
-											"port": "{{port}}",
-											"path": [
-												"diagnosticreport"
-											]
-										}
-									},
-									"response": []
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/diagnosticreport",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"diagnosticreport"
+									]
 								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
+							},
+							"response": []
 						},
 						{
-							"name": "Urinálisis",
-							"item": [
-								{
-									"name": "C Urinálisis",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{jwt}}",
-													"type": "string"
-												}
-											]
+							"name": "R Hemograma (flexible)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/diagnosticreport?resource->code->coding->0->>code=eq.58410-2&resource->subject->>id=eq.51f25282-57bd-42ab-aec7-716a63d2a8a8&select=resource->id,resource->issued",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"diagnosticreport"
+									],
+									"query": [
+										{
+											"key": "resource->code->coding->0->>code",
+											"value": "eq.58410-2"
 										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n\t\"id\": \"cv988n9s06091\",\n\t\"txid\": \"1097234706123408\",\n\t\"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"DiagnosticReport\",\n        \"id\": \"cv988n9s06091\",\n        \"text\": {\n            \"status\": \"generated\",\n            \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p>Urinalysis</p></div>\"\n        },\n        \"status\": \"final\",\n        \"category\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0074\",\n                        \"code\": \"URN\"\n                    }\n                ]\n            }\n        ],\n        \"code\": {\n            \"coding\": [\n                {\n                    \"code\": \"24357-6\",\n                    \"system\": \"http://loinc.org\",\n                    \"display\": \"Urinalysis macro (dipstick) panel - Urine\"\n                }\n            ],\n            \"text\": \"CT of head-neck\"\n        },\n        \"subject\": {\n        \t\"id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\",\n            \"reference\": \"Patient/29981aba-7c8a-4ad2-b3d3-483f9ad45533\",\n            \"display\": \"Roel\"\n        },\n        \"effectiveDateTime\": \"2012-12-01T12:00:00+01:00\",\n        \"issued\": \"2012-12-01T12:00:00+01:00\",\n        \"performer\": [\n            {\n                \"reference\": \"Organization/56341233\",\n                \"display\": \"Blijdorp MC\"\n            }\n        ],\n        \"conclusion\": \"Infección del tracto urinario\",\n        \"conclusionCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"display\": \"Infección del tracto urinario\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
+										{
+											"key": "resource->subject->>id",
+											"value": "eq.51f25282-57bd-42ab-aec7-716a63d2a8a8"
 										},
-										"url": {
-											"raw": "http://{{host}}:{{port}}/diagnosticreport",
-											"protocol": "http",
-											"host": [
-												"{{host}}"
-											],
-											"port": "{{port}}",
-											"path": [
-												"diagnosticreport"
-											]
+										{
+											"key": "select",
+											"value": "resource->id,resource->issued"
 										}
-									},
-									"response": []
-								},
-								{
-									"name": "R Urinálisis (flexible)",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "http://{{host}}:{{port}}/diagnosticreport?resource->code->coding->0->>code=eq.24357-8&resource->subject->>id=eq.51f25282-57bd-42ab-aec7-716a63d2a8a8&select=resource->issued",
-											"protocol": "http",
-											"host": [
-												"{{host}}"
-											],
-											"port": "{{port}}",
-											"path": [
-												"diagnosticreport"
-											],
-											"query": [
-												{
-													"key": "resource->code->coding->0->>code",
-													"value": "eq.24357-8"
-												},
-												{
-													"key": "resource->subject->>id",
-													"value": "eq.51f25282-57bd-42ab-aec7-716a63d2a8a8"
-												},
-												{
-													"key": "select",
-													"value": "resource->issued"
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "R Urinálisis",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n\t\"subject_id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\"\n}",
-											"options": {
-												"raw": {}
-											}
-										},
-										"url": {
-											"raw": "http://{{host}}:{{port}}/rpc/r_diagnosticreport_urinalysis",
-											"protocol": "http",
-											"host": [
-												"{{host}}"
-											],
-											"port": "{{port}}",
-											"path": [
-												"rpc",
-												"r_diagnosticreport_urinalysis"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "U Urinálisis",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{jwt}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											},
-											{
-												"key": "Prefer",
-												"value": "resolution=merge-duplicates",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n\t\"id\": \"cv988n9s06091\",\n\t\"txid\": \"1097234706123408\",\n\t\"status\": \"updated\",\n    \"resource\": {\n        \"resourceType\": \"DiagnosticReport\",\n        \"id\": \"cv988n9s06091\",\n        \"text\": {\n            \"status\": \"generated\",\n            \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p>Urinalysis</p></div>\"\n        },\n        \"status\": \"final\",\n        \"category\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0074\",\n                        \"code\": \"URN\"\n                    }\n                ]\n            }\n        ],\n        \"code\": {\n            \"coding\": [\n                {\n                    \"code\": \"24357-6\",\n                    \"system\": \"http://loinc.org\",\n                    \"display\": \"Urinalysis macro (dipstick) panel - Urine\"\n                }\n            ],\n            \"text\": \"CT of head-neck\"\n        },\n        \"subject\": {\n        \t\"id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\",\n            \"reference\": \"Patient/29981aba-7c8a-4ad2-b3d3-483f9ad45533\",\n            \"display\": \"Roel\"\n        },\n        \"effectiveDateTime\": \"2012-12-01T12:00:00+01:00\",\n        \"issued\": \"2012-12-01T12:00:00+01:00\",\n        \"performer\": [\n            {\n                \"reference\": \"Organization/56341233\",\n                \"display\": \"Blijdorp MC\"\n            }\n        ],\n        \"conclusion\": \"Infección del tracto urinario\",\n        \"conclusionCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"display\": \"Infección del tracto urinario\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
-										},
-										"url": {
-											"raw": "http://{{host}}:{{port}}/diagnosticreport",
-											"protocol": "http",
-											"host": [
-												"{{host}}"
-											],
-											"port": "{{port}}",
-											"path": [
-												"diagnosticreport"
-											]
-										}
-									},
-									"response": []
+									]
 								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
+							},
+							"response": []
 						},
 						{
-							"name": "Tomografía",
-							"item": [
-								{
-									"name": "C Tomografía",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{jwt}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n\t\"id\": \"f201\",\n\t\"txid\": \"1097234706123408\",\n\t\"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"DiagnosticReport\",\n        \"id\": \"f201\",\n        \"status\": \"final\",\n        \"category\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"394914008\",\n                        \"display\": \"Radiology\"\n                    },\n                    {\n                        \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0074\",\n                        \"code\": \"RAD\"\n                    }\n                ]\n            }\n        ],\n        \"code\": {\n            \"coding\": [\n                {\n                    \"code\": \"72230-6\",\n                    \"system\": \"http://loinc.org\",\n                    \"display\": \"Diagnostic imaging report - recommended C-CDA R1.1 sections\"\n                },\n                {\n                    \"system\": \"http://snomed.info/sct\",\n                    \"code\": \"429858000\",\n                    \"display\": \"Computed tomography (CT) of head and neck\"\n                }\n            ],\n            \"text\": \"CT of head-neck\"\n        },\n        \"subject\": {\n        \t\"id\": \"9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"reference\": \"Patient/9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"display\": \"Roel\"\n        },\n        \"effectiveDateTime\": \"2012-12-01T12:00:00+01:00\",\n        \"issued\": \"2012-12-01T12:00:00+01:00\",\n        \"performer\": [\n            {\n                \"reference\": \"Organization/f203\",\n                \"display\": \"Blijdorp MC\"\n            }\n        ],\n        \"imagingStudy\": [\n            {\n                \"display\": \"HEAD and NECK CT DICOM imaging study\"\n            }\n        ],\n        \"conclusion\": \"CT brains: large tumor sphenoid/clivus.\",\n        \"conclusionCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"188340000\",\n                        \"display\": \"Malignant tumor of craniopharyngeal duct\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
-										},
-										"url": {
-											"raw": "http://{{host}}:{{port}}/diagnosticreport",
-											"protocol": "http",
-											"host": [
-												"{{host}}"
-											],
-											"port": "{{port}}",
-											"path": [
-												"diagnosticreport"
-											]
-										}
+							"name": "R Hemograma",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "a",
+										"type": "text",
+										"value": "1"
 									},
-									"response": []
+									{
+										"key": "b",
+										"type": "text",
+										"value": "2"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"subject_id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\"\n}\n"
 								},
-								{
-									"name": "R Tomografía (flexible)",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "http://{{host}}:{{port}}/diagnosticreport?resource->code->coding->0->>code=eq.72230-6&resource->subject->>id=eq.9a77fd59-814e-437d-9609-f7784f9386dc&select=resource->id,resource->issued",
-											"protocol": "http",
-											"host": [
-												"{{host}}"
-											],
-											"port": "{{port}}",
-											"path": [
-												"diagnosticreport"
-											],
-											"query": [
-												{
-													"key": "resource->code->coding->0->>code",
-													"value": "eq.72230-6"
-												},
-												{
-													"key": "resource->subject->>id",
-													"value": "eq.9a77fd59-814e-437d-9609-f7784f9386dc"
-												},
-												{
-													"key": "select",
-													"value": "resource->id,resource->issued"
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "R Tomografía",
-									"request": {
-										"auth": {
-											"type": "noauth"
-										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n\t\"subject_id\": \"29981aba-7c8a-4ad2-b3d3-483f9ad45533\"\n}"
-										},
-										"url": {
-											"raw": "http://{{host}}:{{port}}/rpc/r_diagnosticreport_imaging",
-											"protocol": "http",
-											"host": [
-												"{{host}}"
-											],
-											"port": "{{port}}",
-											"path": [
-												"rpc",
-												"r_diagnosticreport_imaging"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "U Tomografía",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{jwt}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											},
-											{
-												"key": "Prefer",
-												"type": "text",
-												"value": "resolution=merge-duplicates"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n\t\"id\": \"f201\",\n\t\"txid\": \"1097234706123408\",\n\t\"status\": \"updated\",\n    \"resource\": {\n        \"resourceType\": \"DiagnosticReport\",\n        \"id\": \"f201\",\n        \"text\": {\n            \"status\": \"generated\",\n            \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: f201</p><p><b>status</b>: final</p><p><b>category</b>: Radiology <span>(Details : {SNOMED CT code '394914008' = 'Radiology - speciality', given as 'Radiology'}; {http://terminology.hl7.org/CodeSystem/v2-0074 code 'RAD' = 'Radiology)</span></p><p><b>code</b>: CT of head-neck <span>(Details : {SNOMED CT code '429858000' = 'Computed tomography (CT) of head and neck', given as 'Computed tomography (CT) of head and neck'})</span></p><p><b>subject</b>: <a>Roel</a></p><p><b>effective</b>: 01/12/2012 12:00:00 PM</p><p><b>issued</b>: 01/12/2012 12:00:00 PM</p><p><b>performer</b>: <a>Blijdorp MC</a></p><p><b>imagingStudy</b>: HEAD and NECK CT DICOM imaging study</p><p><b>conclusion</b>: CT brains: large tumor sphenoid/clivus.</p><p><b>conclusionCode</b>: Malignant tumor of craniopharyngeal duct <span>(Details : {SNOMED CT code '188340000' = 'Malignant tumor of craniopharyngeal duct', given as 'Malignant tumor of craniopharyngeal duct'})</span></p></div>\"\n        },\n        \"status\": \"final\",\n        \"category\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"394914008\",\n                        \"display\": \"Radiology\"\n                    },\n                    {\n                        \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0074\",\n                        \"code\": \"RAD\"\n                    }\n                ]\n            }\n        ],\n        \"code\": {\n            \"coding\": [\n                {\n                    \"code\": \"72230-6\",\n                    \"system\": \"http://loinc.org\",\n                    \"display\": \"Diagnostic imaging report - recommended C-CDA R1.1 sections\"\n                },\n                {\n                    \"system\": \"http://snomed.info/sct\",\n                    \"code\": \"429858000\",\n                    \"display\": \"Computed tomography (CT) of head and neck\"\n                }\n            ],\n            \"text\": \"CT of head-neck\"\n        },\n        \"subject\": {\n        \t\"id\": \"9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"reference\": \"Patient/9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"display\": \"Roel\"\n        },\n        \"effectiveDateTime\": \"2012-12-01T12:00:00+01:00\",\n        \"issued\": \"2012-12-01T12:00:00+01:00\",\n        \"performer\": [\n            {\n                \"reference\": \"Organization/f203\",\n                \"display\": \"Blijdorp MC\"\n            }\n        ],\n        \"imagingStudy\": [\n            {\n                \"display\": \"HEAD and NECK CT DICOM imaging study\"\n            }\n        ],\n        \"media\": {\n        \t\"link\": \"http://blablablabla.com\"\n        },\n        \"conclusion\": \"CT brains: large tumor sphenoid/clivus.\",\n        \"conclusionCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"188340000\",\n                        \"display\": \"Malignant tumor of craniopharyngeal duct\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
-										},
-										"url": {
-											"raw": "http://{{host}}:{{port}}/diagnosticreport",
-											"protocol": "http",
-											"host": [
-												"{{host}}"
-											],
-											"port": "{{port}}",
-											"path": [
-												"diagnosticreport"
-											]
-										}
-									},
-									"response": []
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_diagnosticreport_blood_count",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_diagnosticreport_blood_count"
+									]
 								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
+							},
+							"response": []
+						},
+						{
+							"name": "U Hemograma",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Prefer",
+										"value": "resolution=merge-duplicates",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": \"f201\",\n\t\"txid\": \"1097234706123408\",\n\t\"status\": \"updated\",\n    \"resource\": {\n        \"resourceType\": \"DiagnosticReport\",\n        \"id\": \"f201\",\n        \"status\": \"final\",\n        \"category\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0074\",\n                        \"code\": \"LAB\"\n                    }\n                ]\n            }\n        ],\n        \"code\": {\n            \"coding\": [\n                {\n                    \"code\": \"72230-6\",\n                    \"system\": \"http://loinc.org\",\n                    \"display\": \"Diagnostic imaging report - recommended C-CDA R1.1 sections\"\n                }\n            ],\n            \"text\": \"CT of head-neck\"\n        },\n        \"subject\": {\n        \t\"id\": \"9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"reference\": \"Patient/9a77fd59-814e-437d-9609-f7784f9386dc\",\n            \"display\": \"Roel\"\n        },\n        \"effectiveDateTime\": \"2012-12-01T12:00:00+01:00\",\n        \"issued\": \"2012-12-01T12:00:00+01:00\",\n        \"performer\": [\n            {\n                \"reference\": \"Organization/f203\",\n                \"display\": \"Blijdorp MC\"\n            }\n        ],\n        \"conclusion\": \"Altos niveles de bilirrubina\",\n        \"conclusionCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"display\": \"Altos niveles de bilirrubina\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/diagnosticreport",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"diagnosticreport"
+									]
+								}
+							},
+							"response": []
 						},
 						{
 							"name": "R Estudios | paciente",
@@ -610,45 +431,33 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Médicos",
+					"name": "Practitioner",
 					"item": [
 						{
 							"name": "C Medicos",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{jwt}}",
+											"value": "{{practitioner_writer}}",
 											"type": "string"
 										}
 									]
 								},
 								"method": "POST",
-								"header": [
-									{
-										"key": "a",
-										"type": "text",
-										"value": "1"
-									},
-									{
-										"key": "b",
-										"type": "text",
-										"value": "2"
-									},
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": \"q1w2e3r4t5y6u7i8o90p0\",\n    \"txid\": \"1595866999611q1w2e3r4t5y6u7i8o90p0\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"id\": \"q1w2e3r4t5y6u7i8o90p0\",\n        \"gender\": \"male\",\n        \"name\": [\n            {\n                \"use\": \"official\",\n                \"family\": \"Noveron\",\n                \"given\": [\n                    \"Carlos\"\n                ]\n            }\n        ],\n        \"telecom\": [\n            {\n                \"system\": \"email\",\n                \"value\": \"carlos.psigram@gmail.com\"\n            },\n            {\n                \"system\": \"phone\",\n                \"value\": \"+525591081521\"\n            }\n        ],\n        \"resourceType\": \"Practitioner\",\n        \"birthDate\": \"Tue Oct 06 1992\",\n        \"qualification\": [\n            { \"identifier\": [\n                    { \"value\": \"CP2346327\"\n                    }\n                ],\n                \"code\": { \"coding\": [{ \"display\": \"Médico Cirujano y Partero\" }] }\n            }\n        ],\n        \"communication\": { \"coding\": [{ \"display\": \"Español\" },{ \"display\": \"Náhuatl\" }] }\n    }\n}",
+									"raw": "{\n    \"id\": \"q1w2e3r4t5y6u7i8o90p0\",\n    \"txid\": \"1595866999611\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"id\": \"q1w2e3r4t5y6u7i8o90p0\",\n        \"gender\": \"male\",\n        \"name\": [\n            {\n                \"use\": \"official\",\n                \"family\": \"Noveron\",\n                \"given\": [\n                    \"Carlos\"\n                ]\n            }\n        ],\n        \"telecom\": [\n            {\n                \"system\": \"email\",\n                \"value\": \"carlos.psigram@gmail.com\"\n            },\n            {\n                \"system\": \"phone\",\n                \"value\": \"+525591081521\"\n            }\n        ],\n        \"resourceType\": \"Practitioner\",\n        \"birthDate\": \"Tue Oct 06 1992\",\n        \"qualification\": [\n            { \"identifier\": [\n                    { \"value\": \"CP2346327\"\n                    }\n                ],\n                \"code\": { \"coding\": [{ \"display\": \"Médico Cirujano y Partero\" }] }\n            }\n        ],\n        \"communication\": { \"coding\": [{ \"display\": \"Español\" },{ \"display\": \"Náhuatl\" }] }\n    }\n}",
 									"options": {
-										"raw": {}
+										"raw": {
+											"language": "json"
+										}
 									}
 								},
 								"url": {
@@ -753,7 +562,14 @@
 							},
 							"request": {
 								"auth": {
-									"type": "noauth"
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{practitioner_reader}}",
+											"type": "string"
+										}
+									]
 								},
 								"method": "GET",
 								"header": [
@@ -772,8 +588,8 @@
 									}
 								},
 								"url": {
-									"raw": "http://{{host}}:{{port}}/practitioner",
-									"protocol": "http",
+									"raw": "{{protocol}}://{{host}}:{{port}}/practitioner",
+									"protocol": "{{protocol}}",
 									"host": [
 										"{{host}}"
 									],
@@ -986,7 +802,7 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Pacientes",
+					"name": "Patient",
 					"item": [
 						{
 							"name": "C Paciente",
@@ -996,7 +812,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{jwt}}",
+											"value": "{{patient_writer}}",
 											"type": "string"
 										}
 									]
@@ -1012,14 +828,60 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": \"nihaibu3p9soygalbdg\",\n    \"txid\": \"1097234706123408\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"Patient\",\n        \"id\": \"nihaibu3p9soygalbdf\",\n        \"identifier\": [\n            {\n                \"use\": \"usual\",\n                \"type\": {\n                    \"coding\": [\n                        {\n                            \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0203\",\n                            \"code\": \"MR\"\n                        }\n                    ]\n                },\n                \"system\": \"http://www.goodhealth.org/identifiers/mrn\",\n                \"value\": \"123456\"\n            }\n        ],\n        \"active\": true,\n        \"name\": [\n            {\n                \"family\": \"Levin\",\n                \"given\": [\n                    \"Henry\"\n                ],\n                \"suffix\": [\n                    \"The 7th\"\n                ]\n            }\n        ],\n        \"gender\": \"male\",\n        \"birthDate\": \"1932-09-24\",\n        \"generalPractitioner\": [\n            {\n                \"reference\": \"Practitioner/example\",\n                \"display\": \"Dr Adam Careful\"\n            }\n        ],\n        \"managingOrganization\": {\n            \"reference\": \"Organization/2\",\n            \"display\": \"Good Health Clinic\"\n        }\n    }\n}",
+									"raw": "{\n    \"id\": \"1q2w3e-4r5t-6y7u-8i9o0p\",\n    \"txid\": \"1097234706123408\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"Patient\",\n        \"id\": \"nihaibu3p9soygalbdf\",\n        \"identifier\": [\n            {\n                \"use\": \"usual\",\n                \"type\": {\n                    \"coding\": [\n                        {\n                            \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0203\",\n                            \"code\": \"MR\"\n                        }\n                    ]\n                },\n                \"system\": \"http://www.goodhealth.org/identifiers/mrn\",\n                \"value\": \"123456\"\n            }\n        ],\n        \"active\": true,\n        \"name\": [\n            {\n                \"family\": \"Levin\",\n                \"given\": [\n                    \"Henry\"\n                ],\n                \"suffix\": [\n                    \"The 7th\"\n                ]\n            }\n        ],\n        \"gender\": \"male\",\n        \"birthDate\": \"1932-09-24\",\n        \"generalPractitioner\": [\n            {\n                \"reference\": \"Practitioner/example\",\n                \"display\": \"Dr Adam Careful\"\n            }\n        ],\n        \"managingOrganization\": {\n            \"reference\": \"Organization/2\",\n            \"display\": \"Good Health Clinic\"\n        }\n    }\n}",
 									"options": {
 										"raw": {}
 									}
 								},
 								"url": {
-									"raw": "http://{{host}}:{{port}}/patient",
-									"protocol": "http",
+									"raw": "{{protocol}}://{{host}}:{{port}}/patient",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"patient"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Paciente (flexible)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{patient_reader}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/patient",
+									"protocol": "{{protocol}}",
 									"host": [
 										"{{host}}"
 									],
@@ -1061,8 +923,8 @@
 									}
 								},
 								"url": {
-									"raw": "http://{{host}}:{{port}}/rpc/r_patients",
-									"protocol": "http",
+									"raw": "{{protocol}}://{{host}}:{{port}}/rpc/r_patients",
+									"protocol": "{{protocol}}",
 									"host": [
 										"{{host}}"
 									],
@@ -1105,8 +967,8 @@
 									}
 								},
 								"url": {
-									"raw": "http://{{host}}:{{port}}/rpc/r_patients_of_practitioner",
-									"protocol": "http",
+									"raw": "{{protocol}}://{{host}}:{{port}}/rpc/r_patients_of_practitioner",
+									"protocol": "{{protocol}}",
 									"host": [
 										"{{host}}"
 									],
@@ -1120,214 +982,33 @@
 							"response": []
 						}
 					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Consultas",
-					"item": [
+					"event": [
 						{
-							"name": "C Consulta",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{jwt}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"id\":\"qf097g98y-sf892-230sd-aljiw029h7\",\n    \"txid\": 0,\n    \"resource_type\": \"Practitioner\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"Appointment\",\n        \"id\": \"24977610491\",\n        \"status\": \"proposed\",\n        \"serviceCategory\": [\n            {\n                \"coding\": [\n                    {\n                        \"code\": \"17\",\n                        \"display\": \"General Practice\"\n                    }\n                ]\n            }\n        ],\n        \"specialty\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"394814009\",\n                        \"display\": \"General practice\"\n                    }\n                ]\n            }\n        ],\n        \"appointmentType\": {\n            \"coding\": [\n                {\n                    \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0276\",\n                    \"code\": \"WALKIN\",\n                    \"display\": \"A previously unscheduled walk-in visit\"\n                }\n            ]\n        },\n        \"reasonCode\": [\n            {\n                \"coding\": [\n                    {\n                        \"system\": \"http://snomed.info/sct\",\n                        \"code\": \"413095006\"\n                    }\n                ],\n                \"text\": \"Clinical Review\"\n            }\n        ],\n        \"priority\": 5,\n        \"description\": \"Discussion on the results of your recent MRI\",\n        \"minutesDuration\": 15,\n        \"slot\": [\n            {\n                \"reference\": \"Slot/010639847\"\n            }\n        ],\n        \"created\": \"2020-05-27 14:35:27.407850+00\",\n        \"comment\": \"Further expand on the results of the MRI and determine the next actions that may be appropriate.\",\n        \"participant\": [\n            {\n                \"actor\": {\n                    \"reference\": \"Patient/9a77fd59-814e-437d-9609-f7784f9386dc\",\n                    \"display\": \"Mrs. Olga567 Cummings51\"\n                },\n                \"required\": \"required\",\n                \"status\": \"needs-action\"\n            },\n            {\n                \"type\": [\n                    {\n                        \"coding\": [\n                            {\n                                \"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\",\n                                \"code\": \"ATND\"\n                            }\n                        ]\n                    }\n                ],\n                \"required\": \"required\",\n                \"status\": \"needs-action\"\n            },\n            {\n                \"actor\": {\n                    \"reference\": \"Practitioner/42c59fae-9102-3452-848b-5ade35bbb98b\",\n                    \"display\": \"Dr. Rachel Cole\"\n                },\n                \"required\": \"required\",\n                \"status\": \"proposed\"\n            }\n        ],\n        \"requestedPeriod\": [\n            {\n                \"start\": \"2020-06-02 16:00:00.000000+00\",\n                \"end\": \"2020-06-02 16:19:59.000000+00\"\n            }\n        ]\n    }\n}",
-									"options": {
-										"raw": {}
-									}
-								},
-								"url": {
-									"raw": "http://{{host}}:{{port}}/appointment",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"appointment"
-									]
-								}
-							},
-							"response": []
+							"listen": "prerequest",
+							"script": {
+								"id": "3b3aa28e-b37f-4669-9120-f6b99c215aa2",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
 						},
 						{
-							"name": "R Consultas | médico o consultorio",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"schedule_actor_id\": \"5977f2c0-d77c-40e2-900f-b5a4ee484218\"\n}"
-								},
-								"url": {
-									"raw": "http://{{host}}:{{port}}/rpc/r_appointments_in_schedules_of_actor",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"rpc",
-										"r_appointments_in_schedules_of_actor"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Consultas | categoría de servicio",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "a",
-										"type": "text",
-										"value": "1"
-									},
-									{
-										"key": "b",
-										"type": "text",
-										"value": "2"
-									},
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"schedule_service_type_code\": \"57\"\n}"
-								},
-								"url": {
-									"raw": "http://{{host}}:{{port}}/rpc/r_appointments_in_schedules_of_service_category",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"rpc",
-										"r_appointments_in_schedules_of_service_category"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Consultas | tipo de servicio",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"schedule_service_type_code\": \"57\"\n}"
-								},
-								"url": {
-									"raw": "http://{{host}}:{{port}}/rpc/r_appointments_in_schedules_of_service_type",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"rpc",
-										"r_appointments_in_schedules_of_service_type"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Consultas | especialidad",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"schedule_specialty_code\": \"408480009\"\n}"
-								},
-								"url": {
-									"raw": "http://{{host}}:{{port}}/rpc/r_appointments_in_schedules_of_specialty",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"rpc",
-										"r_appointments_in_schedules_of_specialty"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Consultas",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://{{host}}:{{port}}/appointment",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"appointment"
-									]
-								}
-							},
-							"response": []
+							"listen": "test",
+							"script": {
+								"id": "4912c0c6-b570-45ff-b733-e89e8b6d52ad",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
 						}
 					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Espacios en Agenda",
+					"name": "Slot",
 					"item": [
 						{
 							"name": "C Espacio en Agenda",
