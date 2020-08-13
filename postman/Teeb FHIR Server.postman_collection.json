@@ -431,765 +431,7 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Practitioner",
-					"item": [
-						{
-							"name": "C Medicos",
-							"protocolProfileBehavior": {
-								"disabledSystemHeaders": {}
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{practitioner_writer}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"id\": \"q1w2e3r4t5y6u7i8o90p0\",\n    \"txid\": \"1595866999611\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"id\": \"q1w2e3r4t5y6u7i8o90p0\",\n        \"gender\": \"male\",\n        \"name\": [\n            {\n                \"use\": \"official\",\n                \"family\": \"Noveron\",\n                \"given\": [\n                    \"Carlos\"\n                ]\n            }\n        ],\n        \"telecom\": [\n            {\n                \"system\": \"email\",\n                \"value\": \"carlos.psigram@gmail.com\"\n            },\n            {\n                \"system\": \"phone\",\n                \"value\": \"+525591081521\"\n            }\n        ],\n        \"resourceType\": \"Practitioner\",\n        \"birthDate\": \"Tue Oct 06 1992\",\n        \"qualification\": [\n            { \"identifier\": [\n                    { \"value\": \"CP2346327\"\n                    }\n                ],\n                \"code\": { \"coding\": [{ \"display\": \"Médico Cirujano y Partero\" }] }\n            }\n        ],\n        \"communication\": { \"coding\": [{ \"display\": \"Español\" },{ \"display\": \"Náhuatl\" }] }\n    }\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{protocol}}://{{host}}:{{port}}/practitioner",
-									"protocol": "{{protocol}}",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"practitioner"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Médicos | paciente",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{jwt}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"patient_id\": \"581a2280-899d-11ea-8721-635ef2c56ff4\"\n}",
-									"options": {
-										"raw": {}
-									}
-								},
-								"url": {
-									"raw": "http://{{host}}:{{port}}/rpc/r_generalpractitioners_of_patient",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"rpc",
-										"r_generalpractitioners_of_patient"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Médicos",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{jwt}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"url": {
-									"raw": "http://{{host}}:{{port}}/rpc/r_practitioners",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"rpc",
-										"r_practitioners"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Medicos (flexible)",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{practitioner_reader}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {}
-									}
-								},
-								"url": {
-									"raw": "{{protocol}}://{{host}}:{{port}}/practitioner",
-									"protocol": "{{protocol}}",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"practitioner"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Médicos | ubicación",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"location_id\": \"0bb542b6-9faa-48f2-82b2-68e27c775b9b\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://{{host}}:{{port}}/rpc/r_practitioners_by_location",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"rpc",
-										"r_practitioners_by_location"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Médicos | especialidad",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"specialty_code\": \"null\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://{{host}}:{{port}}/rpc/r_practitioners_by_specialty",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"rpc",
-										"r_practitioners_by_specialty"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Médicos | tipo de servicio",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"servicetype_code\": \"57\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://{{host}}:{{port}}/rpc/r_practitioners_by_servicetype",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"rpc",
-										"r_practitioners_by_servicetype"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "C Especialidad",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "a",
-										"type": "text",
-										"value": "1"
-									},
-									{
-										"key": "b",
-										"type": "text",
-										"value": "2"
-									},
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"id\": \"d52555b3-a8c0-3b82-9468-af392f918fce\",\n  \"txid\": 0,\n  \"resource_type\": \"CodeSystem\",\n  \"status\": \"created\",\n  \"resource\": {\n    \"resourceType\": \"CodeSystem\",\n    \"id\": \"practitioner-specialty\",\n    \"meta\": {\n      \"lastUpdated\": \"2019-11-01T09:29:23.356+11:00\",\n      \"profile\": [\n        \"http://hl7.org/fhir/StructureDefinition/shareablecodesystem\"\n      ]\n    },\n    \"text\": {\n      \"status\": \"generated\",\n      \"div\": \"<div>!-- Snipped for Brevity --></div>\"\n    },\n    \"url\": \"http://hl7.org/fhir/practitioner-specialty\",\n    \"identifier\": [\n      {\n        \"system\": \"urn:ietf:rfc:3986\",\n        \"value\": \"urn:oid:2.16.840.1.113883.4.642.4.442\"\n      }\n    ],\n    \"version\": \"4.0.1\",\n    \"name\": \"PractitionerSpecialty\",\n    \"title\": \"Practitioner specialty\",\n    \"status\": \"draft\",\n    \"experimental\": false,\n    \"publisher\": \"FHIR Project team\",\n    \"contact\": [\n      {\n        \"telecom\": [\n          {\n            \"system\": \"url\",\n            \"value\": \"http://hl7.org/fhir\"\n          }\n        ]\n      }\n    ],\n    \"description\": \"This example value set defines a set of codes that can be used to indicate the specialty of a Practitioner.\",\n    \"caseSensitive\": true,\n    \"valueSet\": \"http://hl7.org/fhir/ValueSet/practitioner-specialty\",\n    \"content\": \"complete\",\n    \"concept\": [\n      {\n        \"code\": \"cardio\",\n        \"display\": \"Cardiologist\"\n      },\n      {\n        \"code\": \"dent\",\n        \"display\": \"Dentist\"\n      },\n      {\n        \"code\": \"dietary\",\n        \"display\": \"Dietary consultant\"\n      },\n      {\n        \"code\": \"midw\",\n        \"display\": \"Midwife\"\n      },\n      {\n        \"code\": \"sysarch\",\n        \"display\": \"Systems architect\"\n      }\n    ]\n  }\n}",
-									"options": {
-										"raw": {}
-									}
-								},
-								"url": {
-									"raw": "http://{{host}}:{{port}}/codesystem",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"codesystem"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Especialidad",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "a",
-										"type": "text",
-										"value": "1"
-									},
-									{
-										"key": "b",
-										"type": "text",
-										"value": "2"
-									},
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"id\": \"d52555b3-a8c0-3b82-9468-af392f918fcd\",\n    \"txid\": 0,\n    \"resource_type\": \"Practitioner\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"id\": \"d52555b3-a8c0-3b82-9468-af392f918fce\",\n        \"meta\": {\n            \"profile\": [\n                \"http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner\"\n            ]\n        },\n        \"name\": [\n            {\n                \"given\": [\n                    \"Tawanda156\"\n                ],\n                \"family\": \"Jast432\",\n                \"prefix\": [\n                    \"Dr.\"\n                ]\n            }\n        ],\n        \"active\": true,\n        \"gender\": \"female\",\n        \"address\": [\n            {\n                \"city\": \"WORCESTER\",\n                \"line\": [\n                    \"123 SUMMER STREET\"\n                ],\n                \"state\": \"MA\",\n                \"country\": \"US\",\n                \"postalCode\": \"01608\"\n            }\n        ],\n        \"telecom\": [\n            {\n                \"use\": \"work\",\n                \"value\": \"Tawanda156.Jast432@example.com\",\n                \"system\": \"email\",\n                \"extension\": [\n                    {\n                        \"url\": \"http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct\",\n                        \"valueBoolean\": true\n                    }\n                ]\n            }\n        ],\n        \"identifier\": [\n            {\n                \"value\": \"9999999459\",\n                \"system\": \"http://hl7.org/fhir/sid/us-npi\"\n            }\n        ],\n        \"resourceType\": \"Practitioner\"\n    }\n}\n",
-									"options": {
-										"raw": {}
-									}
-								},
-								"url": {
-									"raw": "http://{{host}}:{{port}}/codesystem",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"codesystem"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Patient",
-					"item": [
-						{
-							"name": "C Paciente",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{patient_writer}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"id\": \"1q2w3e-4r5t-6y7u-8i9o0p\",\n    \"txid\": \"1097234706123408\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"Patient\",\n        \"id\": \"nihaibu3p9soygalbdf\",\n        \"identifier\": [\n            {\n                \"use\": \"usual\",\n                \"type\": {\n                    \"coding\": [\n                        {\n                            \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0203\",\n                            \"code\": \"MR\"\n                        }\n                    ]\n                },\n                \"system\": \"http://www.goodhealth.org/identifiers/mrn\",\n                \"value\": \"123456\"\n            }\n        ],\n        \"active\": true,\n        \"name\": [\n            {\n                \"family\": \"Levin\",\n                \"given\": [\n                    \"Henry\"\n                ],\n                \"suffix\": [\n                    \"The 7th\"\n                ]\n            }\n        ],\n        \"gender\": \"male\",\n        \"birthDate\": \"1932-09-24\",\n        \"generalPractitioner\": [\n            {\n                \"reference\": \"Practitioner/example\",\n                \"display\": \"Dr Adam Careful\"\n            }\n        ],\n        \"managingOrganization\": {\n            \"reference\": \"Organization/2\",\n            \"display\": \"Good Health Clinic\"\n        }\n    }\n}",
-									"options": {
-										"raw": {}
-									}
-								},
-								"url": {
-									"raw": "{{protocol}}://{{host}}:{{port}}/patient",
-									"protocol": "{{protocol}}",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"patient"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Paciente (flexible)",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{patient_reader}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {}
-									}
-								},
-								"url": {
-									"raw": "{{protocol}}://{{host}}:{{port}}/patient",
-									"protocol": "{{protocol}}",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"patient"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Pacientes",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{jwt}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {}
-									}
-								},
-								"url": {
-									"raw": "{{protocol}}://{{host}}:{{port}}/rpc/r_patients",
-									"protocol": "{{protocol}}",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"rpc",
-										"r_patients"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Pacientes | médico",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{jwt}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"practitioner_id\": \"8e57eca4-281e-37d8-bd51-cbe4ee8f2a14\"\n}",
-									"options": {
-										"raw": {}
-									}
-								},
-								"url": {
-									"raw": "{{protocol}}://{{host}}:{{port}}/rpc/r_patients_of_practitioner",
-									"protocol": "{{protocol}}",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"rpc",
-										"r_patients_of_practitioner"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "3b3aa28e-b37f-4669-9120-f6b99c215aa2",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "4912c0c6-b570-45ff-b733-e89e8b6d52ad",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Slot",
-					"item": [
-						{
-							"name": "C Espacio en Agenda",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"id\": \"010639834\",\n\t\"resource\": {\n    \"resourceType\": \"Slot\",\n    \"id\": \"010639834\",\n    \"identifier\": [\n        {\n            \"system\": \"http://example.org/identifiers/slots\",\n            \"value\": \"123132\"\n        }\n    ],\n    \"serviceCategory\": [\n        {\n            \"coding\": [\n                {\n                    \"code\": \"17\",\n                    \"display\": \"General Practice\"\n                }\n            ]\n        }\n    ],\n    \"schedule\": {\n        \"reference\": \"Schedule/0963458971\"\n    },\n    \"status\": \"busy\",\n    \"start\": \"2020-05-27 12:00:00.000000+00\",\n    \"end\": \"2020-05-27 21:00:00.000000+00\",\n    \"overbooked\": true,\n    \"comment\": \"Assessments should be performed before requesting appointments in this slot.\"\n}\n}\n"
-								},
-								"url": {
-									"raw": "http://{{host}}:{{port}}/slot",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"slot"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Espacios en Agenda | médico o consultorio",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"actor_id\": \"61c1126b-b63d-440b-996f-21464a53be3e\"\n}\n"
-								},
-								"url": {
-									"raw": "http://{{host}}:{{port}}/rpc/r_slots",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"rpc",
-										"r_slots"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Horarios",
-					"item": [
-						{
-							"name": "R Horarios | ubicación",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"actor_id\": \"0bb542b6-9faa-48f2-82b2-68e27c775b9b\"\n}",
-									"options": {
-										"raw": {}
-									}
-								},
-								"url": {
-									"raw": "http://{{host}}:{{port}}/rpc/r_schedules_by_actor",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"rpc",
-										"r_schedules_by_actor"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "R Horarios (flexible)",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "a",
-										"type": "text",
-										"value": "1"
-									},
-									{
-										"key": "b",
-										"type": "text",
-										"value": "2"
-									},
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {}
-									}
-								},
-								"url": {
-									"raw": "http://{{host}}:{{port}}/schedule",
-									"protocol": "http",
-									"host": [
-										"{{host}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"schedule"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"description": "En los recursos de FHIR un **Horario** no tiene días, ni horas ni espacios de agenda y éstos a su vez tampoco tienen consultas, es al revés:\n- Cada **Consulta** tiene un **Espacio en Agenda**\n- Cada **Espacio en Agenda** tienen un **Horario**\n- Cada **Horario** pertenece a un \"actor\" que puede ser un **Practicante**, una **Ubicación** o un equipo médico.\n\nYa que en FHIR los **Horarios** tienen sólo los campos para marcar su hora de inicio y hora de salida, sólo se pueden especificar tiempos contínuos y las periodos como horarios de comida, días feriados, o días de la semana en los que no está disponible, no se pueden representar. De hecho los periodos de no-disponibilidad no se representan como tal, sino que se les asocia algún **Espacio en Agenda**, los periodos del horario disponible en los **Espacios en Agenda** se consideran no-disponibles.",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "02ff4184-97a7-4e52-97c5-57054f4432a5",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "a408acb1-cb87-4ab3-a03a-e14e8fc961e8",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Antecedentes Familiares",
+					"name": "FamilyMemberHistory",
 					"item": [
 						{
 							"name": "C Antecedentes Familiares",
@@ -1332,7 +574,7 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Servicios Médicos",
+					"name": "HealthcareService",
 					"item": [
 						{
 							"name": "C Servicio Médico",
@@ -1475,7 +717,7 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Ubicaciones",
+					"name": "Location",
 					"item": [
 						{
 							"name": "C Ubicación",
@@ -1612,10 +854,95 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Hábitos Personales",
+					"name": "Practitioner",
 					"item": [
 						{
-							"name": "C Hábitos Personales",
+							"name": "C Medicos",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{fhir_db_owner_as_practitioner_writer_jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"q1w2e3r4t5y6u7i8o90p0\",\n    \"txid\": \"1595866999611\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"id\": \"q1w2e3r4t5y6u7i8o90p0\",\n        \"gender\": \"male\",\n        \"name\": [\n            {\n                \"use\": \"official\",\n                \"family\": \"Who\",\n                \"given\": [\n                    \"Doctor\"\n                ]\n            }\n        ],\n        \"telecom\": [\n            {\n                \"system\": \"email\",\n                \"value\": \"dr.strange@gmail.com\"\n            },\n            {\n                \"system\": \"phone\",\n                \"value\": \"+525544332211\"\n            }\n        ],\n        \"resourceType\": \"Practitioner\",\n        \"birthDate\": \"Tue Oct 06 1992\",\n        \"qualification\": [\n            { \"identifier\": [\n                    { \"value\": \"CP2346327\"\n                    }\n                ],\n                \"code\": { \"coding\": [{ \"display\": \"Médico Cirujano y Partero\" }] }\n            }\n        ],\n        \"communication\": { \"coding\": [{ \"display\": \"Español\" },{ \"display\": \"Náhuatl\" }] }\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/practitioner",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"practitioner"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Médicos | paciente",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{fhir_server_jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"patient_id\": \"581a2280-899d-11ea-8721-635ef2c56ff4\"\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/rpc/r_generalpractitioners_of_patient",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_generalpractitioners_of_patient"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Médicos",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1636,56 +963,291 @@
 										"value": "application/json"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"id\": \"ci2k8LBCLs92oj0pYQxcbmVBVID08v9iuaIC9\",\n    \"txid\": \"2196234396728446\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"QuestionnaireResponse\",\n        \"id\": \"bb\",\n        \"title\": \"Cuestionario de Hábitos Personales TEEB v0.0.1\",\n        \"status\": \"completed\",\n        \"subject\": {\n            \"reference\": \"Patient/80d422b7-21b1-476e-8fa6-516520364d4b\",\n            \"display\": \"Roel\"\n        },\n        \"authored\": \"2020-06-02 13:45:12.341078+00\",\n        \"item\": [\n            {\n                \"linkId\": \"tabaco\",\n                \"type\": \"group\",\n                \"item\": [\n                    {\n                        \"linkId\": \"tabaco.1\",\n                        \"text\": \"¿Fumas tabaco?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Sí\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"tabaco.2\",\n                        \"text\": \"¿Cuántos cigarros fumas al día?\",\n                        \"answer\": [\n                            {\n                                \"valueDecimal\": \"8\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"tabaco.3\",\n                        \"text\": \"¿A qué edad comenzaste a fumar?\",\n                        \"answer\": [\n                            {\n                                \"valueDecimal\": \"18\"\n                            }\n                        ]\n                    }\n                ]\n            },\n            {\n                \"linkId\": \"alcohol\",\n                \"type\": \"group\",\n                \"item\": [\n                    {\n                        \"linkId\": \"alcohol.1\",\n                        \"text\": \"¿Ingieres alcohol?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Sí\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"alcohol.2\",\n                        \"text\": \"¿Con qué frecuencia lo haces?\",\n                        \"answer\": [\n                            {\n                                \"valueDecimal\": \"Ocasionalmente\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"alcohol.3\",\n                        \"text\": \"¿Cuántas copas por ocasión?\",\n                        \"answer\": [\n                            {\n                                \"valueDecimal\": \"10\"\n                            }\n                        ]\n                    }\n                ]\n            },\n            {\n                \"linkId\": \"drogas\",\n                \"type\": \"group\",\n                \"item\": [\n                    {\n                        \"linkId\": \"drogas.1\",\n                        \"text\": \"¿Consumes otras drogas?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Sí\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"drogas.2\",\n                        \"text\": \"¿Cuál?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Marihuana\"\n                            }\n                        ]\n                    }\n                ]\n            },\n            {\n                \"linkId\": \"ejercicio\",\n                \"type\": \"group\",\n                \"item\": [\n                    {\n                        \"linkId\": \"ejercicio.1\",\n                        \"text\": \"¿Haces ejercicio?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Sí\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"ejercicio.2\",\n                        \"text\": \"¿Qué ejercicios haces?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Natación\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"ejercicio.3\",\n                        \"text\": \"¿Con qué frecuencia lo haces?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Diario\"\n                            }\n                        ]\n                    }\n                ]\n            },\n            {\n                \"linkId\": \"sexualidad\",\n                \"type\": \"group\",\n                \"item\": [\n                    {\n                        \"linkId\": \"sexualidad.1\",\n                        \"text\": \"¿Tienes una vida sexual activa?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Sí\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"sexualidad.2\",\n                        \"text\": \"¿A qué edad comenzaste tu vida sexual?\",\n                        \"answer\": [\n                            {\n                                \"valueDecimal\": \"18\"\n                            }\n                        ]\n                    }\n                ]\n            },\n            {\n                \"linkId\": \"otros\",\n                \"type\": \"group\",\n                \"item\": [\n                    {\n                        \"linkId\": \"otros.1\",\n                        \"text\": \"Si tienes más hábitos escríbelos aquí\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Meditación antes de dormir\"\n                            }\n                        ]\n                    }\n                ]\n            }\n        ]\n    }\n}",
-									"options": {
-										"raw": {}
-									}
-								},
 								"url": {
-									"raw": "http://{{host}}:{{port}}/questionnaireresponse",
+									"raw": "http://{{host}}:{{port}}/rpc/r_practitioners",
 									"protocol": "http",
 									"host": [
 										"{{host}}"
 									],
 									"port": "{{port}}",
 									"path": [
-										"questionnaireresponse"
+										"rpc",
+										"r_practitioners"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R practitioners (f)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{practitioner_reader_jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/r/practitioner",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"r",
+										"practitioner"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R practitioners | telecom (f)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{practitioner_reader_jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/r/practitioner?resource->telecom->0->>value=eq.ivan@bambu-mobile.com",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"r",
+										"practitioner"
+									],
+									"query": [
+										{
+											"key": "resource->telecom->0->>value",
+											"value": "eq.ivan@bambu-mobile.com"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Médicos | ubicación",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"location_id\": \"0bb542b6-9faa-48f2-82b2-68e27c775b9b\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_practitioners_by_location",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_practitioners_by_location"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R practitioners | phone",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{fhir_server_jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"patient_id\": \"0bb542b6-9faa-48f2-82b2-68e27c775b9b\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/rpc/r_practitioners_by_phone",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_practitioners_by_phone"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Médicos | especialidad",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"specialty_code\": \"null\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_practitioners_by_specialty",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_practitioners_by_specialty"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Médicos | tipo de servicio",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"servicetype_code\": \"57\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_practitioners_by_servicetype",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_practitioners_by_servicetype"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "U practitioner",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{fhir_db_owner_as_practitioner_writer_jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Prefer",
+										"value": "resolution=merge-duplicates",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"q1w2e3r4t5y6u7i8o90p0\",\n    \"txid\": \"1595866999611\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"id\": \"q1w2e3r4t5y6u7i8o90p0\",\n        \"gender\": \"male\",\n        \"name\": [\n            {\n                \"use\": \"official\",\n                \"family\": \"Who\",\n                \"given\": [\n                    \"Doctor\"\n                ]\n            }\n        ],\n        \"telecom\": [\n            {\n                \"system\": \"email\",\n                \"value\": \"dr.strange@gmail.com\"\n            },\n            {\n                \"system\": \"phone\",\n                \"value\": \"+525544332211\"\n            }\n        ],\n        \"resourceType\": \"Practitioner\",\n        \"birthDate\": \"Tue Oct 06 1992\",\n        \"qualification\": [\n            { \"identifier\": [\n                    { \"value\": \"CP2346327\"\n                    }\n                ],\n                \"code\": { \"coding\": [{ \"display\": \"Médico Cirujano y Partero\" }] }\n            }\n        ],\n        \"communication\": { \"coding\": [{ \"display\": \"Español\" },{ \"display\": \"Náhuatl\" }] }\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/w/practitioner",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"w",
+										"practitioner"
 									]
 								}
 							},
 							"response": []
 						}
 					],
-					"description": "Para el servicio correspondiente a la pantalla [Hábitos Personales](https://projects.invisionapp.com/share/XRWBR529CD4#/screens/411304687).\n\nEn el recurso vienen representadas cada una de las secciones de Hábitos Personales y sus respectivas preguntas. El flujo es trivial, en el sentido de que en cuanto el paciente responde cualquiera de las preguntas la aplicación Android deberá de incluir el texto de la respuesta en la entrada correspondiente de arreglo `item`.\n\n```json\n{\n    ...\n    \"item\": [\n        {\n            \"linkId\": \"tabaco\",\n            \"type\": \"group\",\n            \"item\": [\n                {\n                    \"linkId\": \"tabaco.1\",\n                    \"text\": \"¿Fumas tabaco?\",\n                    \"answer\": [\n                        {\n                            \"valueString\": \"Sí\"\n                        }\n                    ]\n                },\n                {\n                    \"linkId\": \"tabaco.2\",\n                    \"text\": \"¿Cuántos cigarros fumas al día?\",\n                    \"answer\": [\n                        {\n                            \"valueDecimal\": \"8\"\n                        }\n                    ]\n                },\n    ...\n}\n```",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "35854585-c961-433b-94a1-209cc9352cac",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "ceb4fa08-7150-49ad-9bd9-796a95bf6d61",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						}
-					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Roles de Practicante",
+					"name": "PractitionerRole",
 					"item": [
 						{
 							"name": "C Rol de Practicante",
@@ -1867,6 +1429,511 @@
 								}
 							},
 							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Patient",
+					"item": [
+						{
+							"name": "C patient",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{fhir_db_owner_as_patient_writer_jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"1q2w3e-4r5t-6y7u-8i9o0p0\",\n    \"txid\": \"1097234706123408\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"Patient\",\n        \"id\": \"nihaibu3p9soygalbdf\",\n        \"identifier\": [\n            {\n                \"use\": \"usual\",\n                \"type\": {\n                    \"coding\": [\n                        {\n                            \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0203\",\n                            \"code\": \"MR\"\n                        }\n                    ]\n                },\n                \"system\": \"http://www.goodhealth.org/identifiers/mrn\",\n                \"value\": \"123456\"\n            }\n        ],\n        \"active\": true,\n        \"name\": [\n            {\n                \"family\": \"Levin\",\n                \"given\": [\n                    \"Henry\"\n                ],\n                \"suffix\": [\n                    \"The 7th\"\n                ]\n            }\n        ],\n        \"gender\": \"male\",\n        \"birthDate\": \"1932-09-24\",\n        \"generalPractitioner\": [\n            {\n                \"reference\": \"Practitioner/example\",\n                \"display\": \"Dr Adam Careful\"\n            }\n        ],\n        \"managingOrganization\": {\n            \"reference\": \"Organization/2\",\n            \"display\": \"Good Health Clinic\"\n        }\n    }\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/w/patient",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"w",
+										"patient"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Paciente (flexible)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{patient_reader}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/patient",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"patient"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Pacientes",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/rpc/r_patients",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_patients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Pacientes | médico",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"practitioner_id\": \"8e57eca4-281e-37d8-bd51-cbe4ee8f2a14\"\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/rpc/r_patients_of_practitioner",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_patients_of_practitioner"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "U patient",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{fhir_db_owner_as_patient_writer_jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"1q2w3e-4r5t-6y7u-8i9o0p0\",\n    \"txid\": \"1097234706123408\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"Patient\",\n        \"id\": \"nihaibu3p9soygalbdf\",\n        \"identifier\": [\n            {\n                \"use\": \"usual\",\n                \"type\": {\n                    \"coding\": [\n                        {\n                            \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0203\",\n                            \"code\": \"MR\"\n                        }\n                    ]\n                },\n                \"system\": \"http://www.goodhealth.org/identifiers/mrn\",\n                \"value\": \"123456\"\n            }\n        ],\n        \"active\": true,\n        \"name\": [\n            {\n                \"family\": \"Levin\",\n                \"given\": [\n                    \"Henry\"\n                ],\n                \"suffix\": [\n                    \"The 7th\"\n                ]\n            }\n        ],\n        \"gender\": \"male\",\n        \"birthDate\": \"1932-09-24\",\n        \"generalPractitioner\": [\n            {\n                \"reference\": \"Practitioner/example\",\n                \"display\": \"Dr Adam Careful\"\n            }\n        ],\n        \"managingOrganization\": {\n            \"reference\": \"Organization/2\",\n            \"display\": \"Good Health Clinic\"\n        }\n    }\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{host}}:{{port}}/w/patient",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"w",
+										"patient"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3b3aa28e-b37f-4669-9120-f6b99c215aa2",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "4912c0c6-b570-45ff-b733-e89e8b6d52ad",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Slot",
+					"item": [
+						{
+							"name": "C Espacio en Agenda",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": \"010639834\",\n\t\"resource\": {\n    \"resourceType\": \"Slot\",\n    \"id\": \"010639834\",\n    \"identifier\": [\n        {\n            \"system\": \"http://example.org/identifiers/slots\",\n            \"value\": \"123132\"\n        }\n    ],\n    \"serviceCategory\": [\n        {\n            \"coding\": [\n                {\n                    \"code\": \"17\",\n                    \"display\": \"General Practice\"\n                }\n            ]\n        }\n    ],\n    \"schedule\": {\n        \"reference\": \"Schedule/0963458971\"\n    },\n    \"status\": \"busy\",\n    \"start\": \"2020-05-27 12:00:00.000000+00\",\n    \"end\": \"2020-05-27 21:00:00.000000+00\",\n    \"overbooked\": true,\n    \"comment\": \"Assessments should be performed before requesting appointments in this slot.\"\n}\n}\n"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/slot",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"slot"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Espacios en Agenda | médico o consultorio",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"actor_id\": \"61c1126b-b63d-440b-996f-21464a53be3e\"\n}\n"
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_slots",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_slots"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Schedule",
+					"item": [
+						{
+							"name": "R Horarios | ubicación",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"actor_id\": \"0bb542b6-9faa-48f2-82b2-68e27c775b9b\"\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/rpc/r_schedules_by_actor",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"rpc",
+										"r_schedules_by_actor"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "R Horarios (flexible)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "a",
+										"type": "text",
+										"value": "1"
+									},
+									{
+										"key": "b",
+										"type": "text",
+										"value": "2"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/schedule",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"schedule"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "En los recursos de FHIR un **Horario** no tiene días, ni horas ni espacios de agenda y éstos a su vez tampoco tienen consultas, es al revés:\n- Cada **Consulta** tiene un **Espacio en Agenda**\n- Cada **Espacio en Agenda** tienen un **Horario**\n- Cada **Horario** pertenece a un \"actor\" que puede ser un **Practicante**, una **Ubicación** o un equipo médico.\n\nYa que en FHIR los **Horarios** tienen sólo los campos para marcar su hora de inicio y hora de salida, sólo se pueden especificar tiempos contínuos y las periodos como horarios de comida, días feriados, o días de la semana en los que no está disponible, no se pueden representar. De hecho los periodos de no-disponibilidad no se representan como tal, sino que se les asocia algún **Espacio en Agenda**, los periodos del horario disponible en los **Espacios en Agenda** se consideran no-disponibles.",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "02ff4184-97a7-4e52-97c5-57054f4432a5",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "a408acb1-cb87-4ab3-a03a-e14e8fc961e8",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "QuestionnaireResponse",
+					"item": [
+						{
+							"name": "C Hábitos Personales",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"ci2k8LBCLs92oj0pYQxcbmVBVID08v9iuaIC9\",\n    \"txid\": \"2196234396728446\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"QuestionnaireResponse\",\n        \"id\": \"bb\",\n        \"title\": \"Cuestionario de Hábitos Personales TEEB v0.0.1\",\n        \"status\": \"completed\",\n        \"subject\": {\n            \"reference\": \"Patient/80d422b7-21b1-476e-8fa6-516520364d4b\",\n            \"display\": \"Roel\"\n        },\n        \"authored\": \"2020-06-02 13:45:12.341078+00\",\n        \"item\": [\n            {\n                \"linkId\": \"tabaco\",\n                \"type\": \"group\",\n                \"item\": [\n                    {\n                        \"linkId\": \"tabaco.1\",\n                        \"text\": \"¿Fumas tabaco?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Sí\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"tabaco.2\",\n                        \"text\": \"¿Cuántos cigarros fumas al día?\",\n                        \"answer\": [\n                            {\n                                \"valueDecimal\": \"8\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"tabaco.3\",\n                        \"text\": \"¿A qué edad comenzaste a fumar?\",\n                        \"answer\": [\n                            {\n                                \"valueDecimal\": \"18\"\n                            }\n                        ]\n                    }\n                ]\n            },\n            {\n                \"linkId\": \"alcohol\",\n                \"type\": \"group\",\n                \"item\": [\n                    {\n                        \"linkId\": \"alcohol.1\",\n                        \"text\": \"¿Ingieres alcohol?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Sí\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"alcohol.2\",\n                        \"text\": \"¿Con qué frecuencia lo haces?\",\n                        \"answer\": [\n                            {\n                                \"valueDecimal\": \"Ocasionalmente\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"alcohol.3\",\n                        \"text\": \"¿Cuántas copas por ocasión?\",\n                        \"answer\": [\n                            {\n                                \"valueDecimal\": \"10\"\n                            }\n                        ]\n                    }\n                ]\n            },\n            {\n                \"linkId\": \"drogas\",\n                \"type\": \"group\",\n                \"item\": [\n                    {\n                        \"linkId\": \"drogas.1\",\n                        \"text\": \"¿Consumes otras drogas?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Sí\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"drogas.2\",\n                        \"text\": \"¿Cuál?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Marihuana\"\n                            }\n                        ]\n                    }\n                ]\n            },\n            {\n                \"linkId\": \"ejercicio\",\n                \"type\": \"group\",\n                \"item\": [\n                    {\n                        \"linkId\": \"ejercicio.1\",\n                        \"text\": \"¿Haces ejercicio?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Sí\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"ejercicio.2\",\n                        \"text\": \"¿Qué ejercicios haces?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Natación\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"ejercicio.3\",\n                        \"text\": \"¿Con qué frecuencia lo haces?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Diario\"\n                            }\n                        ]\n                    }\n                ]\n            },\n            {\n                \"linkId\": \"sexualidad\",\n                \"type\": \"group\",\n                \"item\": [\n                    {\n                        \"linkId\": \"sexualidad.1\",\n                        \"text\": \"¿Tienes una vida sexual activa?\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Sí\"\n                            }\n                        ]\n                    },\n                    {\n                        \"linkId\": \"sexualidad.2\",\n                        \"text\": \"¿A qué edad comenzaste tu vida sexual?\",\n                        \"answer\": [\n                            {\n                                \"valueDecimal\": \"18\"\n                            }\n                        ]\n                    }\n                ]\n            },\n            {\n                \"linkId\": \"otros\",\n                \"type\": \"group\",\n                \"item\": [\n                    {\n                        \"linkId\": \"otros.1\",\n                        \"text\": \"Si tienes más hábitos escríbelos aquí\",\n                        \"answer\": [\n                            {\n                                \"valueString\": \"Meditación antes de dormir\"\n                            }\n                        ]\n                    }\n                ]\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/questionnaireresponse",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"questionnaireresponse"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Para el servicio correspondiente a la pantalla [Hábitos Personales](https://projects.invisionapp.com/share/XRWBR529CD4#/screens/411304687).\n\nEn el recurso vienen representadas cada una de las secciones de Hábitos Personales y sus respectivas preguntas. El flujo es trivial, en el sentido de que en cuanto el paciente responde cualquiera de las preguntas la aplicación Android deberá de incluir el texto de la respuesta en la entrada correspondiente de arreglo `item`.\n\n```json\n{\n    ...\n    \"item\": [\n        {\n            \"linkId\": \"tabaco\",\n            \"type\": \"group\",\n            \"item\": [\n                {\n                    \"linkId\": \"tabaco.1\",\n                    \"text\": \"¿Fumas tabaco?\",\n                    \"answer\": [\n                        {\n                            \"valueString\": \"Sí\"\n                        }\n                    ]\n                },\n                {\n                    \"linkId\": \"tabaco.2\",\n                    \"text\": \"¿Cuántos cigarros fumas al día?\",\n                    \"answer\": [\n                        {\n                            \"valueDecimal\": \"8\"\n                        }\n                    ]\n                },\n    ...\n}\n```",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "35854585-c961-433b-94a1-209cc9352cac",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ceb4fa08-7150-49ad-9bd9-796a95bf6d61",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
 						}
 					],
 					"protocolProfileBehavior": {},
