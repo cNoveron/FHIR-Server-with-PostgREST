@@ -857,7 +857,7 @@
 					"name": "Practitioner",
 					"item": [
 						{
-							"name": "C Medicos",
+							"name": "C practitioner",
 							"protocolProfileBehavior": {
 								"disabledSystemHeaders": {}
 							},
@@ -867,7 +867,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{fhir_db_owner_as_practitioner_writer_jwt}}",
+											"value": "{{practitioner_writer_jwt}}",
 											"type": "string"
 										}
 									]
@@ -884,13 +884,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{protocol}}://{{host}}:{{port}}/practitioner",
+									"raw": "{{protocol}}://{{host}}:{{port}}/w/practitioner",
 									"protocol": "{{protocol}}",
 									"host": [
 										"{{host}}"
 									],
 									"port": "{{port}}",
 									"path": [
+										"w",
 										"practitioner"
 									]
 								}
@@ -1105,7 +1106,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{fhir_server_jwt}}",
+											"value": "{{fhir_function_caller_jwt}}",
 											"type": "string"
 										}
 									]
@@ -1205,7 +1206,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{fhir_db_owner_as_practitioner_writer_jwt}}",
+											"value": "{{practitioner_writer_jwt}}",
 											"type": "string"
 										}
 									]
@@ -1451,19 +1452,14 @@
 									]
 								},
 								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
 									"raw": "{\n    \"id\": \"1q2w3e-4r5t-6y7u-8i9o0p0\",\n    \"txid\": \"1097234706123408\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"Patient\",\n        \"id\": \"nihaibu3p9soygalbdf\",\n        \"identifier\": [\n            {\n                \"use\": \"usual\",\n                \"type\": {\n                    \"coding\": [\n                        {\n                            \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0203\",\n                            \"code\": \"MR\"\n                        }\n                    ]\n                },\n                \"system\": \"http://www.goodhealth.org/identifiers/mrn\",\n                \"value\": \"123456\"\n            }\n        ],\n        \"active\": true,\n        \"name\": [\n            {\n                \"family\": \"Levin\",\n                \"given\": [\n                    \"Henry\"\n                ],\n                \"suffix\": [\n                    \"The 7th\"\n                ]\n            }\n        ],\n        \"gender\": \"male\",\n        \"birthDate\": \"1932-09-24\",\n        \"generalPractitioner\": [\n            {\n                \"reference\": \"Practitioner/example\",\n                \"display\": \"Dr Adam Careful\"\n            }\n        ],\n        \"managingOrganization\": {\n            \"reference\": \"Organization/2\",\n            \"display\": \"Good Health Clinic\"\n        }\n    }\n}",
 									"options": {
-										"raw": {}
+										"raw": {
+											"language": "json"
+										}
 									}
 								},
 								"url": {
@@ -1623,7 +1619,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{fhir_db_owner_as_patient_writer_jwt}}",
+											"value": "{{patient_writer_jwt}}",
 											"type": "string"
 										}
 									]
@@ -1635,11 +1631,16 @@
 										"name": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "Prefer",
+										"value": "resolution=merge-duplicates",
+										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": \"1q2w3e-4r5t-6y7u-8i9o0p0\",\n    \"txid\": \"1097234706123408\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"Patient\",\n        \"id\": \"nihaibu3p9soygalbdf\",\n        \"identifier\": [\n            {\n                \"use\": \"usual\",\n                \"type\": {\n                    \"coding\": [\n                        {\n                            \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0203\",\n                            \"code\": \"MR\"\n                        }\n                    ]\n                },\n                \"system\": \"http://www.goodhealth.org/identifiers/mrn\",\n                \"value\": \"123456\"\n            }\n        ],\n        \"active\": true,\n        \"name\": [\n            {\n                \"family\": \"Levin\",\n                \"given\": [\n                    \"Henry\"\n                ],\n                \"suffix\": [\n                    \"The 7th\"\n                ]\n            }\n        ],\n        \"gender\": \"male\",\n        \"birthDate\": \"1932-09-24\",\n        \"generalPractitioner\": [\n            {\n                \"reference\": \"Practitioner/example\",\n                \"display\": \"Dr Adam Careful\"\n            }\n        ],\n        \"managingOrganization\": {\n            \"reference\": \"Organization/2\",\n            \"display\": \"Good Health Clinic\"\n        }\n    }\n}",
+									"raw": "{\n    \"id\": \"1q2w3e-4r5t-6y7u-8i9o0p0\",\n    \"txid\": \"1097234706123408\",\n    \"status\": \"created\",\n    \"resource\": {\n        \"resourceType\": \"Patient\",\n        \"id\": \"nihaibu3p9soygalbdf\",\n        \"identifier\": [\n            {\n                \"use\": \"usual\",\n                \"type\": {\n                    \"coding\": [\n                        {\n                            \"system\": \"http://terminology.hl7.org/CodeSystem/v2-0203\",\n                            \"code\": \"MR\"\n                        }\n                    ]\n                },\n                \"system\": \"http://www.goodhealth.org/identifiers/mrn\",\n                \"value\": \"123456\"\n            }\n        ],\n        \"active\": true,\n        \"name\": [\n            {\n                \"family\": \"Estrella\",\n                \"given\": [\n                    \"Patricio\"\n                ],\n                \"suffix\": [\n                    \"Señor Doctor\"\n                ]\n            }\n        ],\n        \"gender\": \"male\",\n        \"birthDate\": \"1932-09-24\",\n        \"generalPractitioner\": [\n            {\n                \"reference\": \"Practitioner/example\",\n                \"display\": \"Dr Adam Careful\"\n            }\n        ],\n        \"managingOrganization\": {\n            \"reference\": \"Organization/2\",\n            \"display\": \"Good Health Clinic\"\n        }\n    }\n}",
 									"options": {
 										"raw": {}
 									}
