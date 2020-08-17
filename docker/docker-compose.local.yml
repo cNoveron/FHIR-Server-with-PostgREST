@@ -20,8 +20,8 @@ services:
   postgres:
     build:
       context: .
-      dockerfile: ../compose/production/postgres/Dockerfile
-    image: teeb_production_postgres
+      dockerfile: ./compose/dev/postgres/Dockerfile
+    image: teeb_dev_postgres
     ports:
       - "5435:5432"
     volumes:
@@ -33,8 +33,8 @@ services:
   fhirbase:
     build:
       context: .
-      dockerfile: ../compose/production/fhirbase/Dockerfile
-    image: teeb_production_fhirbase
+      dockerfile: ./compose/dev/fhirbase/Dockerfile
+    image: teeb_dev_fhirbase
     ports:
       - "3000:3000"
     env_file:
