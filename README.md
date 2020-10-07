@@ -1,4 +1,4 @@
-# :fire: Teeb FHIR Server
+# :fire: PostgREST FHIR Server
 
 ## Instalación
 
